@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>方案 C · 修图建议卡 — Muse 精修概念</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+/* C: the app reads the photo, names what it found, fixes it in front of the user, and shows the score climb. */
+.stage.small{flex:0 0 auto;height:352px}
+.scan{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s}
+.scan.on{opacity:1}
+.scan .line{position:absolute;left:8%;right:8%;top:0;height:2px;background:linear-gradient(90deg,transparent,#ddf28d,transparent);box-shadow:0 0 18px 4px #ddf28d66;animation:scanDown 1.3s ease-in-out infinite}
+@keyframes scanDown{0%{top:6%}50%{top:92%}100%{top:6%}}
+.scan .c{position:absolute;width:18px;height:18px;border:2px solid #ddf28dcc}
+.scan .tl{left:14px;top:14px;border-right:0;border-bottom:0;border-radius:6px 0 0 0}
+.scan .tr{right:14px;top:14px;border-left:0;border-bottom:0;border-radius:0 6px 0 0}
+.scan .bl{left:14px;bottom:14px;border-right:0;border-top:0;border-radius:0 0 0 6px}
+.scan .br{right:14px;bottom:14px;border-left:0;border-top:0;border-radius:0 0 6px 0}
+.score{position:absolute;right:12px;top:12px;display:flex;align-items:center;gap:8px;background:#0e130ac2;border-radius:24px;padding:5px 12px 5px 6px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:opacity .3s}
+.score[hidden]{display:none}
+.score svg{width:34px;height:34px;transform:rotate(-90deg)}
+.score circle{fill:none;stroke-width:3.4;stroke-linecap:round}
+.score .bg{stroke:#ffffff22}
+.score .fg{stroke:var(--accent);stroke-dasharray:119.4;stroke-dashoffset:119.4;transition:stroke-dashoffset .6s cubic-bezier(.2,.8,.2,1)}
+.score strong{display:block;font-size:15px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+.score small{display:block;font-size:9px;color:#c9d4b6;letter-spacing:.6px;text-transform:uppercase;margin-top:2px}
+.score .delta{font-size:11px;font-weight:700;color:var(--accent);margin-left:2px}
+.readout{font-size:11.5px;color:var(--muted);min-height:16px;display:flex;align-items:center;gap:8px}
+.readout b{color:#eef5d9;font-weight:600}
+.findings{display:flex;flex-direction:column;gap:6px}
+.finding{display:flex;align-items:center;gap:12px;min-height:58px;padding:6px 6px 6px 6px;border-radius:16px;background:var(--card);box-shadow:inset 0 0 0 1px #ffffff08;opacity:0;transform:translateY(8px);transition:opacity .35s,transform .35s,background .25s}
+.finding.in{opacity:1;transform:none}
+.finding.on{background:#222a1c;box-shadow:inset 0 0 0 1px #d3e98f40}
+.pair{display:flex;align-items:center;gap:3px;flex-shrink:0}
+.pair canvas{width:36px;height:46px;border-radius:8px;display:block;background:#0d100b}
+.pair .b{opacity:.75}
+.pair svg{width:12px;height:12px;color:#7f8a72}
+.finding .txt{flex:1;min-width:0;line-height:1.25}
+.finding .txt b{display:block;font-size:12.5px;font-weight:600;color:#eef5d9}
+.finding .txt small{display:block;font-size:10.5px;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.finding.on .txt small{color:#b9c8a0}
+.switch{width:44px;height:26px;border-radius:13px;background:#ffffff1a;position:relative;flex-shrink:0;transition:background .25s}
+.switch i{position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform .25s;box-shadow:0 1px 4px #0006}
+.switch[aria-checked=true]{background:var(--accent)}
+.switch[aria-checked=true] i{transform:translateX(18px)}
+</style>
+</head>
+<body>
+<main class="board">
+ <aside class="note">
+  <span class="tag">方案 C</span>
+  <h1>修图建议卡</h1>
+  <p class="hyp">假设：用户感知价值，是因为看到 App "懂这张照片"。先扫一遍，指出三处具体问题（面部偏暗、色调偏暖、皮肤不均），当着用户的面逐条修好，分数跟着涨。</p>
+  <dl>
+   <dt>价值时刻</dt><dd>三张建议卡逐条亮起，照片同步变化，右上角质量分从 68 爬到 91。</dd>
+   <dt>用户动作</dt><dd>看着它修完即可保存；每条建议都有开关，可单独关掉；每张卡上自带局部对比小图。</dd>
+   <dt>适合</dt><dd>不确定"该修什么"的用户；建立专业信任；也适合作为 Auto 按钮的解释层。</dd>
+   <dt>风险</dt><dd>"给人打分"可能让人不适，分数必须明确是对光线 / 色彩 / 清晰度的评价，不是对人。信息量比 A 多。</dd>
+  </dl>
+  <div class="switch"></div>
+ </aside>
+ <div class="device"><div class="screen">
+  <div class="status"></div><div class="island"></div>
+  <div class="app">
+   <header class="topbar">
+    <button class="circle" aria-label="Close" id="close"></button>
+    <span class="title">Photo check<small id="titleSub">Light · skin · color</small></span>
+    <button class="pill" id="save" disabled>Save</button>
+   </header>
+   <div class="stage small" id="stage">
+    <img id="before" alt="Photo before refinement">
+    <canvas id="after" aria-label="Refined photo" hidden></canvas>
+    <div class="scan on" id="scan"><i class="line"></i><b class="c tl"></b><b class="c tr"></b><b class="c bl"></b><b class="c br"></b></div>
+    <div class="score" id="score" hidden><svg viewBox="0 0 44 44" aria-hidden="true"><circle class="bg" cx="22" cy="22" r="19"/><circle class="fg" id="ring" cx="22" cy="22" r="19"/></svg><div><strong><span id="scoreNum">—</span><span class="delta" id="delta"></span></strong><small>Photo quality</small></div></div>
+    <span class="glass-label" id="label" hidden>After</span>
+    <button class="glass hold" id="hold" aria-label="Hold to see the photo before" hidden></button>
+   </div>
+   <section class="panel">
+    <p class="readout" id="status">Checking light, skin and color…</p>
+    <div class="findings" id="findings"></div>
+    <div class="actions"><button class="btn primary" id="primary" disabled>Reading your photo…</button><button class="btn ghost" id="manual" hidden>Adjust by hand</button></div>
+   </section>
+   <div class="scrim"></div>
+   <div class="sheet" id="sheet">
+    <div class="grab"></div>
+    <div class="sheet-head"><h3>Adjust by hand</h3><button class="pill ghost" id="sheetDone">Done</button></div>
+    <div id="sheetBody"></div>
+   </div>
+   <div class="home-line"></div>
+  </div>
+ </div></div>
+</main>
+<script src="shared.js"></script>
+<script>
+const {icon,photoSrc}=Muse;Muse.chrome();
+document.getElementById('close').innerHTML=icon('close');document.getElementById('hold').innerHTML=icon('compare');
+const before=document.getElementById('before'),after=document.getElementById('after'),findings=document.getElementById('findings'),status=document.getElementById('status');
+const paint=Muse.painter(after,{max:900});
+let FIX=[],on={},base=0,ready=false,comparing=false,cur=Muse.DEFAULT();
+
+function recompute(){cur=Muse.DEFAULT();for(const f of FIX)if(on[f.k])f.set(cur);}
+const score=()=>Math.min(96,base+FIX.reduce((n,f)=>n+(on[f.k]?f.gain:0),0));
+function setScore(v,delta){document.getElementById('scoreNum').textContent=v;document.getElementById('ring').style.strokeDashoffset=(119.4*(1-v/100)).toFixed(1);document.getElementById('delta').textContent=delta>0?`+${delta}`:'';}
+function updateChrome(){const n=Object.values(on).filter(Boolean).length;setScore(score(),score()-base);
+ document.getElementById('save').disabled=!n;document.getElementById('primary').disabled=!n;document.getElementById('primary').textContent=n?'Save photo':'Nothing applied';
+ status.innerHTML=n===FIX.length?`<b>Fixed ${n} of ${FIX.length}.</b> Tap a switch to undo one.`:n?`<b>${n} of ${FIX.length} applied.</b> Switch the rest on or off.`:`Everything off. This is your photo as shot.`;
+ document.getElementById('titleSub').textContent=n?`${n} fix${n>1?'es':''} on`:'As shot';
+ document.getElementById('label').textContent=comparing?'Before':(n?'After':'Original');document.getElementById('label').classList.toggle('accent',!comparing&&n>0);}
+async function refresh(){recompute();await paint(photoSrc,cur);}
+
+async function thumbs(f,card){const full=await Muse.render(photoSrc,Muse.DEFAULT(),420),one=Muse.DEFAULT();f.set(one);const fixed=await Muse.render(photoSrc,one,420),region=f.k==='color'?'full':'face';
+ const b=await Muse.crop(full,region,92),a=await Muse.crop(fixed,region,92);Muse.paint(card.querySelector('.b'),b);Muse.paint(card.querySelector('.a'),a);}
+
+findings.addEventListener('click',e=>{const card=e.target.closest('.finding');if(!card||!ready)return;const k=card.dataset.k;on[k]=!on[k];card.classList.toggle('on',on[k]);card.querySelector('.switch').setAttribute('aria-checked',on[k]);updateChrome();refresh();});
+
+async function start(){
+ before.src=photoSrc;await Muse.load(photoSrc);
+ const read=await Muse.analyse(photoSrc),sug=Muse.suggest(read);FIX=sug.changes;base=sug.score;for(const f of FIX)on[f.k]=false;
+ findings.innerHTML=FIX.map(f=>`<article class="finding" data-k="${f.k}"><div class="pair"><canvas class="b" width="72" height="92" aria-hidden="true"></canvas>${icon('arrow')}<canvas class="a" width="72" height="92" aria-hidden="true"></canvas></div><div class="txt"><b>${f.title}</b><small>${f.fix}</small></div><button class="switch" role="switch" aria-checked="false" aria-label="${f.fix}"><i></i></button></article>`).join('');
+ await Promise.all(FIX.map((f,i)=>thumbs(f,findings.children[i])));
+ await Muse.wait(1400);
+ document.getElementById('scan').classList.remove('on');
+ const sc=document.getElementById('score');sc.hidden=false;setScore(0,0);await Muse.wait(30);setScore(base,0);
+ status.innerHTML=`<b>${FIX.length} things to fix.</b> Applying…`;
+ for(const [i,card] of [...findings.children].entries()){await Muse.wait(i?160:120);card.classList.add('in');}
+ await Muse.wait(500);
+ for(const f of FIX){on[f.k]=true;const card=findings.querySelector(`[data-k="${f.k}"]`);card.classList.add('on');card.querySelector('.switch').setAttribute('aria-checked','true');await refresh();updateChrome();await Muse.wait(520);}
+ ready=true;updateChrome();
+ document.getElementById('manual').hidden=false;document.getElementById('hold').hidden=false;document.getElementById('label').hidden=false;
+}
+
+function showBefore(){comparing=true;after.hidden=true;updateChrome();}
+function showAfter(){comparing=false;after.hidden=false;updateChrome();}
+Muse.hold(document.getElementById('hold'),showBefore,showAfter);
+const save=()=>{if(!Object.values(on).some(Boolean))return;Muse.toast('Saved to Photos · original kept');};
+document.getElementById('save').onclick=save;document.getElementById('primary').onclick=save;
+document.getElementById('close').onclick=()=>Muse.toast('Back to result (prototype)');
+
+/* Manual sheet: the four knobs behind the findings. */
+const sheet=Muse.sheet(document.getElementById('sheet'));
+const KNOBS=[{id:'smooth',label:'Smooth skin',min:0,max:100},{id:'facelight',label:'Face light',min:0,max:100},{id:'warmth',label:'Warmth',min:-50,max:50,signed:true},{id:'contrast',label:'Contrast',min:-50,max:50,signed:true}];
+document.getElementById('sheetBody').innerHTML=KNOBS.map(k=>Muse.sliderRow({...k,value:0})).join('');
+const syncers={};let manual=false;
+for(const k of KNOBS){const input=document.getElementById(k.id);syncers[k.id]=Muse.bindSlider(input,async v=>{if(!manual){recompute();manual=true;}cur[k.id]=v;await paint(photoSrc,cur);},{signed:k.signed});}
+document.getElementById('manual').onclick=()=>{recompute();manual=false;for(const k of KNOBS){const input=document.getElementById(k.id);input.value=Math.round(cur[k.id]);syncers[k.id]();}sheet.open();};
+document.getElementById('sheetDone').onclick=()=>{sheet.close();if(manual){/* keep manual values; findings become informational */for(const f of FIX){const card=findings.querySelector(`[data-k="${f.k}"]`);const active=f.k==='skin'?cur.smooth>0:f.k==='light'?cur.facelight>0||cur.exposure!==0:cur.warmth!==0||cur.contrast!==0||cur.saturation!==0;on[f.k]=active;card.classList.toggle('on',active);card.querySelector('.switch').setAttribute('aria-checked',active);}updateChrome();}};
+
+start();
+</script>
+</body>
+</html>

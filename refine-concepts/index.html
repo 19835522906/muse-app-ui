@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>精修页 · 四个方案并排 — Muse</title>
+<style>
+:root{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",sans-serif;color:#22231e}
+*{box-sizing:border-box}
+body{margin:0;background:#e9eae5;min-height:100vh;padding:28px 32px 40px}
+header{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:22px}
+header h1{margin:0;font-size:24px;letter-spacing:-.6px;font-weight:730}
+header p{margin:6px 0 0;font-size:13px;color:#5a5c53;max-width:640px;line-height:1.5}
+.photos{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:12px;color:#73746c}
+.photos a{color:#3a3d33;background:#f4f4ef;border:1px solid #d6d8cd;border-radius:14px;padding:5px 10px;text-decoration:none}
+.photos a.on{background:#22231e;color:#fff;border-color:#22231e}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px}
+@media(max-width:1180px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+section h2{margin:0 0 4px;font-size:15px;letter-spacing:-.2px}
+section h2 a{color:inherit;text-decoration:none;border-bottom:1px solid #c5c7bf}
+section h2 a:hover{border-color:#22231e}
+section h2 span{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.6px;color:#4c5a2e;background:#dbe9ad;border-radius:7px;padding:3px 7px;margin-right:8px;vertical-align:2px}
+section p{margin:0 0 12px;font-size:12px;color:#5a5c53;line-height:1.5;min-height:54px}
+.frame{width:100%;aspect-ratio:428/874;position:relative;overflow:hidden}
+.frame iframe{position:absolute;left:0;top:0;width:428px;height:874px;border:0;transform-origin:0 0;background:transparent}
+footer{margin-top:26px;font-size:12px;color:#73746c;line-height:1.6}
+footer a{color:#3a3d33}
+</style>
+</head>
+<body>
+<header>
+ <div><h1>精修页 · 四个方案并排</h1><p>同一张照片，四种让用户"感到值"的方式。每台手机都可以直接操作；点方案名打开单页放大看。当前结果页的精修（工具 + Auto）保持不动，作为基线。</p></div>
+ <div class="photos" id="photos"><span>换一张照片：</span></div>
+</header>
+<div class="grid" id="grid"></div>
+<footer>方案说明、对比与推荐见 <a href="README.md">README.md</a>。渲染均为 Canvas 近似，不含人脸检测；"面部区域"按人像上中部估算。</footer>
+<script>
+const PHOTOS={portrait5:'暖调 · 发闷',portrait2:'逆光 · 发灰',portrait4:'棚拍 · 偏平',portrait:'手机 · 偏蓝'};
+const q=new URLSearchParams(location.search),photo=PHOTOS[q.get('photo')]?q.get('photo'):'portrait5';
+document.getElementById('photos').insertAdjacentHTML('beforeend',Object.entries(PHOTOS).map(([id,d])=>`<a href="?photo=${id}" class="${id===photo?'on':''}">${d}</a>`).join(''));
+const CONCEPTS=[
+ ['A','先见成果','A-reveal.html','进场 1.4 秒光线扫过，照片直接变成修后；下面列三行"改了什么"，不要的点掉。0 步可保存。'],
+ ['B','成片流','B-finishes.html','没有工具。六张已经修完的成片，用自己的照片左右翻，像在挑要发哪一张。'],
+ ['C','修图建议卡','C-coach.html','先扫一遍照片，指出三处具体问题，当着用户的面逐条修好，质量分跟着涨。每条可单独关掉。'],
+ ['D','三步引导','D-steps.html','皮肤 → 光线 → 色彩，每步一根滑杆自动滑到建议值；最后拖分割线看三步累积的差距。']
+];
+document.getElementById('grid').innerHTML=CONCEPTS.map(([tag,name,file,desc])=>`<section><h2><span>方案 ${tag}</span><a href="${file}?photo=${photo}">${name}</a></h2><p>${desc}</p><div class="frame"><iframe src="${file}?embed=1&photo=${photo}" title="方案 ${tag} ${name}" loading="lazy"></iframe></div></section>`).join('');
+function fit(){document.querySelectorAll('.frame').forEach(f=>{const s=f.clientWidth/428;f.querySelector('iframe').style.transform=`scale(${s})`;});}
+fit();addEventListener('resize',fit);
+</script>
+</body>
+</html>

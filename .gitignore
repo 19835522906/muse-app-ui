@@ -1,0 +1,6 @@
+.DS_Store
+Thumbs.db
+
+# Source PNGs for the reference images; the prototype embeds its own images
+# and refine-concepts loads the .jpg versions, so these are not needed online.
+assets/*.png

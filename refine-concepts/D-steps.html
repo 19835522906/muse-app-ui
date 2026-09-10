@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>方案 D · 三步引导 — Muse 精修概念</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+/* D: a 30-second guided session. One slider per step, pre-set to a suggestion, ending on a split reveal. */
+.progress{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;gap:5px;align-items:center}
+.progress i{width:34px;height:4px;border-radius:2px;background:#ffffff1f;overflow:hidden;position:relative}
+.progress i:after{content:"";position:absolute;inset:0;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.progress i.done:after{transform:scaleX(1)}
+.progress i.now:after{transform:scaleX(.5);background:#eef5d9}
+.step-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.step-head h2{display:flex;align-items:center;gap:10px}
+.step-head h2 .n{width:24px;height:24px;border-radius:50%;background:var(--accent);color:var(--accent-ink);font-size:12px;font-weight:700;display:grid;place-items:center}
+.step-head .val{font-size:15px;font-weight:700;color:#e3f0b8;font-variant-numeric:tabular-nums}
+.big{padding:6px 2px 0}
+.big .slider-wrap{padding:12px 0 8px}
+.big input.slider{height:6px;border-radius:6px}
+.big input.slider::-webkit-slider-thumb{width:26px;height:26px}
+.big input.slider::-moz-range-thumb{width:26px;height:26px}
+.big .neutral{top:10px;height:10px}
+.suggest{position:absolute;top:-2px;width:2px;height:14px;background:var(--accent);border-radius:1px;transform:translateX(-1px);pointer-events:none;opacity:.9}
+.suggest:after{content:"Suggested";position:absolute;top:-16px;left:50%;transform:translateX(-50%);font-size:9px;letter-spacing:.4px;color:var(--accent);white-space:nowrap;font-weight:600}
+.ends{display:flex;justify-content:space-between;font-size:10.5px;color:var(--muted);padding:0 2px}
+.split{position:absolute;inset:0;touch-action:none;cursor:ew-resize}
+.split[hidden]{display:none}
+.split img,.split canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block}
+.split .handle{position:absolute;top:0;bottom:0;width:2px;margin-left:-1px;background:#fff;box-shadow:0 0 10px #ffffff80,0 0 1px #0006;pointer-events:none}
+.split .handle span{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:38px;height:38px;border-radius:50%;background:#fff;color:#1d2418;display:grid;place-items:center;box-shadow:0 4px 14px #0006}
+.split .handle span svg{width:18px;height:18px;stroke-width:2}
+.split .lbl{position:absolute;top:12px;background:#0e130ac2;color:#fff;border-radius:20px;padding:6px 12px;font-size:10.5px;font-weight:550;backdrop-filter:blur(12px);pointer-events:none}
+.split .lbl.l{left:12px}.split .lbl.r{right:12px;background:var(--accent);color:var(--accent-ink)}
+.summary{list-style:none;margin:0;padding:0;display:flex;gap:8px}
+.summary li{flex:1;background:var(--card);border-radius:14px;padding:10px 12px;box-shadow:inset 0 0 0 1px #ffffff08;line-height:1.2}
+.summary li small{display:block;font-size:10px;color:var(--muted);letter-spacing:.4px;text-transform:uppercase;margin-bottom:4px}
+.summary li b{font-size:15px;font-weight:700;color:#e3f0b8;font-variant-numeric:tabular-nums}
+.summary li.skipped b{color:#7f8a72;font-weight:500;font-size:12px}
+</style>
+</head>
+<body>
+<main class="board">
+ <aside class="note">
+  <span class="tag">方案 D</span>
+  <h1>三步引导</h1>
+  <p class="hyp">假设：自己动过手的结果更被珍惜。把精修压成一个 30 秒的小流程：皮肤 → 光线 → 色彩，每步只有一根滑杆，进场时自动滑到建议值，最后用拖动分割线揭示前后。</p>
+  <dl>
+   <dt>价值时刻</dt><dd>两个：每一步滑杆自动滑到建议值时照片跟着变；结束时分割线一拖，三步累积的差距一次看完。</dd>
+   <dt>用户动作</dt><dd>三次"Next"（或 Skip）。每步都能按住看修前。</dd>
+   <dt>适合</dt><dd>首次使用、需要建立"我会修图"信心的用户；老用户可 Skip all 直达结果。</dd>
+   <dt>风险</dt><dd>第二次以后会嫌慢，必须有一键跳过；步骤不能多于三步。</dd>
+  </dl>
+  <div class="switch"></div>
+ </aside>
+ <div class="device"><div class="screen">
+  <div class="status"></div><div class="island"></div>
+  <div class="app">
+   <header class="topbar">
+    <button class="circle" aria-label="Close" id="close"></button>
+    <div class="progress" id="progress" aria-label="Progress"><i></i><i></i><i></i></div>
+    <button class="pill ghost" id="skipAll">Skip all</button>
+   </header>
+   <div class="stage" id="stage">
+    <img id="before" alt="Photo before refinement">
+    <canvas id="after" aria-label="Refined photo" hidden></canvas>
+    <span class="glass-label" id="label">Step 1 of 3</span>
+    <button class="glass hold" id="hold" aria-label="Hold to see the photo before this step"></button>
+    <div class="split" id="split" hidden><img class="before" alt=""><canvas class="after"></canvas><div class="handle"><span></span></div><b class="lbl l">Before</b><b class="lbl r">After</b></div>
+   </div>
+   <section class="panel" id="stepPanel">
+    <div class="step-head"><h2><span class="n" id="stepN">1</span><span id="stepTitle">Skin</span></h2><span class="val" id="stepVal">0</span></div>
+    <p class="sub" id="stepSub" style="margin-top:-8px"></p>
+    <div class="big"><div class="slider-wrap"><span class="suggest" id="suggest"></span><input class="slider" id="slider" type="range" min="0" max="100" value="0" aria-label="Amount"></div><div class="ends"><span id="endL"></span><span id="endR"></span></div></div>
+    <div class="actions"><button class="btn primary" id="next">Next</button><button class="btn ghost" id="skip">Skip this step</button></div>
+   </section>
+   <section class="panel" id="donePanel" hidden>
+    <div><h2>Done in 3 steps</h2><p class="sub">Drag the line to compare. Saved as a new photo; the original stays.</p></div>
+    <ul class="summary" id="summary"></ul>
+    <div class="actions"><button class="btn primary" id="save">Save photo</button><button class="btn ghost" id="restart">Start over</button></div>
+   </section>
+   <div class="home-line"></div>
+  </div>
+ </div></div>
+</main>
+<script src="shared.js"></script>
+<script>
+const {icon,photoSrc}=Muse;Muse.chrome();
+document.getElementById('close').innerHTML=icon('close');document.getElementById('hold').innerHTML=icon('compare');document.querySelector('.split .handle span').innerHTML=icon('compare');
+
+const STEPS=[
+ {k:'skin',title:'Skin',sub:'Even it out. Texture stays, only the face is touched.',min:0,max:100,ends:['As is','Smoother'],suggest:()=>45,apply:(s,v)=>{s.smooth=v;s.glow=v*.13;},show:v=>`+${v}`},
+ {k:'light',title:'Light',sub:'Lift the face. The background stays where it is.',min:0,max:100,ends:['As shot','Brighter'],suggest:a=>a.faceLuma<95?70:a.faceLuma>165?15:40,apply:(s,v)=>{s.facelight=v;s.exposure=v*.11;},show:v=>`+${v}`},
+ {k:'color',title:'Color',sub:'Cooler or warmer. The middle is as shot.',min:-50,max:50,ends:['Cooler','Warmer'],suggest:a=>a.faceWarm>60?-10:a.faceWarm<-20?16:6,apply:(s,v)=>{s.warmth=v;s.saturation=Math.abs(v)*.4+4;s.contrast=6;},show:v=>v>0?`+${v}`:String(v)}
+];
+const before=document.getElementById('before'),after=document.getElementById('after'),slider=document.getElementById('slider'),label=document.getElementById('label');
+const paint=Muse.painter(after,{max:900});
+let read=null,step=0,vals={},committed={},comparing=false;
+
+function stateUpTo(n,includeLive=true){const s=Muse.DEFAULT();STEPS.forEach((st,i)=>{if(i<n&&committed[st.k]!=null)st.apply(s,committed[st.k]);if(i===n&&includeLive)st.apply(s,+slider.value);});return s;}
+const refresh=()=>paint(photoSrc,stateUpTo(step));
+
+const sync=Muse.bindSlider(slider,()=>{document.getElementById('stepVal').textContent=STEPS[step].show(+slider.value);refresh();});
+
+async function enter(i){step=i;const st=STEPS[i];
+ document.getElementById('stepN').textContent=i+1;document.getElementById('stepTitle').textContent=st.title;document.getElementById('stepSub').textContent=st.sub;
+ document.getElementById('endL').textContent=st.ends[0];document.getElementById('endR').textContent=st.ends[1];
+ slider.min=st.min;slider.max=st.max;slider.value=st.min<0?0:0;document.querySelector('.big .neutral')?.remove();
+ if(st.min<0){const n=document.createElement('span');n.className='neutral';n.style.left=(0-st.min)/(st.max-st.min)*100+'%';slider.parentElement.prepend(n);}
+ const sug=st.suggest(read);document.getElementById('suggest').style.left=(sug-st.min)/(st.max-st.min)*100+'%';
+ label.textContent=`Step ${i+1} of 3 · ${st.title}`;label.classList.remove('accent');
+ [...document.getElementById('progress').children].forEach((el,k)=>{el.classList.toggle('done',k<i);el.classList.toggle('now',k===i);});
+ document.getElementById('next').textContent=i===2?'Finish':'Next';
+ sync();await refresh();await Muse.wait(350);await Muse.glide(slider,sug,650);
+}
+function commit(v){committed[STEPS[step].k]=v;if(step<2)enter(step+1);else finish();}
+document.getElementById('next').onclick=()=>commit(+slider.value);
+document.getElementById('skip').onclick=()=>commit(null);
+document.getElementById('skipAll').onclick=()=>{for(let i=step;i<3;i++)committed[STEPS[i].k]=STEPS[i].suggest(read);finish();};
+
+async function finish(){
+ step=3;const s=stateUpTo(3,false),out=await Muse.render(photoSrc,s,900);
+ const split=document.getElementById('split');split.querySelector('img').src=photoSrc;Muse.paint(split.querySelector('canvas'),out);split.hidden=false;after.hidden=true;label.hidden=true;document.getElementById('hold').hidden=true;
+ Muse.split(split,{start:50});
+ [...document.getElementById('progress').children].forEach(el=>{el.classList.add('done');el.classList.remove('now');});document.getElementById('skipAll').hidden=true;
+ document.getElementById('summary').innerHTML=STEPS.map(st=>{const v=committed[st.k];return `<li class="${v==null||v===0?'skipped':''}"><small>${st.title}</small><b>${v==null||v===0?'Skipped':st.show(v)}</b></li>`;}).join('');
+ document.getElementById('stepPanel').hidden=true;document.getElementById('donePanel').hidden=false;
+}
+document.getElementById('restart').onclick=()=>{committed={};document.getElementById('split').hidden=true;after.hidden=false;label.hidden=false;document.getElementById('hold').hidden=false;document.getElementById('skipAll').hidden=false;document.getElementById('donePanel').hidden=true;document.getElementById('stepPanel').hidden=false;enter(0);};
+document.getElementById('save').onclick=()=>Muse.toast('Saved to Photos · original kept');
+document.getElementById('close').onclick=()=>Muse.toast('Back to result (prototype)');
+
+/* Hold: show the photo as it was before this step (previous steps stay applied). */
+Muse.hold(document.getElementById('hold'),async()=>{comparing=true;label.textContent='Before this step';const out=await Muse.render(photoSrc,stateUpTo(step,false),900);if(comparing)Muse.paint(after,out);},()=>{comparing=false;label.textContent=`Step ${step+1} of 3 · ${STEPS[step].title}`;refresh();});
+
+async function start(){before.src=photoSrc;await Muse.load(photoSrc);read=await Muse.analyse(photoSrc);enter(0);}
+start();
+</script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>方案 A · 先见成果 — Muse 精修概念</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+/* A: the app does the work first, then shows a receipt of what it did. */
+.sweep{position:absolute;top:0;bottom:0;left:0;width:2px;margin-left:-1px;background:#fff;box-shadow:0 0 18px 4px #ffffff99,0 0 70px 14px #ddf28d55;opacity:0;pointer-events:none}
+.sweep.on{opacity:1}
+.ba{position:absolute;top:12px;right:12px;display:flex;background:#0e130ac2;border-radius:20px;padding:3px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.ba button{font-size:10.5px;font-weight:600;padding:5px 11px;border-radius:16px;color:#c9d4b6}
+.ba button.on{background:#fff;color:#1d2418}
+.ba[hidden]{display:none}
+.head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.head h2{transition:opacity .3s}
+.changes{display:flex;flex-direction:column;gap:6px}
+.change{display:flex;align-items:center;gap:12px;min-height:46px;padding:0 6px 0 4px;border-radius:14px;text-align:left;width:100%;transition:opacity .25s}
+.change .ic{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:#28321f;color:#e9f5c3;flex-shrink:0;transition:background .2s,color .2s}
+.change .ic svg{width:17px;height:17px}
+.change .txt{flex:1;min-width:0;line-height:1.25}
+.change .txt b{display:block;font-size:12.5px;font-weight:600;color:#eef5d9}
+.change .txt small{display:block;font-size:10.5px;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.change .tick{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:var(--accent);color:var(--accent-ink);flex-shrink:0;transition:background .2s,color .2s}
+.change .tick svg{width:13px;height:13px;stroke-width:2.6}
+.change.off .ic{background:var(--tile);color:#7f8a72}
+.change.off .txt b{color:#a4af95}
+.change.off .tick{background:#ffffff10;color:transparent;box-shadow:inset 0 0 0 1.5px #ffffff26}
+.change.pop{animation:pop .5s cubic-bezier(.2,.9,.3,1.3) both}
+.skeleton .change{pointer-events:none}
+.skeleton .ic,.skeleton .tick{background:#ffffff0c!important;color:transparent!important;box-shadow:none!important}
+.skeleton .txt b,.skeleton .txt small{color:transparent!important;background:#ffffff0c;border-radius:6px;width:60%}
+.skeleton .txt small{width:80%;margin-top:6px}
+.skeleton{animation:shimmer 1.3s ease-in-out infinite}
+@keyframes shimmer{50%{opacity:.55}}
+.stage-hint{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);background:#0e130ac2;color:#fff;border-radius:20px;padding:6px 12px;font-size:10.5px;font-weight:550;backdrop-filter:blur(12px);pointer-events:none;opacity:0;transition:opacity .3s}
+.stage-hint.show{opacity:1}
+</style>
+</head>
+<body>
+<main class="board">
+ <aside class="note">
+  <span class="tag">方案 A</span>
+  <h1>先见成果</h1>
+  <p class="hyp">假设：用户先看到"变好了"，才会愿意继续。进入精修的第一秒不问任何问题，直接把修好的照片扫出来，再列一张"改了什么"的清单让用户勾掉不想要的。</p>
+  <dl>
+   <dt>价值时刻</dt><dd>1.4 秒的光线扫过，照片从"修前"变成"修后"；下面三行说明各改了什么。</dd>
+   <dt>用户动作</dt><dd>0 步即可保存；不喜欢哪一项点一下关掉；想细调再进 Fine-tune。</dd>
+   <dt>适合</dt><dd>C 端高频用户、拍完就要发的场景；默认路径。</dd>
+   <dt>风险</dt><dd>"被修过头"的感觉。靠三行清单可逐项撤回、按住看原图来化解。</dd>
+  </dl>
+  <div class="switch"></div>
+ </aside>
+ <div class="device"><div class="screen">
+  <div class="status"></div><div class="island"></div>
+  <div class="app">
+   <header class="topbar">
+    <button class="circle" aria-label="Close" id="close"></button>
+    <span class="title">Refine<small id="titleSub">Looking at your photo…</small></span>
+    <button class="pill" id="save" disabled>Save</button>
+   </header>
+   <div class="stage" id="stage">
+    <img id="before" alt="Photo before refinement">
+    <canvas id="after" aria-label="Refined photo" style="clip-path:inset(0 100% 0 0)"></canvas>
+    <div class="sweep" id="sweep"></div>
+    <span class="glass-label" id="label">Original</span>
+    <div class="ba" id="ba" hidden><button data-v="before">Before</button><button data-v="after" class="on">After</button></div>
+    <span class="stage-hint" id="hint">Hold to see before</span>
+    <button class="glass hold" id="hold" aria-label="Hold to see the photo before refinement" hidden></button>
+   </div>
+   <section class="panel">
+    <div class="head"><div><h2 id="headline">Looking at your photo…</h2><p class="sub" id="sub">Skin, light and color. About a second.</p></div><button class="pill ghost" id="tune" hidden>Fine-tune</button></div>
+    <div class="changes skeleton" id="changes"></div>
+    <div class="actions"><button class="btn primary" id="keep" disabled>Keep &amp; save</button></div>
+   </section>
+   <div class="scrim"></div>
+   <div class="sheet" id="sheet">
+    <div class="grab"></div>
+    <div class="sheet-head"><h3>Fine-tune</h3><button class="pill ghost" id="sheetDone">Done</button></div>
+    <div id="sheetBody"></div>
+   </div>
+   <div class="home-line"></div>
+  </div>
+ </div></div>
+</main>
+<script src="shared.js"></script>
+<script>
+const {icon,photoSrc}=Muse;Muse.chrome();
+document.getElementById('close').innerHTML=icon('close');document.getElementById('hold').innerHTML=icon('compare');
+
+/* The three changes come from a quick read of the photo (face brightness, warmth, contrast) — see Muse.suggest. */
+let CHANGES=[];
+const on={skin:true,light:true,color:true};
+let cur=Muse.DEFAULT(),strength=100,revealed=false,comparing=false;
+const before=document.getElementById('before'),after=document.getElementById('after'),label=document.getElementById('label'),changes=document.getElementById('changes');
+const paint=Muse.painter(after,{max:900});
+
+function recompute(){cur=Muse.DEFAULT();for(const c of CHANGES)if(on[c.k])c.set(cur);}
+const effective=()=>Muse.scaled(cur,strength/100);
+function anyOn(){return Object.values(on).some(Boolean);}
+
+function renderChanges(pop=false){
+ changes.innerHTML=CHANGES.map((c,i)=>`<button class="change ${on[c.k]?'':'off'} ${pop?'pop':''}" data-k="${c.k}" style="animation-delay:${i*110}ms" aria-pressed="${on[c.k]}"><span class="ic">${icon(c.ic)}</span><span class="txt"><b>${c.name}</b><small>${c.why}</small></span><span class="tick">${icon('check')}</span></button>`).join('');
+}
+function updateHead(){
+ const n=Object.values(on).filter(Boolean).length;
+ document.getElementById('headline').textContent=n?'Refined for you':'Back to your original';
+ document.getElementById('sub').textContent=n?`${n} change${n>1?'s':''}. Tap one to turn it off.`:'Turn a change back on, or fine-tune by hand.';
+ document.getElementById('titleSub').textContent=n?'Auto · tap to adjust':'Nothing applied';
+ document.getElementById('save').disabled=!n;document.getElementById('keep').disabled=!n;
+ label.textContent=comparing?'Before':(n?'After':'Original');label.classList.toggle('accent',!comparing&&n>0);
+}
+async function refresh(){await paint(photoSrc,effective());after.style.clipPath='none';}
+
+changes.addEventListener('click',e=>{const b=e.target.closest('.change');if(!b||!revealed)return;on[b.dataset.k]=!on[b.dataset.k];recompute();renderChanges();updateHead();refresh();syncSheet();});
+
+/* Sweep: the refined canvas is revealed left→right behind a bright line. */
+function sweep(ms=1400){return new Promise(res=>{const line=document.getElementById('sweep');line.classList.add('on');const t0=performance.now();const step=now=>{const k=Math.min(1,(now-t0)/ms),e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2,p=e*100;after.style.clipPath=`inset(0 ${100-p}% 0 0)`;line.style.left=p+'%';if(k<1)requestAnimationFrame(step);else{line.classList.remove('on');res();}};requestAnimationFrame(step);});}
+
+async function start(){
+ before.src=photoSrc;await Muse.load(photoSrc);
+ CHANGES=Muse.suggest(await Muse.analyse(photoSrc)).changes;
+ renderChanges();recompute();
+ const out=await Muse.render(photoSrc,effective(),900);Muse.paint(after,out);after.hidden=false;
+ await Muse.wait(650);
+ await sweep();
+ revealed=true;changes.classList.remove('skeleton');renderChanges(true);updateHead();
+ document.getElementById('tune').hidden=false;document.getElementById('ba').hidden=false;document.getElementById('hold').hidden=false;
+ const hint=document.getElementById('hint');hint.classList.add('show');setTimeout(()=>hint.classList.remove('show'),2600);
+}
+
+/* Before / After */
+function showBefore(){comparing=true;after.hidden=true;updateHead();document.querySelectorAll('.ba button').forEach(b=>b.classList.toggle('on',b.dataset.v==='before'));}
+function showAfter(){comparing=false;after.hidden=false;updateHead();document.querySelectorAll('.ba button').forEach(b=>b.classList.toggle('on',b.dataset.v==='after'));}
+document.getElementById('ba').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;b.dataset.v==='before'?showBefore():showAfter();});
+Muse.hold(document.getElementById('hold'),showBefore,showAfter);
+
+/* Save */
+const save=()=>{if(!anyOn())return;Muse.toast('Saved to Photos · original kept');};
+document.getElementById('save').onclick=save;document.getElementById('keep').onclick=save;
+document.getElementById('close').onclick=()=>Muse.toast('Back to result (prototype)');
+
+/* Fine-tune sheet: strength first, then the four knobs behind the three changes. */
+const sheet=Muse.sheet(document.getElementById('sheet'));
+const KNOBS=[{id:'strength',label:'Strength',min:0,max:100},{id:'smooth',label:'Smooth skin',min:0,max:100},{id:'facelight',label:'Face light',min:0,max:100},{id:'warmth',label:'Warmth',min:-50,max:50,signed:true},{id:'contrast',label:'Contrast',min:-50,max:50,signed:true}];
+document.getElementById('sheetBody').innerHTML=KNOBS.map(k=>Muse.sliderRow({...k,value:k.id==='strength'?100:0})).join('');
+const syncers={};
+for(const k of KNOBS){const input=document.getElementById(k.id);syncers[k.id]=Muse.bindSlider(input,v=>{if(k.id==='strength')strength=v;else{cur[k.id]=v;if(k.id==='smooth')on.skin=v>0;if(k.id==='facelight')on.light=v>0;if(k.id==='warmth'||k.id==='contrast')on.color=cur.warmth!==0||cur.contrast!==0||cur.saturation!==0;}renderChanges();updateHead();refresh();},{signed:k.signed});}
+function syncSheet(){for(const k of KNOBS){const input=document.getElementById(k.id);input.value=k.id==='strength'?strength:Math.round(cur[k.id]);syncers[k.id]();}}
+document.getElementById('tune').onclick=()=>{syncSheet();sheet.open();};
+document.getElementById('sheetDone').onclick=sheet.close;
+
+start();
+</script>
+</body>
+</html>

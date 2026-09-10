@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>方案 B · 成片流 — Muse 精修概念</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+/* B: no tools. Six finished versions of the user's photo, swiped like prints. */
+.deck-wrap{position:relative;flex:1;min-height:0;margin-top:4px}
+.deck{height:100%;display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 50px;scrollbar-width:none}
+.deck::-webkit-scrollbar{display:none}
+.deck.nudge{animation:nudge 1.1s ease-in-out .9s 1}
+@keyframes nudge{35%{transform:translateX(-22px)}70%{transform:translateX(6px)}}
+.card{flex:0 0 300px;height:100%;border-radius:22px;overflow:hidden;position:relative;background:#0d100b;scroll-snap-align:center;box-shadow:0 14px 40px #00000066,inset 0 0 0 1px #ffffff0d;transition:transform .3s,opacity .3s}
+.card:not(.active){transform:scale(.94);opacity:.7}
+.card canvas,.card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.card img.orig[hidden]{display:none}
+.card .cap{position:absolute;left:0;right:0;bottom:0;padding:70px 16px 16px;background:linear-gradient(transparent,#0e130ad9);pointer-events:none}
+.card .cap small{display:block;font-size:10px;letter-spacing:1.6px;color:#c9d4b6;font-weight:600;margin-bottom:4px}
+.card .cap h3{font-size:24px;font-weight:720;letter-spacing:-.5px;color:#fff}
+.card.original .cap h3{color:#c9d4b6}
+.card .loading{position:absolute;inset:0;display:grid;place-items:center;color:#7f8a72;font-size:11px;background:#10130e;animation:shimmer 1.3s ease-in-out infinite}
+@keyframes shimmer{50%{opacity:.6}}
+.card .before-tag{position:absolute;left:12px;top:12px;background:#0e130ac2;color:#fff;border-radius:20px;padding:6px 12px;font-size:10.5px;font-weight:550;backdrop-filter:blur(12px)}
+.card .before-tag[hidden]{display:none}
+.swipe-hint{position:absolute;right:14px;top:50%;transform:translateY(-50%);display:flex;align-items:center;gap:6px;background:#0e130ac2;color:#fff;border-radius:20px;padding:7px 12px;font-size:10.5px;font-weight:600;backdrop-filter:blur(12px);pointer-events:none;transition:opacity .3s;animation:hintPulse 1.6s ease-in-out infinite}
+.swipe-hint svg{width:14px;height:14px}
+.swipe-hint.gone{opacity:0}
+@keyframes hintPulse{50%{transform:translate(-6px,-50%)}}
+.dots{display:flex;justify-content:center;gap:5px;padding:12px 0 0}
+.dots i{width:5px;height:5px;border-radius:3px;background:#ffffff2e;transition:width .25s,background .25s}
+.dots i.on{width:16px;background:var(--accent)}
+.meta{min-height:62px}
+.meta h2{display:flex;align-items:baseline;gap:8px}
+.meta h2 small{font-size:11px;color:var(--muted);font-weight:500;letter-spacing:1px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;min-height:22px}
+.tags span{font-size:10.5px;color:#c9d4b6;background:var(--tile);border-radius:12px;padding:3px 9px;box-shadow:inset 0 0 0 1px #ffffff0a}
+.row2{flex-direction:row;align-items:center}
+.row2 .btn{flex:1}
+.row2 .glass{position:static;width:50px;height:50px}
+.row2 .glass svg{width:18px;height:18px}
+</style>
+</head>
+<body>
+<main class="board">
+ <aside class="note">
+  <span class="tag">方案 B</span>
+  <h1>成片流</h1>
+  <p class="hyp">假设：用户想要的是结果，不是工具。把"精修"做成 6 张已经修完的成片，用自己的照片左右翻，像在挑要发哪一张，而不是在学怎么修。</p>
+  <dl>
+   <dt>价值时刻</dt><dd>从第 0 张（原图）往左一翻，整张照片直接变成完成品；每翻一张都是一个完整结果。</dd>
+   <dt>用户动作</dt><dd>翻到喜欢的那张 → 用这一张。强度只有一根滑杆。</dd>
+   <dt>适合</dt><dd>内容创作者、喜欢有风格的用户；也适合做付费成片包。</dd>
+   <dt>风险</dt><dd>6 张都不喜欢就没有出路；成片必须够"成"，否则像滤镜列表。渲染 6 张有成本。</dd>
+  </dl>
+  <div class="switch"></div>
+ </aside>
+ <div class="device"><div class="screen">
+  <div class="status"></div><div class="island"></div>
+  <div class="app">
+   <header class="topbar">
+    <button class="circle" aria-label="Close" id="close"></button>
+    <span class="title">Finishes<small>Your photo, six ways · swipe</small></span>
+    <button class="pill" id="save">Save</button>
+   </header>
+   <div class="deck-wrap">
+    <div class="deck nudge" id="deck" aria-label="Finishes"></div>
+    <div class="swipe-hint" id="swipeHint">Swipe</div>
+   </div>
+   <div class="dots" id="dots"></div>
+   <section class="panel">
+    <div class="meta" id="meta"></div>
+    <div id="strengthRow"></div>
+    <div class="actions row2"><button class="btn primary" id="use">Use this finish</button><button class="glass" id="hold" aria-label="Hold to see the original"></button></div>
+   </section>
+   <div class="home-line"></div>
+  </div>
+ </div></div>
+</main>
+<script src="shared.js"></script>
+<script>
+const {icon,photoSrc}=Muse;Muse.chrome();
+document.getElementById('close').innerHTML=icon('close');document.getElementById('hold').innerHTML=icon('compare');document.getElementById('swipeHint').innerHTML='Swipe '+icon('arrow');
+
+/* "Clean" is the photo-aware auto (same read as A/C/D); the rest are deliberate styles. */
+let FINISHES=[
+ {id:'original',name:'Original',idx:'00',desc:'As shot. Swipe to see it finished.',tags:[],set:null},
+ {id:'clean',name:'Clean',idx:'01',desc:'Just better. Nobody can tell what changed.',tags:['Even skin','Face light','Balanced color'],set:null},
+ {id:'film',name:'Soft Film',idx:'02',desc:'Faded warmth and a little grain. Weekend feeling.',tags:['Warm fade','Fine grain','Soft skin'],set:s=>{s.look={css:'sepia(.2) saturate(1.02) contrast(.94) brightness(1.05)',grain:.32};s.smooth=30;s.glow=10;s.facelight=30;}},
+ {id:'golden',name:'Golden',idx:'03',desc:'Late-afternoon light, wherever you were.',tags:['Warm glow','Face light','Rich tones'],set:s=>{s.look={css:'sepia(.28) saturate(1.18) contrast(1.04)',glow:.12};s.facelight=45;s.saturation=6;s.smooth=25;}},
+ {id:'editorial',name:'Editorial',idx:'04',desc:'Black and white with weight. Magazine, not snapshot.',tags:['Mono','Deep contrast','Grain'],set:s=>{s.look={css:'grayscale(1) contrast(1.22) brightness(1.02)',grain:.2};s.vignette=25;s.smooth=20;s.facelight=35;}},
+ {id:'night',name:'Night Glow',idx:'05',desc:'Soft halo, darker edges. Made for low light.',tags:['Glow','Vignette','Cool balance'],set:s=>{s.glow=45;s.contrast=8;s.saturation=8;s.vignette=32;s.warmth=-8;s.smooth=35;s.facelight=30;}},
+ {id:'fresh',name:'Fresh',idx:'06',desc:'Brighter, cleaner, a bit more color. Daylight energy.',tags:['Bright','Clean color','Light skin'],set:s=>{s.exposure=8;s.saturation=15;s.contrast=2;s.smooth=25;s.facelight=30;s.look={css:'hue-rotate(-4deg) brightness(1.02)'};}}
+];
+const deck=document.getElementById('deck'),dots=document.getElementById('dots'),meta=document.getElementById('meta');
+const amt=FINISHES.map(()=>100);let active=0,painters=[],comparing=false;
+
+function stateFor(i){const f=FINISHES[i];if(!f.set)return null;const s=Muse.DEFAULT();f.set(s);return Muse.scaled(s,amt[i]/100);}
+
+deck.innerHTML=FINISHES.map((f,i)=>`<article class="card ${i===0?'active original':''}" data-i="${i}"><img class="orig" src="${photoSrc}" alt="" ${i===0?'':'hidden'}>${i===0?'':`<canvas aria-label="${f.name} finish"></canvas><div class="loading">Finishing…</div>`}<span class="before-tag" hidden>Before</span><div class="cap"><small>${f.idx}${i===0?'':' · FINISH'}</small><h3>${f.name}</h3></div></article>`).join('');
+dots.innerHTML=FINISHES.map((_,i)=>`<i class="${i===0?'on':''}"></i>`).join('');
+document.getElementById('strengthRow').innerHTML=Muse.sliderRow({id:'strength',label:'Strength',value:100});
+const strength=document.getElementById('strength');
+const syncStrength=Muse.bindSlider(strength,v=>{amt[active]=v;renderCard(active);});
+
+async function renderCard(i){const card=deck.children[i],canvas=card.querySelector('canvas');if(!canvas)return;if(!painters[i])painters[i]=Muse.painter(canvas,{max:720,delay:i===active?16:0});await painters[i](photoSrc,stateFor(i));card.querySelector('.loading')?.remove();}
+
+function setActive(i){if(i===active&&meta.innerHTML)return;active=i;const f=FINISHES[i];
+ [...deck.children].forEach((c,k)=>c.classList.toggle('active',k===i));[...dots.children].forEach((d,k)=>d.classList.toggle('on',k===i));
+ meta.innerHTML=`<h2>${f.name}<small>${f.idx}</small></h2><p class="sub">${f.desc}</p><div class="tags">${f.tags.map(t=>`<span>${t}</span>`).join('')}</div>`;
+ strength.disabled=i===0;strength.value=amt[i];syncStrength();
+ document.getElementById('use').textContent=i===0?'Keep it as shot':`Use ${f.name}`;document.getElementById('hold').disabled=i===0;}
+
+let scrollTimer=0;deck.addEventListener('scroll',()=>{document.getElementById('swipeHint').classList.add('gone');deck.classList.remove('nudge');clearTimeout(scrollTimer);scrollTimer=setTimeout(()=>{const mid=deck.getBoundingClientRect().left+deck.clientWidth/2;let best=0,dist=1e9;[...deck.children].forEach((c,k)=>{const r=c.getBoundingClientRect(),d=Math.abs(r.left+r.width/2-mid);if(d<dist){dist=d;best=k;}});setActive(best);},60);},{passive:true});
+deck.addEventListener('click',e=>{const c=e.target.closest('.card');if(c&&+c.dataset.i!==active)c.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});});
+
+function showBefore(){if(active===0)return;comparing=true;const c=deck.children[active];c.querySelector('.orig').hidden=false;c.querySelector('.before-tag').hidden=false;}
+function showAfter(){if(!comparing)return;comparing=false;const c=deck.children[active];c.querySelector('.orig').hidden=true;c.querySelector('.before-tag').hidden=true;}
+Muse.hold(document.getElementById('hold'),showBefore,showAfter);
+const save=()=>Muse.toast(active===0?'Saved as shot':`Saved · ${FINISHES[active].name} finish · original kept`);
+document.getElementById('use').onclick=save;document.getElementById('save').onclick=save;
+document.getElementById('close').onclick=()=>Muse.toast('Back to result (prototype)');
+
+async function start(){
+ await Muse.load(photoSrc);
+ const sug=Muse.suggest(await Muse.analyse(photoSrc));FINISHES[1].set=s=>{for(const c of sug.changes)c.set(s);};FINISHES[1].tags=sug.changes.map(c=>c.name);
+ setActive(0);
+ for(let i=1;i<FINISHES.length;i++)await renderCard(i);
+}
+start();
+</script>
+</body>
+</html>
