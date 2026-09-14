@@ -1,6 +1,6 @@
 # 设计方向 — 画像、形态、调性落到原型
 
-更新：2026-09-10（成片页简化、主色方案、首页主按钮）；首版 2026-09-09。对应 `muse-app.html`。此前的首页场景说明见 `HOME-DIRECTION.md`，成片与精修见 `RESULT-REFINE-FLOW.md`。
+更新：2026-09-14（成片页改成 After + 四入口编辑器）；此前 2026-09-10（主色方案、首页主按钮），首版 2026-09-09。对应 `muse-app.html`。此前的首页场景说明见 `HOME-DIRECTION.md`，成片与精修见 `RESULT-REFINE-FLOW.md`。
 
 ## 结论
 
@@ -22,15 +22,22 @@
 
 ## 2. 形态 → 三 Tab、预设打包、两条入口
 
-**三 Tab：Home / Camera / Gallery。** 一只玻璃胶囊，相机居中为柠檬圆钮。“我的”不占 Tab 位，移到首页右上头像；礼盒（惊喜盲盒）只在 Gallery 出现，仍是拖放目标。相机从哪个 Tab 打开就回到哪个 Tab。
+**三 Tab：Home / Camera / Gallery。** 一只玻璃胶囊，相机居中为柠檬圆钮。“我的”不占 Tab 位，移到首页右上头像。相机从哪个 Tab 打开就回到哪个 Tab。Gallery 只做一件事：点一张进精修，没有礼盒、没有长按多选（2026-09-14 移除惊喜盲盒）。
 
 **预设 = 色彩 + 打光 + 颗粒。** 每个氛围在数据里有 `recipe:[color, light, grain]` 三枚文字和 `grain` 数值。卡片下方一行配方（`Deep city color · Direct flash · Fine grain`），详情页三枚玻璃小卡（COLOR / LIGHT / GRAIN）。渲染管线 `renderLook` 现在真的叠颗粒（与精修页同一张 tile、同一 overlay 混合），所以预览与成片一致。
 
 **选氛围 → 上传 / 拍摄 → 成片。** 详情页把两条入口并列：`Upload a photo`（主）和 `Shoot`（玻璃）。两条路径都进入同一条生成链。
 
-**成片页 = 出片即结束（2026-09-10 调整）。** 成片页只剩：整幅前后对比照片（556px 高）、一行配方说明、一个小的 `Refine` 入口（32px 胶囊，放在说明行右侧）、底部 `Share` 圆钮 + 通栏 `Save photo`。原先放在成片页上的 `Look intensity` 滑杆和 `Finishing touches`（Glow skin / Film grain / Sparkle / Brighter 四张预览）整体移除：它们让成片页读起来像“还没修完”，与“上传 → 生成 → 出片，结束”的心智相反。强度和一键修饰都在 Refine 里，成片页不再承载任何编辑控件。`RESULT-REFINE-FLOW.md` 中关于成片页“一键修饰预览”的段落以此为准。
+**成片页 = 结果 + 就地微调（2026-09-14 定稿）。** 照片框只放 After，占满顶栏与底部编辑器之间的全部高度，不做前后对比、不在这里点修。顶栏右侧是 `Share` 圆钮 + `Save`；底部是一条固定编辑器，四个入口：
 
-**成片页的点修（2026-09-10 晚补充）。** 成片页唯一保留的编辑是点修，而且没有控件：在成片上点一下，点到的地方被局部修掉（去痘、去油光一类），一圈白色反馈后消失，不留标记；修过之后说明行才出现 `Undo`。不预标脸上有什么问题、没有画笔和尺寸滑杆、没有 Softer / Stronger 三档。拖中间的把手仍是前后对比，点照片与拖把手分开识别（移动超过 12px 视为拖动，不修）。Save 时把点过的位置一起烘进成片；新一次生成会清空。`Refine` 入口已从成片页移除，精修只从 Gallery 点进。规则细节见 `PRODUCT-STRUCTURE.md` 的「成片」一节。
+- **Filters**：默认选中所选模版的 Look（缩略图带 `Look` 角标），带强度滑杆，也能换成其他滤镜（沿用精修页的 `REFINE_FILTERS` 与分类）
+- **Effects**：默认选中模版自带的特效（`templateEffectId` 从模版的 `effect` / `grain` 推出），同样可调强度或换一个，`None` 表示不叠
+- **Adjust**：曝光 / 对比 / 饱和 / 色温，点参数换滑杆
+- **Edit More**：进精修（`enterEditor('result')`）
+
+改动过的入口在标签上留一个小点（`applied`）。没动过任何一项时预览直接用生成图，只有偏离默认才走 `renderRefine` 画到 canvas 上，所以打开页面不会闪。`Save` 时若有微调，用同一份 tune 以 2400px 重渲染后再保存。
+
+这是 9/10 两次调整之后的第三版，前两版都不成立：带 `Look intensity` 滑杆 + `Finishing touches` 四张预览的版本让成片页读起来像“还没修完”；只剩前后对比加点修的极简版又把能力砍太狠，用户想换个滤镜必须进精修。现在的分工是照片只给结果，微调收在一条不抢戏的 dock 里，Save / Share 仍在本页。`RESULT-REFINE-FLOW.md` 与 `PRODUCT-STRUCTURE.md` 的「成片」一节以此为准。
 
 **首页两种形态都在，都是图引导。** demo 左侧面板可切：
 
