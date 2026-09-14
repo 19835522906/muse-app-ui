@@ -32,9 +32,9 @@
 
 - 顶栏：圆形返回、居中标题（从结果页进入时副标题显示"After Hours look on"，提醒 look 还在）、右侧 Save 药丸（有改动才亮）。
 - 照片卡：圆角 18px、留 12px 边距和投影，照片以 contain 放在卡内；卡内左下浮玻璃撤销 / 重做，右下"按住看修饰前"。
-- 工具坞关闭态：一行 5 个方圆图标 + 文字，**Auto** 在最前。已生效的工具在图标右上角亮一颗点；有任何改动时提示行右侧出现 Reset。
+- 工具坞关闭态：一行 4 个方圆图标 + 文字（Portrait / Filters / Effects / Adjust）。已生效的工具在图标右上角亮一颗点；有任何改动时提示行右侧出现 Reset。
 
-**Auto**：一键平衡皮肤、光线和色彩（Smooth 35 / Brighten 18 / Glow 8 / Exposure +6 / Contrast +5 / Saturation +6 / Warmth +4）。再点一次关闭；不动滤镜和特效。这是给"不想学工具"的用户的默认路径。
+原来放在最前的一键 **Auto**（Smooth 35 / Brighten 18 / Glow 8 / Exposure +6 / Contrast +5 / Saturation +6 / Warmth +4，再点关闭）已于 2026-09-14 移除，本节以此为准。
 
 | 工具 | 内容 | 面板 |
 | --- | --- | --- |

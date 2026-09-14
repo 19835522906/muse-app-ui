@@ -89,7 +89,7 @@ App
 
 ## 精修
 
-从成片页 **Edit More**，或从 Gallery 点进一张。工具：**Auto · Portrait · Filters · Effects · Adjust**。一次只开一个。
+从成片页 **Edit More**，或从 Gallery 点进一张。工具：**Portrait · Filters · Effects · Adjust**。一次只开一个。一键 Auto 已于 2026-09-14 移除：它跳过了「点哪里改哪里」的心智，效果又和手动调重叠。
 
 **人像精修页**
 
@@ -100,7 +100,6 @@ App
 - Body：身上出现蒙版（Waist / Legs），幅度上限低，只做「上镜感」
 - 点一块蒙版 → 高亮，底部出现该处的强度滑杆，实时作用在照片上
 - Done 收起蒙版，保留这次改动；撤销 / 重做仍在照片角上
-- Auto 仍是一键：磨皮 + 提亮 + 亮眼；开关只动这三项，不碰她手动调过的 Shape / Body
 
 V1 不做：妆容、五官重塑、真实人脸检测（原型用固定位置蒙版）
 
