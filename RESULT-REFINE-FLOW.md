@@ -40,12 +40,12 @@
 | --- | --- | --- |
 | Filters | ⊘ 无 + Hot / Gentle / Tone / Film / Vibe 五组胶囊，每组 4 个 | 选中后出现强度滑杆；缩略图 72×90，放大到人物面部，用当前照片渲染，名称在图下 |
 | Effects | None / Grain / Glow / Sparkle / Vignette / Light leak | 同上，缩略图保留全画幅（暗角、漏光在边缘） |
-| Portrait | Smooth skin / Brighten / Soft glow 三项，不再扩展 | 滑杆 + 参数胶囊，胶囊上显示当前值 |
+| Portrait | 交互在照片上：Face（Skin / Eyes / Smile / Shape）· Body（Waist / Legs） | 面板只有 Face \| Body \| Done 一行 + 当前处的滑杆 + 一行提示。点一处出滑杆，在照片上左右搓也能调；Shape 是轮廓点位液化（Mirror / 双击归位 / Slim 宏），细则见 `PRODUCT-STRUCTURE.md`「人像精修页」 |
 | Adjust | Exposure / Contrast / Saturation / Warmth | 同上，双向滑杆从中点向两侧填充 |
 
 交互规则：
 
-- 一次只开一个工具。面板底部固定 ✕ / 工具名 / ✓。✕ 撤回本次面板内全部改动并清掉对应撤销记录，✓ 保留并收起。
+- 一次只开一个工具。Filters / Effects / Adjust 面板底部固定 ✕ / 工具名 / ✓。✕ 撤回本次面板内全部改动并清掉对应撤销记录，✓ 保留并收起。Portrait 没有这条工具栏，只有 Done。
 - 滑杆 4px 轨道、青柠色进度、白色 20px 拇指；未选滤镜 / 特效时不显示滑杆，只显示一句提示。
 - "按住看修饰前"的对比对象是进入精修时的图，即已应用 look 的结果。
 - 顶部 Save 只有在有未保存改动时可用；返回时若有改动弹 Discard 确认。保存为新图，原图保留。
