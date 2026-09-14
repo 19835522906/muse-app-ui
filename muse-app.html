@@ -280,14 +280,62 @@ FORM: User-specified iPhone frame with external page tabs. Standalone, offline, 
 .spot-clear{min-height:36px;padding:0 14px;border-radius:18px;background:#20261b;color:#dfe6d3;font-size:12px;font-weight:600;box-shadow:inset 0 0 0 1px #ffffff0a}
 @keyframes spotHeal{0%{transform:scale(.4);opacity:.95;background:#ffffff55}70%{transform:scale(4.2);opacity:.3;background:transparent}100%{transform:scale(5.2);opacity:0}}
 
-.result-page .detail-visual{height:556px}
-.result-tap{touch-action:manipulation}
-.result-tap .compare-input{pointer-events:none}
-.result-tap .compare-line span{pointer-events:auto;z-index:7}
-.result-tap .spot-layer{z-index:6}
-.tap-hint{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:32px}
-.tap-hint p{margin:0;font-size:12.5px;color:var(--muted)}
-.tap-hint .text-button{font-size:12px;font-weight:600;color:var(--ink);min-height:32px}
+/* Portrait: tap the face, not a tool panel. */
+.portrait-layer{position:absolute;z-index:4;pointer-events:none}
+.portrait-layer[hidden]{display:none}
+.portrait-layer svg{width:100%;height:100%;display:block;overflow:visible;pointer-events:none}
+.portrait-mask{fill:rgba(255,186,162,.26);stroke:rgba(255,255,255,.8);stroke-width:.5;pointer-events:auto;cursor:pointer;transition:fill .18s,stroke .18s,opacity .18s}
+.portrait-mask.on{fill:rgba(255,186,162,.5);stroke:#fff;stroke-width:.85}
+.portrait-mask.ring{fill:rgba(255,186,162,.2)}
+.portrait-mask.ring.on{fill:rgba(255,186,162,.38)}
+.portrait-tag{position:absolute;translate:-50% -50%;pointer-events:auto;height:22px;padding:0 9px;border-radius:11px;font-size:9.5px;font-weight:650;letter-spacing:.02em;color:#fff;background:#1a2014b8;border:1px solid #ffffff45;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);white-space:nowrap}
+.portrait-tag.on{background:var(--accent);color:#26341b;border-color:transparent}
+.portrait-tabs{display:flex;align-items:center;gap:6px}
+.portrait-tabs button{height:32px;padding:0 14px;border-radius:16px;font-size:12px;font-weight:550;color:#a4af95;background:#20261b}
+.portrait-tabs button.active{background:#eef5d9;color:#131610;font-weight:650}
+.portrait-done{margin-left:auto;background:var(--accent)!important;color:#26341b!important;font-weight:650}
+.portrait-panel{gap:12px}
+
+
+.content.result-content{padding-bottom:12px!important;overflow:hidden}
+.result-page{height:100%;display:flex;flex-direction:column;min-height:0}
+.result-page .toolbar .right{display:flex;align-items:center;justify-content:flex-end;gap:8px;min-width:0}
+.result-page .result-save{height:34px;padding:0 16px;border-radius:20px;background:var(--accent);color:#242b18;font-size:13px;font-weight:650}
+.result-stage{position:relative;flex:1;min-height:0;background:#1b2017;overflow:hidden}
+.result-stage img,.result-stage canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 36%}
+.result-stage canvas[hidden]{display:none}
+.result-dock{flex-shrink:0;background:var(--paper);padding:8px 12px 18px}
+.result-panel{padding:2px 4px 10px}
+.result-panel .refine-empty{margin:0 6px 10px;font-size:12px;color:var(--muted)}
+.result-panel .refine-slider-row{display:flex;align-items:center;gap:10px;padding:2px 6px 10px}
+.result-panel .refine-param-label{font-size:12px;font-weight:600;color:var(--ink);min-width:72px}
+.result-panel .edit-param-value{font-size:12px;font-variant-numeric:tabular-nums;color:var(--ink);min-width:32px;text-align:right;font-weight:650}
+.result-panel .edit-slider-wrap{position:relative;flex:1;padding:8px 0}
+.result-page input.edit-slider[type=range]{appearance:none;-webkit-appearance:none;display:block;height:4px;width:100%;margin:0;border-radius:4px;outline:none;background:linear-gradient(to right,#e6e6dc var(--a,0%),var(--ink) var(--a,0%),var(--ink) var(--b,0%),#e6e6dc var(--b,0%))}
+.result-page input.edit-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 5px #0003,0 0 0 1px #00000014;cursor:ew-resize}
+.result-panel .refine-cats{display:flex;gap:6px;overflow-x:auto;padding:0 4px 10px;scrollbar-width:none}
+.result-panel .refine-cats button{flex-shrink:0;height:28px;padding:0 11px;border-radius:14px;background:#ecece4;font-size:11px;font-weight:600;color:#6a6b63}
+.result-panel .refine-cats button.active{background:var(--ink);color:#fff}
+.result-panel .refine-thumbs{display:flex;gap:9px;overflow-x:auto;padding:0 4px 4px;scrollbar-width:none}
+.result-panel .refine-thumb{flex:0 0 auto;width:64px;padding:0;text-align:center;font-size:10px;font-weight:600;color:var(--muted)}
+.result-panel .refine-thumb .thumb-media{width:64px;height:80px;border-radius:12px;overflow:hidden;background:#ddd;position:relative;margin-bottom:6px;box-shadow:inset 0 0 0 1px #00000010}
+.result-panel .refine-thumb img{width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.result-panel .refine-thumb.active{color:var(--ink)}
+.result-panel .refine-thumb.active .thumb-media{box-shadow:0 0 0 2px var(--ink)}
+.result-panel .refine-thumb .thumb-badge{position:absolute;left:5px;top:5px;font-size:8px;font-weight:700;letter-spacing:.3px;background:#fff;color:var(--ink);padding:2px 5px;border-radius:7px}
+.result-panel .refine-params{display:flex;gap:6px;overflow-x:auto;padding:0 4px;scrollbar-width:none}
+.result-panel .refine-params button{flex-shrink:0;height:30px;padding:0 11px;border-radius:15px;background:#ecece4;font-size:11px;font-weight:600;color:#6a6b63}
+.result-panel .refine-params button.active{background:var(--ink);color:#fff}
+.result-tools{display:flex;justify-content:space-between;gap:4px;padding:4px 4px 0}
+.result-tool{flex:1;display:flex;flex-direction:column;align-items:center;gap:7px;font-size:10px;font-weight:600;color:var(--muted);padding:0}
+.result-tool .tool-ic{width:54px;height:54px;border-radius:50%;background:#ecece4;display:grid;place-items:center;color:#3d3e38}
+.result-tool .tool-ic svg{width:22px;height:22px}
+.result-tool.on,.result-tool.applied{color:var(--ink)}
+.result-tool.on .tool-ic{background:#e8d3c8}
+.result-tool.applied .tool-ic{box-shadow:inset 0 0 0 1.5px #c4a396}
+.result-tool.more .tool-ic{border-radius:16px;background:var(--ink);color:#fff}
+.result-tool.more{color:var(--ink)}
+
 </style></head>
 <body>
 <div class="board-head"><strong>muse.</strong><span>APP INTERACTION STUDY<br>独立交互稿 · 01</span></div>
@@ -336,9 +384,9 @@ let photos=bundledGalleryPhotos.slice();
 let history=[],selected=new Set(),selectionMode=false,filter='All',page='templates',currentTemplate=templates[0],currentPhoto=photos[0],resultSrc=null,heroIndex=0,uploadIntent='library',keepOriginal=true,previousPage='templates',giftResults=[],profileName='',persistEnabled=true;
 const content=document.getElementById('content'),screen=document.getElementById('screen'),nav=document.getElementById('navigation'),overlay=document.getElementById('overlay');
 const tabItems=[['templates','首页','01'],['camera','相机','02'],['library','Gallery','03'],['profile','我的','04'],['divider'],['template','氛围详情','05'],['picker','相册抽屉','06'],['generating','生成等待','07'],['result','成片','08'],['editor','精修','09'],['gift','惊喜盲盒','10'],['membership','会员','11']];
-const captions={generating:['照片正在显影','照片角上一条小字说正在做什么<br>逐条切换：场景 → 色 → 光 → 质感<br>只保留取消、失败重试'],templates:['Banner + 主题货架','Banner 轮播常青 / 当季两个位置<br>七个主题各一行横滑卡片，点卡片进详情<br>Night Vibes / Sunset Getaway 是定下来的，其余五个是补充'],library:['Gallery','点照片 → 直接编辑<br>长按 → 多选 → 拖入礼盒<br>不提供下载或删除原图'],profile:['我的（首页右上头像进入）','账户 · 会员 · 修图记录<br>订阅、恢复购买、帮助与条款<br>不占 Tab 位'],camera:['相机 Tab','Style：首页同一套模版 · Cameras：八台老相机<br>选相机后取景器整套换皮：LCD 尺寸、OSD、日期戳、扫描线<br>拍出来的就是这台相机的效果'],template:['先感受，再开始','整屏 BA 循环播放：Before → After → 回<br>只留名字 + 一句效果<br>只有一个出口：Try it on my photo'],picker:['iOS 照片选择器','Photos / Albums · 单张点选<br>选择后直接进入生成'],result:['出片，就结束了','点修：在成片上点一下，点到的地方被修掉<br>不预标、没有画笔、没有深浅三档<br>拖中间的线仍是前后对比'],editor:['精修（Gallery 点进）','Portrait / Filters / Effects / Adjust<br>点修不在这里，在成片页点照片'],gift:['把选择留给惊喜','多张照片打包成礼物<br>打开后逐张查看效果'],membership:['更多创作空间','会员权益和方案页面<br>价格与购买尚未接入']};
+const captions={generating:['照片正在显影','照片角上一条小字说正在做什么<br>逐条切换：场景 → 色 → 光 → 质感<br>只保留取消、失败重试'],templates:['Banner + 主题货架','Banner 轮播常青 / 当季两个位置<br>七个主题各一行横滑卡片，点卡片进详情<br>Night Vibes / Sunset Getaway 是定下来的，其余五个是补充'],library:['Gallery','点照片 → 直接编辑<br>长按 → 多选 → 拖入礼盒<br>不提供下载或删除原图'],profile:['我的（首页右上头像进入）','账户 · 会员 · 修图记录<br>订阅、恢复购买、帮助与条款<br>不占 Tab 位'],camera:['相机 Tab','Style：首页同一套模版 · Cameras：八台老相机<br>选相机后取景器整套换皮：LCD 尺寸、OSD、日期戳、扫描线<br>拍出来的就是这台相机的效果'],template:['先感受，再开始','整屏 BA 循环播放：Before → After → 回<br>只留名字 + 一句效果<br>只有一个出口：Try it on my photo'],picker:['iOS 照片选择器','Photos / Albums · 单张点选<br>选择后直接进入生成'],result:['处理完成','照片框只展示 After<br>底部 Filters / Effects / Adjust / Edit More<br>滤镜和特效先带上所选模版，可换、可调强度'],editor:['精修 · 点脸上的蒙版','点 Portrait → Face / Body<br>脸上出现蒙版，点一处再调强度<br>没有项目列表，也没有 ✕✓ 工具栏'],gift:['把选择留给惊喜','多张照片打包成礼物<br>打开后逐张查看效果'],membership:['更多创作空间','会员权益和方案页面<br>价格与购买尚未接入']};
 function renderTabs(active){document.getElementById('tabs').innerHTML=tabItems.map(([id,name,num])=>id==='divider'?'<div class="tab-divider"></div>':`<button class="tab ${active===id?'active':''}" data-page="${id}"><small>${num}</small>${name}</button>`).join('');let cap=captions[active]||captions.templates;document.getElementById('caption').innerHTML=`<strong>${cap[0]}</strong>${cap[1]}`;}
-function go(p){stopGenerationMotion();if(page==='library'&&p!=='library')clearGiftInteraction();document.getElementById('library-ui').innerHTML='';screen.classList.toggle('library-mode',p==='library');content.classList.toggle('library-content',p==='library');if(page==='generating'&&p!=='generating'&&generation?.status==='running')cancelGeneration();if(p==='generating'&&!generation){showGenerationPreview('processing');return;}if(page==='camera'&&p!=='camera')stopCamera();if(p==='camera'&&page!=='camera'&&page!=='me-detail')cameraReturn=['template','templates','profile','photo','library','collection'].includes(page)?page:'templates';closeSheet({immediate:true,force:true});previousPage=page;page=p;screen.classList.toggle('look-mode',p==='template');content.classList.toggle('look-content',p==='template');screen.classList.toggle('editor-mode',p==='editor');content.classList.toggle('editor-content',p==='editor');content.classList.toggle('me-content',['profile','me-detail'].includes(p));content.classList.toggle('generating-content',p==='generating');content.classList.toggle('camera-content',p==='camera');content.classList.toggle('home-content',['templates','picker'].includes(p));document.getElementById('status').classList.remove('home-scrolled');screen.classList.toggle('dark',['camera','photo'].includes(p));document.getElementById('status').classList.toggle('light',['camera','photo','templates','picker'].includes(p));content.style.paddingBottom=['templates','library'].includes(p)?'116px':'95px';content.style.background=['camera','photo'].includes(p)?'#1e211c':'';renderTabs(p==='me-detail'?'profile':p==='collection'?'templates':p);nav.innerHTML='';if(p==='picker'){page='templates';home();bottomNav('templates');pickSheet();renderTabs('picker');return;}({templates:home,generating:generationPage,library:library,profile:profile,'me-detail':meDetail,camera:camera,template:templateDetail,collection:collectionDetail,result:result,editor:editor,gift:gift,membership:membership,photo:photoDetail,giftResults:giftResult})[p]?.();content.scrollTop=p==='library'&&previousPage==='editor'?libraryResumeY:0;if(['templates','library'].includes(p))bottomNav(p);}
+function go(p){stopGenerationMotion();if(page==='library'&&p!=='library')clearGiftInteraction();document.getElementById('library-ui').innerHTML='';screen.classList.toggle('library-mode',p==='library');content.classList.toggle('library-content',p==='library');if(page==='generating'&&p!=='generating'&&generation?.status==='running')cancelGeneration();if(p==='generating'&&!generation){showGenerationPreview('processing');return;}if(page==='camera'&&p!=='camera')stopCamera();if(p==='camera'&&page!=='camera'&&page!=='me-detail')cameraReturn=['template','templates','profile','photo','library','collection'].includes(page)?page:'templates';closeSheet({immediate:true,force:true});previousPage=page;page=p;screen.classList.toggle('look-mode',p==='template');content.classList.toggle('look-content',p==='template');screen.classList.toggle('editor-mode',p==='editor');content.classList.toggle('editor-content',p==='editor');content.classList.toggle('me-content',['profile','me-detail'].includes(p));content.classList.toggle('generating-content',p==='generating');content.classList.toggle('camera-content',p==='camera');content.classList.toggle('result-content',p==='result');content.classList.toggle('home-content',['templates','picker'].includes(p));document.getElementById('status').classList.remove('home-scrolled');screen.classList.toggle('dark',['camera','photo'].includes(p));document.getElementById('status').classList.toggle('light',['camera','photo','templates','picker'].includes(p));content.style.paddingBottom=p==='result'?'12px':['templates','library'].includes(p)?'116px':'95px';content.style.background=['camera','photo'].includes(p)?'#1e211c':'';renderTabs(p==='me-detail'?'profile':p==='collection'?'templates':p);nav.innerHTML='';if(p==='picker'){page='templates';home();bottomNav('templates');pickSheet();renderTabs('picker');return;}({templates:home,generating:generationPage,library:library,profile:profile,'me-detail':meDetail,camera:camera,template:templateDetail,collection:collectionDetail,result:result,editor:editor,gift:gift,membership:membership,photo:photoDetail,giftResults:giftResult})[p]?.();content.scrollTop=p==='library'&&previousPage==='editor'?libraryResumeY:0;if(['templates','library'].includes(p))bottomNav(p);}
 /* Three tabs: Home / Camera / Gallery. Camera sits in the middle of one glass capsule. "Me" moved to the avatar on Home. The gift orb only appears in Gallery, where it is the drop target. */
 function bottomNav(p){nav.innerHTML=`<div class="bottom-nav"><div class="capsule">${[['templates','home','Home'],['camera','camera','Camera'],['library','photos','Gallery']].map(([id,ic,label])=>id==='camera'?`<button class="nav-item nav-camera" data-action="capture" aria-label="Camera"><span class="cam">${icon(ic)}</span></button>`:`<button class="nav-item ${p===id?'active':''}" data-page="${id}">${icon(ic)}${label}</button>`).join('')}</div>${p==='library'?`<button id="orb" class="nav-orb ${selectionMode?'selecting':''}" aria-label="Drop photos here for a surprise" data-action="gift">${icon('gift')}${selected.size?`<span class="count">${selected.size}</span>`:''}</button>`:''}</div>`;
  if(p==='library'&&!giftCoachSeen){markGiftCoachSeen();showGiftGuide(true);}
@@ -504,7 +552,14 @@ function confirmHistoryRemoval(){
  const id=activeHistoryPhotoId;if(!id||!history.some(h=>h.photoId===id))return;
  showConfirm({title:'Remove from history?',message:'This removes the App record only. Photos saved to your phone will stay.',confirmLabel:'Remove',destructive:true,pendingLabel:'Removing…',onConfirm:async()=>{history=history.filter(h=>h.photoId!==id);await persist();activeHistoryPhotoId=null;go('me-detail');toast('Removed from history.',{tone:'success'});}});
 }
-let resultLookSrc=null,resultSpots=[],resultTapBusy=false;
+let resultLookSrc=null,resultSpots=[],resultTapBusy=false,resultTune=null,resultPreviewToken=0;
+const RESULT_TOOLS=[['filters','filters','Filters'],['effects','spark','Effects'],['adjust','sliders','Adjust']];
+const RESULT_EFFECTS=[{id:'flash',name:'Flash'},{id:'grain',name:'Grain'},{id:'glow',name:'Glow'},{id:'sparkle',name:'Sparkle'},{id:'vignette',name:'Vignette'},{id:'leak',name:'Light leak'}];
+function templateEffectId(t){if(!t)return 'none';if(['glow','leak','sparkle','flash'].includes(t.effect))return t.effect;if((t.grain||0)>=.18)return 'grain';return 'none';}
+function defaultResultTune(t=currentTemplate){const effectId=templateEffectId(t);return {tool:null,cat:'Hot',param:'exposure',filter:{id:'look',intensity:100},effect:{id:effectId,intensity:effectId==='none'?60:70},adjust:{exposure:0,contrast:0,saturation:0,warmth:0}};}
+function resultTuneState(){const t=resultTune||defaultResultTune();return {filter:t.filter,effect:t.effect,portrait:{smooth:0,brighten:0,glow:0},adjust:t.adjust,spots:[]};}
+function resultTuneIsDefault(){if(!resultTune)return true;const d=defaultResultTune();return JSON.stringify({filter:resultTune.filter,effect:resultTune.effect,adjust:resultTune.adjust})===JSON.stringify({filter:d.filter,effect:d.effect,adjust:d.adjust});}
+function resultTuneApplied(tool){const t=resultTune||defaultResultTune(),d=defaultResultTune();return tool==='filters'?JSON.stringify(t.filter)!==JSON.stringify(d.filter):tool==='effects'?JSON.stringify(t.effect)!==JSON.stringify(d.effect):Object.values(t.adjust).some(v=>v!==0);}
 function resultHint(){const n=resultSpots.length;return `<div class="tap-hint"><p>${n?`${n} retouch${n===1?'':'es'}. Tap another spot.`:'Tap a spot to retouch.'}</p>${n?`<button class="text-button" data-action="result-undo-spot">Undo</button>`:''}</div>`;}
 function paintSpotsOn(src,spots){if(!spots.length)return Promise.resolve(src);return renderRefine(src,{...defaultRefine(),spots},2000).then(c=>c.toDataURL('image/jpeg',.92));}
 function visualToImage(vis,rx,ry){
@@ -515,50 +570,74 @@ function visualToImage(vis,rx,ry){
 }
 async function ensureResultLook(){
  if(!resultLookSrc)resultLookSrc=resultSrc||await renderLook(currentPhoto.src,currentTemplate);
- const img=document.querySelector('.result-page .edited');
- if(!resultSpots.length){
+ const img=document.querySelector('.result-after');
+ if(resultTuneIsDefault()){
   resultSrc=resultLookSrc;
   if(img){img.src=resultLookSrc;img.style.filter='none';}
  }
  if(img&&!img.naturalWidth){try{await img.decode();}catch(e){}}
  return resultLookSrc;
 }
+function resultSliderRow(label,value,min,max,kind){const display=min<0?signed(value):String(value);return `<div class="refine-slider-row"><span class="refine-param-label">${label}</span><div class="edit-slider-wrap">${min<0?`<span class="edit-neutral" style="left:${(0-min)/(max-min)*100}%"></span>`:''}<input class="edit-slider" id="result-slider" type="range" min="${min}" max="${max}" value="${value}" data-slider-kind="${kind}" aria-label="${label}" aria-valuetext="${display}" style="${sliderFill(value,min,max)}"></div><output class="edit-param-value" id="result-value" for="result-slider">${display}</output></div>`;}
+function resultThumb(f,active,inner=''){return `<button class="refine-thumb ${active?'active':''}" data-result-item="${f.id}" aria-pressed="${active}" aria-label="${f.name}"><div class="thumb-media">${inner}${f.badge?`<span class="thumb-badge">${f.badge}</span>`:''}</div><span>${f.name}</span></button>`;}
+function renderResultDock(){
+ const dock=document.getElementById('result-dock');if(!dock)return;
+ const t=resultTune||(resultTune=defaultResultTune());
+ const src=currentPhoto?.src||'';
+ let panel='';
+ if(t.tool==='filters'){
+  const look=findRefineFilter('look')||{id:'look',name:currentTemplate.name,filter:currentTemplate.filter};
+  const none=t.filter.id==='none';
+  const name=t.filter.id==='look'?currentTemplate.name:(REFINE_FILTERS.find(f=>f.id===t.filter.id)?.name||'Intensity');
+  const items=REFINE_FILTERS.filter(f=>f.cat===t.cat);
+  panel=`<div class="result-panel">${none?`<p class="refine-empty">This look’s filter, or pick another.</p>`:resultSliderRow(name,t.filter.intensity,0,100,'filter-intensity')}<div class="refine-cats"><button class="${t.filter.id==='look'?'active':''}" data-result-item="look" aria-pressed="${t.filter.id==='look'}">Look</button>${REFINE_FILTER_CATS.map(c=>`<button class="${t.cat===c&&t.filter.id!=='look'?'active':''}" data-result-cat="${c}" aria-pressed="${t.cat===c}">${c}</button>`).join('')}</div><div class="refine-thumbs">${resultThumb({id:'look',name:currentTemplate.name,badge:'Look'},t.filter.id==='look',`<img src="${src}" alt="" style="filter:${currentTemplate.filter}">`)+items.map(f=>resultThumb(f,t.filter.id===f.id,`<img src="${src}" alt="" style="filter:${f.filter}">`)).join('')}</div></div>`;
+ }else if(t.tool==='effects'){
+  const none=t.effect.id==='none';
+  const name=RESULT_EFFECTS.find(f=>f.id===t.effect.id)?.name||'Intensity';
+  panel=`<div class="result-panel">${none?`<p class="refine-empty">This look’s effect, or pick another.</p>`:resultSliderRow(name,t.effect.intensity,0,100,'effect-intensity')}<div class="refine-thumbs">${[{id:'none',name:'None'},...RESULT_EFFECTS].map(f=>resultThumb(f,t.effect.id===f.id,`<img src="${src}" alt="">`)).join('')}</div></div>`;
+ }else if(t.tool==='adjust'){
+  const active=ADJUST_PARAMS.find(p=>p.key===t.param)||ADJUST_PARAMS[0];t.param=active.key;
+  panel=`<div class="result-panel">${resultSliderRow(active.name,t.adjust[active.key],active.min,active.max,'param')}<div class="refine-params">${ADJUST_PARAMS.map(p=>`<button class="${p.key===t.param?'active':''}" data-result-param="${p.key}" aria-pressed="${p.key===t.param}">${p.name}${t.adjust[p.key]?` · ${p.min<0?signed(t.adjust[p.key]):t.adjust[p.key]}`:''}</button>`).join('')}</div></div>`;
+ }
+ dock.innerHTML=panel+`<div class="result-tools">${RESULT_TOOLS.map(([id,ic,name])=>`<button class="result-tool ${t.tool===id?'on':''} ${resultTuneApplied(id)?'applied':''}" data-result-tool="${id}"><span class="tool-ic">${icon(ic)}</span>${name}</button>`).join('')}<button class="result-tool more" data-result-tool="more"><span class="tool-ic">${icon('arrow')}</span>Edit More</button></div>`;
+ bindResultSlider();
+}
+function bindResultSlider(){
+ const input=document.getElementById('result-slider');if(!input)return;const kind=input.dataset.sliderKind,min=Number(input.min);
+ input.oninput=()=>{const v=Number(input.value);if(kind==='filter-intensity')resultTune.filter.intensity=v;else if(kind==='effect-intensity')resultTune.effect.intensity=v;else resultTune.adjust[resultTune.param]=v;const label=min<0?signed(v):String(v);const out=document.getElementById('result-value');if(out)out.value=label;input.setAttribute('aria-valuetext',label);paintSlider(input);refreshResultPreview();};
+}
+function selectResultItem(id){
+ resultTune=resultTune||defaultResultTune();
+ if(resultTune.tool==='filters'){if(resultTune.filter.id===id)return;resultTune.filter.id=id;if(id!=='none'&&resultTune.filter.intensity===0)resultTune.filter.intensity=100;}
+ else if(resultTune.tool==='effects'){if(resultTune.effect.id===id)return;resultTune.effect.id=id;if(id!=='none'&&resultTune.effect.intensity===0)resultTune.effect.intensity=70;}
+ renderResultDock();refreshResultPreview();
+}
+function refreshResultPreview(){
+ const img=document.querySelector('.result-after'),canvas=document.getElementById('result-canvas');
+ if(!img||!canvas)return;
+ if(resultTuneIsDefault()){canvas.hidden=true;if(resultLookSrc){img.src=resultLookSrc;img.style.filter='none';}return;}
+ const token=++resultPreviewToken,source=currentPhoto.src;
+ setTimeout(async()=>{
+  try{const out=await renderRefine(source,resultTuneState(),1000);if(token!==resultPreviewToken||!canvas.isConnected)return;canvas.width=out.width;canvas.height=out.height;canvas.getContext('2d').drawImage(out,0,0);canvas.hidden=false;}catch(e){}
+ },16);
+}
 async function refreshResultAfter(){
  const img=document.querySelector('.result-page .edited');if(!img)return;
  const base=resultLookSrc||resultSrc||currentPhoto.src;
  const src=await paintSpotsOn(base,resultSpots);
  resultSrc=src;img.src=src;img.style.filter='none';
- const hint=document.querySelector('.tap-hint');if(hint)hint.outerHTML=resultHint();
 }
 function burstResult(x,y){const layer=document.getElementById('result-burst');if(!layer)return;layer.hidden=false;layer.style.cssText='position:absolute;inset:0;pointer-events:none;z-index:6';const el=document.createElement('i');el.className='spot-burst';el.style.left=(x*100).toFixed(2)+'%';el.style.top=(y*100).toFixed(2)+'%';layer.appendChild(el);setTimeout(()=>el.remove(),680);}
 async function addResultSpot(rx,ry){if(resultTapBusy||rx<0||rx>1||ry<0||ry>1)return;resultTapBusy=true;burstResult(rx,ry);try{await ensureResultLook();const vis=document.querySelector('.result-page .detail-visual');const pt=visualToImage(vis,rx,ry);resultSpots.push({id:'r'+Date.now(),x:pt.x,y:pt.y,r:.024});await refreshResultAfter();}finally{resultTapBusy=false;}}
 function undoResultSpot(){if(!resultSpots.length)return;resultSpots=resultSpots.slice(0,-1);refreshResultAfter();}
-function bindResultTap(){
- const vis=document.querySelector('.result-page .detail-visual');if(!vis)return;
- const input=vis.querySelector('.compare-input'),handle=vis.querySelector('.compare-line span');
- if(input)input.style.pointerEvents='none';
- let start=null,moved=false,dragging=false;
- const setSplit=x=>{const r=vis.getBoundingClientRect();vis.style.setProperty('--split',Math.max(2,Math.min(98,(x-r.left)/r.width*100))+'%');};
- if(handle){
-  handle.onpointerdown=e=>{e.preventDefault();e.stopPropagation();dragging=true;try{handle.setPointerCapture(e.pointerId);}catch(err){}};
-  handle.onpointermove=e=>{if(dragging){e.stopPropagation();setSplit(e.clientX);}};
-  handle.onpointerup=handle.onpointercancel=e=>{dragging=false;e.stopPropagation();};
- }
- vis.onpointerdown=e=>{if(e.target.closest('.compare-line,button'))return;start={x:e.clientX,y:e.clientY};moved=false;};
- vis.onpointermove=e=>{if(dragging){setSplit(e.clientX);return;}if(start&&Math.hypot(e.clientX-start.x,e.clientY-start.y)>12)moved=true;};
- vis.onpointerup=e=>{
-  if(dragging){dragging=false;start=null;return;}
-  if(e.target.closest('.compare-line,button')||moved||!start){start=null;return;}
-  const r=vis.getBoundingClientRect();addResultSpot((e.clientX-r.left)/r.width,(e.clientY-r.top)/r.height);start=null;
- };
- vis.onpointercancel=()=>{dragging=false;start=null;};
-}
 function result(){
  if(!currentPhoto)currentPhoto=photos[0];if(!currentPhoto){go('library');return;}
  if(!resultLookSrc)resultLookSrc=resultSrc;
- content.innerHTML=`<div class="result-page">`+toolbar(currentTemplate.name,currentTemplate.where?`${esc(currentTemplate.scenes[0])} · ${esc(currentTemplate.where)}`:'','',resultReturn)+comparison(currentPhoto.src,resultSrc,resultSrc?'':'filter:'+currentTemplate.filter,'',true)+`<div class="detail-body">${resultHint()}</div><div class="sticky-action"><button class="circle" data-action="share" aria-label="Share">${icon('share')}</button><button class="primary lime" data-action="save">Save photo ${icon('download')}</button></div></div>`;
- bindResultTap();
- ensureResultLook();
+ if(!resultTune)resultTune=defaultResultTune();
+ const after=resultSrc||currentPhoto.src,style=resultSrc?'':'filter:'+currentTemplate.filter;
+ content.innerHTML=`<div class="result-page">${toolbar(currentTemplate.name,currentTemplate.where?`${esc(currentTemplate.scenes[0])} · ${esc(currentTemplate.where)}`:'',`<button class="circle" data-action="share" aria-label="Share">${icon('share')}</button><button class="result-save" data-action="save">Save</button>`,resultReturn)}<div class="result-stage"><img class="result-after" src="${after}" style="${style}" alt="Edited photo"><canvas id="result-canvas" hidden aria-hidden="true"></canvas></div><div class="result-dock" id="result-dock"></div></div>`;
+ renderResultDock();
+ ensureResultLook().then(refreshResultPreview);
 }
 function shareResult(){showSheet(`<div class="sheet-head"><h2>Share</h2><button class="circle" data-action="close-sheet" aria-label="Close">${icon('close')}</button></div><p class="sheet-description">Share the finished photo. Your original stays in Photos.</p><div class="share-row">${[['Instagram','ig'],['Messages','chat'],['Copy link','link'],['More','share']].map(([name,ic])=>`<button class="share-target" data-share="${name}"><span class="circle">${icon(ic)}</span>${name}</button>`).join('')}</div>`,{label:'Share'});}
 function photoDetail(){
@@ -636,40 +715,48 @@ const REFINE_FILTERS=[
  {id:'moody',name:'Moody',cat:'Vibe',filter:'contrast(1.25) brightness(.9) saturate(.8)'}
 ];
 const REFINE_EFFECTS=[{id:'grain',name:'Grain'},{id:'glow',name:'Glow'},{id:'sparkle',name:'Sparkle'},{id:'vignette',name:'Vignette'},{id:'leak',name:'Light leak'}];
-const PORTRAIT_PARAMS=[{key:'smooth',name:'Smooth skin',min:0,max:100},{key:'brighten',name:'Brighten',min:0,max:100},{key:'glow',name:'Soft glow',min:0,max:100}];
+const PORTRAIT_PARAMS=[{key:'smooth',name:'Skin',min:0,max:100},{key:'glow',name:'Eyes',min:0,max:100},{key:'teeth',name:'Smile',min:0,max:100},{key:'slim',name:'Shape',min:0,max:100},{key:'waist',name:'Waist',min:0,max:100},{key:'legs',name:'Legs',min:0,max:100}];
 const ADJUST_PARAMS=[{key:'exposure',name:'Exposure',min:-50,max:50},{key:'contrast',name:'Contrast',min:-50,max:50},{key:'saturation',name:'Saturation',min:-100,max:80},{key:'warmth',name:'Warmth',min:-50,max:50}];
 const REFINE_TOOLS=[['portrait','face','Portrait'],['filters','filters','Filters'],['effects','spark','Effects'],['adjust','sliders','Adjust']];
-const defaultRefine=()=>({filter:{id:'none',intensity:100},effect:{id:'none',intensity:60},portrait:{smooth:0,brighten:0,glow:0},adjust:{exposure:0,contrast:0,saturation:0,warmth:0},spots:[],spotSize:55});
-let refine=defaultRefine(),refineTool=null,refineCat='Hot',refineParam={portrait:'smooth',adjust:'exposure'},refinePanelStart=null,refinePanelUndo=0;
+const defaultRefine=()=>({filter:{id:'none',intensity:100},effect:{id:'none',intensity:60},portrait:{smooth:0,brighten:0,glow:0,teeth:0,slim:0,waist:0,legs:0},adjust:{exposure:0,contrast:0,saturation:0,warmth:0},spots:[],spotSize:55});
+let refine=defaultRefine(),refineTool=null,refineCat='Hot',refineParam={portrait:'smooth',adjust:'exposure'},refinePanelStart=null,refinePanelUndo=0,portraitTab='face',portraitMask=null;
 const signed=v=>v>0?'+'+v:String(v);
 function refineIsDefault(s){return JSON.stringify(s)===JSON.stringify(defaultRefine());}
 function refineApplied(tool){const s=refine;return tool==='filters'?s.filter.id!=='none':tool==='effects'?s.effect.id!=='none':tool==='portrait'?Object.values(s.portrait).some(v=>v>0):tool==='spots'?(s.spots||[]).length>0:Object.values(s.adjust).some(v=>v!==0);}
 /* Auto: one tap balances skin, light and color. Tapping again turns it off. Filters and effects are left alone. */
+const AUTO_PORTRAIT_KEYS=['smooth','brighten','glow'];
 const applyAutoRefine=s=>{s.portrait.smooth=35;s.portrait.brighten=18;s.portrait.glow=8;s.adjust.exposure=6;s.adjust.contrast=5;s.adjust.saturation=6;s.adjust.warmth=4;};
-function refineAutoOn(){const a=defaultRefine();applyAutoRefine(a);return JSON.stringify(refine.portrait)===JSON.stringify(a.portrait)&&JSON.stringify(refine.adjust)===JSON.stringify(a.adjust);}
-function toggleAutoRefine(){commitEditorAdjustment();if(editorSaveBusy)return;editorPast.push(editorSnapshot());editorFuture=[];if(refineAutoOn()){const d=defaultRefine();refine.portrait=d.portrait;refine.adjust=d.adjust;toast('Auto enhance off.');}else{applyAutoRefine(refine);toast('Auto enhance on: skin, light and color.',{tone:'success'});}refinePanel();refreshEditorImage();updateEditorChrome();}
+function refineAutoOn(){const a=defaultRefine();applyAutoRefine(a);return AUTO_PORTRAIT_KEYS.every(k=>refine.portrait[k]===a.portrait[k])&&JSON.stringify(refine.adjust)===JSON.stringify(a.adjust);}
+function toggleAutoRefine(){commitEditorAdjustment();if(editorSaveBusy)return;editorPast.push(editorSnapshot());editorFuture=[];if(refineAutoOn()){const d=defaultRefine();AUTO_PORTRAIT_KEYS.forEach(k=>refine.portrait[k]=d.portrait[k]);refine.adjust=d.adjust;toast('Auto enhance off.');}else{applyAutoRefine(refine);toast('Auto enhance on: skin, light and color.',{tone:'success'});}refinePanel();refreshEditorImage();updateEditorChrome();}
 function adjustFilterString(s){const a=s.adjust,p=s.portrait,b=1+a.exposure/100+p.brighten/100*.22,c=1+a.contrast/100-p.brighten/100*.08,sat=1+a.saturation/100,sep=Math.max(0,a.warmth)/100;return `brightness(${b.toFixed(3)}) contrast(${c.toFixed(3)}) saturate(${sat.toFixed(3)}) sepia(${sep.toFixed(3)})`;}
 const imageCache=new Map();
 function loadImage(src){if(imageCache.has(src))return imageCache.get(src);const p=(async()=>{const img=new Image();img.src=src;await img.decode();return img;})();imageCache.set(src,p);if(imageCache.size>6)imageCache.delete(imageCache.keys().next().value);p.catch(()=>imageCache.delete(src));return p;}
 let grainTileCanvas=null;
 function grainTile(){if(grainTileCanvas)return grainTileCanvas;const tile=document.createElement('canvas');tile.width=tile.height=192;const g=tile.getContext('2d'),d=g.createImageData(192,192);for(let i=0;i<d.data.length;i+=4){const v=105+Math.random()*100|0;d.data[i]=d.data[i+1]=d.data[i+2]=v;d.data[i+3]=255;}g.putImageData(d,0,0);return grainTileCanvas=tile;}
+function findRefineFilter(id){if(id==='look'&&currentTemplate)return {id:'look',name:currentTemplate.name,filter:currentTemplate.filter,grain:currentTemplate.grain||0,glow:currentTemplate.effect==='glow'?.3:0};return REFINE_FILTERS.find(x=>x.id===id);}
 async function renderRefine(source,state,maxSize=1000){
  const img=source instanceof HTMLCanvasElement?source:await loadImage(source),iw=img.naturalWidth||img.width,ih=img.naturalHeight||img.height;
  const ratio=Math.min(1,maxSize/Math.max(iw,ih)),w=Math.max(1,Math.round(iw*ratio)),h=Math.max(1,Math.round(ih*ratio));
  const c=document.createElement('canvas');c.width=w;c.height=h;const ctx=c.getContext('2d'),adjust=adjustFilterString(state);
  ctx.filter=adjust;ctx.drawImage(img,0,0,w,h);ctx.filter='none';
- const f=REFINE_FILTERS.find(x=>x.id===state.filter.id);
+ const f=findRefineFilter(state.filter.id);
  if(f&&state.filter.intensity>0){const layer=document.createElement('canvas');layer.width=w;layer.height=h;const l=layer.getContext('2d');l.filter=f.filter+' '+adjust;l.drawImage(img,0,0,w,h);ctx.globalAlpha=state.filter.intensity/100;ctx.drawImage(layer,0,0);ctx.globalAlpha=1;}
  if(state.adjust.warmth<0){ctx.save();ctx.globalCompositeOperation='color';ctx.fillStyle=`rgba(96,140,255,${(-state.adjust.warmth/100*.22).toFixed(3)})`;ctx.fillRect(0,0,w,h);ctx.restore();}
  const snapshot=()=>{const s=document.createElement('canvas');s.width=w;s.height=h;s.getContext('2d').drawImage(c,0,0);return s;};
- if(state.portrait.smooth>0){const s=snapshot();ctx.save();ctx.filter=`blur(${(w/110*state.portrait.smooth/100+.6).toFixed(2)}px)`;ctx.globalAlpha=state.portrait.smooth/100*.62;ctx.drawImage(s,0,0);ctx.restore();}
+ if(state.portrait.smooth>0){const s=snapshot();ctx.save();ctx.filter=`blur(${(w/110*state.portrait.smooth/100+.6).toFixed(2)}px)`;ctx.globalAlpha=state.portrait.smooth/100*.62;ctx.beginPath();ctx.ellipse(w*.495,h*.28,w*.15,h*.18,0,0,Math.PI*2);ctx.clip();ctx.drawImage(s,0,0);ctx.restore();}
+ if(state.portrait.teeth>0){const a=state.portrait.teeth/100,g=ctx.createRadialGradient(w*.495,h*.365,0,w*.495,h*.365,Math.min(w,h)*.06);g.addColorStop(0,`rgba(255,252,245,${(a*.32).toFixed(3)})`);g.addColorStop(1,'rgba(255,252,245,0)');ctx.fillStyle=g;ctx.fillRect(0,0,w,h);}
+ const warpX=(amount,cx,cy,rx,ry)=>{if(!(amount>0))return;const s=snapshot(),scale=1-amount*.045;ctx.save();ctx.beginPath();ctx.ellipse(w*cx,h*cy,w*rx,h*ry,0,0,Math.PI*2);ctx.clip();ctx.translate(w*cx,h*cy);ctx.scale(scale,1);ctx.translate(-w*cx,-h*cy);ctx.drawImage(s,0,0);ctx.restore();};
+ warpX((state.portrait.slim||0)/100,.495,.29,.17,.2);warpX((state.portrait.waist||0)/100,.495,.6,.16,.11);
+ if((state.portrait.legs||0)>0){const a=state.portrait.legs/100,s=snapshot();ctx.save();ctx.beginPath();ctx.rect(0,h*.69,w,h*.31);ctx.clip();ctx.translate(w*.495,h*.845);ctx.scale(1-a*.035,1+a*.018);ctx.translate(-w*.495,-h*.845);ctx.drawImage(s,0,0);ctx.restore();}
  if(state.spots?.length){const s=snapshot();for(const sp of state.spots){const r=Math.max(14,sp.r*w*1.55),cx=sp.x*w,cy=sp.y*h,size=Math.ceil(r*2.4);const patch=document.createElement('canvas');patch.width=patch.height=size;const pc=patch.getContext('2d'),R=size/2;pc.filter=`blur(${(r*.7).toFixed(1)}px) brightness(1.05) saturate(.95)`;pc.drawImage(s,cx-r*1.8,cy-r*1.8,r*3.6,r*3.6,R-r*1.8,R-r*1.8,r*3.6,r*3.6);pc.filter='none';pc.globalCompositeOperation='destination-in';const g=pc.createRadialGradient(R,R,0,R,R,r);g.addColorStop(0,'rgba(0,0,0,1)');g.addColorStop(.5,'rgba(0,0,0,.95)');g.addColorStop(1,'rgba(0,0,0,0)');pc.fillStyle=g;pc.fillRect(0,0,size,size);ctx.drawImage(patch,cx-R,cy-R);}}
- const glowAmount=state.portrait.glow/100*.32+(f?.glow||0)*(state.filter.intensity/100)+(state.effect.id==='glow'?state.effect.intensity/100*.34:0);
+ const glowAmount=(f?.glow||0)*(state.filter.intensity/100)+(state.effect.id==='glow'?state.effect.intensity/100*.34:0);
+ if((state.portrait.glow||0)>0){const s=snapshot(),a=state.portrait.glow/100;ctx.save();ctx.beginPath();ctx.ellipse(w*.495,h*.265,w*.1,h*.035,0,0,Math.PI*2);ctx.clip();ctx.globalCompositeOperation='screen';ctx.filter=`blur(${(w/140).toFixed(1)}px)`;ctx.globalAlpha=Math.min(.55,a*.5);ctx.drawImage(s,0,0);ctx.restore();}
  if(glowAmount>0){const s=snapshot();ctx.save();ctx.globalCompositeOperation='screen';ctx.filter=`blur(${(w/90).toFixed(1)}px)`;ctx.globalAlpha=Math.min(.6,glowAmount);ctx.drawImage(s,0,0);ctx.restore();}
  const grainAmount=(state.effect.id==='grain'?state.effect.intensity/100*.55:0)+(f?.grain||0)*(state.filter.intensity/100);
  if(grainAmount>0){ctx.save();ctx.globalCompositeOperation='overlay';ctx.globalAlpha=Math.min(.7,grainAmount);const scale=Math.max(.6,w/1000);ctx.scale(scale,scale);ctx.fillStyle=ctx.createPattern(grainTile(),'repeat');ctx.fillRect(0,0,w/scale,h/scale);ctx.restore();}
  if(state.effect.id==='vignette'){const a=state.effect.intensity/100*.55,g=ctx.createRadialGradient(w/2,h/2,Math.min(w,h)*.3,w/2,h/2,Math.max(w,h)*.72);g.addColorStop(0,'rgba(0,0,0,0)');g.addColorStop(1,`rgba(5,8,14,${a.toFixed(3)})`);ctx.fillStyle=g;ctx.fillRect(0,0,w,h);}
  if(state.effect.id==='leak'){const a=state.effect.intensity/100;ctx.save();ctx.globalCompositeOperation='screen';const g=ctx.createRadialGradient(w*.92,h*.05,0,w*.92,h*.05,Math.max(w,h)*.85);g.addColorStop(0,`rgba(255,150,80,${(a*.85).toFixed(3)})`);g.addColorStop(.45,`rgba(255,90,120,${(a*.3).toFixed(3)})`);g.addColorStop(1,'rgba(255,120,90,0)');ctx.fillStyle=g;ctx.fillRect(0,0,w,h);ctx.restore();}
+ if(state.effect.id==='flash'){const a=state.effect.intensity/100,vignette=ctx.createRadialGradient(w*.48,h*.45,w*.12,w*.5,h*.5,h*.72);vignette.addColorStop(0,'rgba(0,0,0,0)');vignette.addColorStop(1,`rgba(3,8,18,${(a*.27).toFixed(3)})`);ctx.fillStyle=vignette;ctx.fillRect(0,0,w,h);}
  if(state.effect.id==='sparkle')drawSparkles(ctx,w,h,state.effect.intensity/100);
  return c;
 }
@@ -686,10 +773,11 @@ function refreshEditorImage(){
  clearTimeout(editorPreviewFrame);editorPreviewFrame=setTimeout(async()=>{
  const canvas=document.getElementById('editor-canvas');if(!canvas||editorComparing)return;
  const token=++editorRenderToken,source=editorBaseSrc;
- try{const out=await renderRefine(source,refine,1000);if(token!==editorRenderToken||!canvas.isConnected||editorComparing||editorBaseSrc!==source)return;canvas.width=out.width;canvas.height=out.height;canvas.getContext('2d').drawImage(out,0,0);canvas.hidden=false;renderSpotLayer();}catch(e){}
+ try{const out=await renderRefine(source,refine,1000);if(token!==editorRenderToken||!canvas.isConnected||editorComparing||editorBaseSrc!==source)return;canvas.width=out.width;canvas.height=out.height;canvas.getContext('2d').drawImage(out,0,0);canvas.hidden=false;renderEditorOverlays();}catch(e){}
  },16);
 }
 async function prepareResultImage(){
+ if(resultTune&&!resultTuneIsDefault())return (await renderRefine(currentPhoto.src,resultTuneState(),2400)).toDataURL('image/jpeg',.92);
  const full=resultSrc||await renderLook(currentPhoto.src,currentTemplate);
  const original=new Image(),edited=new Image();original.src=currentPhoto.src;edited.src=full;
  await Promise.all([original.decode(),edited.decode()]);
@@ -702,7 +790,7 @@ async function enterEditor(from){
  editorReturn=from==='result'?'result':from==='history'||from==='photo'&&photoContext==='history'?'photo':'library';
  try{editorBaseSrc=from==='result'?await prepareResultImage():currentPhoto.src;
  editorLabel=from==='result'?currentTemplate.name:'Refined';
- refine=defaultRefine();refineTool=null;refineCat='Hot';refineParam={portrait:'smooth',adjust:'exposure'};beginEditorSession();
+ refine=defaultRefine();refineTool=null;refineCat='Hot';refineParam={portrait:'smooth',adjust:'exposure'};portraitTab='face';portraitMask=null;beginEditorSession();
  go('editor');
  }catch(e){toast('Couldn’t open this photo. Choose another.',{tone:'error'});}
 }
@@ -713,7 +801,7 @@ function commitEditorAdjustment(){if(editorGestureStart!==null){if(editorGesture
 function restoreEditorSnapshot(value){refine=JSON.parse(value);refinePanel();refreshEditorImage();updateEditorChrome();}
 function undoEditor(){commitEditorAdjustment();if(!editorPast.length||editorSaveBusy)return;editorFuture.push(editorSnapshot());restoreEditorSnapshot(editorPast.pop());}
 function redoEditor(){commitEditorAdjustment();if(!editorFuture.length||editorSaveBusy)return;editorPast.push(editorSnapshot());restoreEditorSnapshot(editorFuture.pop());}
-function openRefineTool(tool){commitEditorAdjustment();if(editorSaveBusy)return;refineTool=tool;refinePanelStart=editorSnapshot();refinePanelUndo=editorPast.length;refinePanel();updateEditorChrome();}
+function openRefineTool(tool){commitEditorAdjustment();if(editorSaveBusy)return;refineTool=tool;if(tool==='portrait'){portraitTab='face';portraitMask=null;}refinePanelStart=editorSnapshot();refinePanelUndo=editorPast.length;refinePanel();updateEditorChrome();}
 function cancelRefineTool(){commitEditorAdjustment();if(refinePanelStart!==null&&refinePanelStart!==editorSnapshot()){refine=JSON.parse(refinePanelStart);editorPast.length=Math.min(editorPast.length,refinePanelUndo);editorFuture=[];refreshEditorImage();}refineTool=null;refinePanelStart=null;refinePanel();updateEditorChrome();}
 function confirmRefineTool(){commitEditorAdjustment();refineTool=null;refinePanelStart=null;refinePanel();updateEditorChrome();}
 function selectRefineItem(id){commitEditorAdjustment();const target=refineTool==='filters'?refine.filter:refine.effect;if(target.id===id)return;editorPast.push(editorSnapshot());editorFuture=[];target.id=id;if(id!=='none'&&target.intensity===0)target.intensity=refineTool==='filters'?100:60;refinePanel();refreshEditorImage();updateEditorChrome();}
@@ -726,10 +814,10 @@ function updateEditorChrome(){
 function leaveEditor(){commitEditorAdjustment();if(editorSaveBusy)return;if(editorSnapshot()===editorSavedState){go(editorReturn);return;}showConfirm({title:'Discard changes?',message:'Your original photo will stay unchanged.',confirmLabel:'Discard',cancelLabel:'Keep editing',destructive:true,onConfirm:()=>go(editorReturn)});}
 function editor(){
  if(!editorBaseSrc){enterEditor('photo');return;}if(!currentPhoto){go('library');return;}
- content.innerHTML=`<section class="editor"><header class="edit-topbar"><button class="circle" data-action="editor-back" aria-label="Back">${icon('back')}</button><span class="edit-title">Refine${editorReturn==='result'?`<small>${esc(currentTemplate.name)} look on</small>`:''}</span><button class="edit-save" data-action="save-editor">Save</button></header><div class="edit-stage"><img id="editor-original" src="${editorBaseSrc}" alt="Photo before refinement"><canvas id="editor-canvas" aria-label="Refined photo" hidden></canvas><span class="edit-compare-label" id="edit-compare-label" hidden>Before</span><div class="spot-layer" id="spot-layer" hidden></div><div class="edit-photo-controls"><div class="edit-undo-group"><button data-action="editor-undo" aria-label="Undo">${icon('undo')}</button><button data-action="editor-redo" aria-label="Redo">${icon('undo','redo-icon')}</button></div><button id="hold-compare" aria-label="Hold to compare with the photo before refinement">${icon('compare')}</button></div></div><div class="editor-dock" id="editor-dock"></div></section>`;
+ content.innerHTML=`<section class="editor"><header class="edit-topbar"><button class="circle" data-action="editor-back" aria-label="Back">${icon('back')}</button><span class="edit-title">Refine${editorReturn==='result'?`<small>${esc(currentTemplate.name)} look on</small>`:''}</span><button class="edit-save" data-action="save-editor">Save</button></header><div class="edit-stage"><img id="editor-original" src="${editorBaseSrc}" alt="Photo before refinement"><canvas id="editor-canvas" aria-label="Refined photo" hidden></canvas><span class="edit-compare-label" id="edit-compare-label" hidden>Before</span><div class="spot-layer" id="spot-layer" hidden></div><div class="portrait-layer" id="portrait-layer" hidden></div><div class="edit-photo-controls"><div class="edit-undo-group"><button data-action="editor-undo" aria-label="Undo">${icon('undo')}</button><button data-action="editor-redo" aria-label="Redo">${icon('undo','redo-icon')}</button></div><button id="hold-compare" aria-label="Hold to compare with the photo before refinement">${icon('compare')}</button></div></div><div class="editor-dock" id="editor-dock"></div></section>`;
  editorComparing=false;refinePanel();refreshEditorImage();updateEditorChrome();
  const hold=document.getElementById('hold-compare'),label=document.getElementById('edit-compare-label'),canvas=document.getElementById('editor-canvas');
- const showOriginal=()=>{editorComparing=true;canvas.hidden=true;label.hidden=false;renderSpotLayer();};
+ const showOriginal=()=>{editorComparing=true;canvas.hidden=true;label.hidden=false;renderEditorOverlays();};
  const showEdited=()=>{if(!editorComparing)return;editorComparing=false;label.hidden=true;canvas.hidden=false;refreshEditorImage();};
  hold.onpointerdown=e=>{hold.setPointerCapture(e.pointerId);showOriginal();};hold.onpointerup=hold.onpointercancel=hold.onblur=showEdited;
  hold.onkeydown=e=>{if(e.key===' '||e.key==='Enter'){e.preventDefault();showOriginal();}};hold.onkeyup=e=>{if(e.key===' '||e.key==='Enter'){e.preventDefault();showEdited();}};
@@ -754,7 +842,40 @@ function bindSpotGestures(){
  stage.onpointerup=e=>{if(refineTool!=='spots'||!stage.hasPointerCapture(e.pointerId))return;stage.releasePointerCapture(e.pointerId);const pt=spotPointFromEvent(e,stage);hideSpotCursor();if(pt)addSpotAt(pt.rx,pt.ry);};
  stage.onpointercancel=()=>hideSpotCursor();
 }
-function stageImageRect(){const canvas=document.getElementById('editor-canvas'),stage=document.querySelector('.edit-stage');if(!canvas||!stage||!canvas.width)return null;const sw=stage.clientWidth,sh=stage.clientHeight,ar=canvas.width/canvas.height;let w=sw,h=sw/ar;if(h>sh){h=sh;w=sh*ar;}return {left:(sw-w)/2,top:(sh-h)/2,width:w,height:h};}
+function stageImageRect(){const canvas=document.getElementById('editor-canvas'),img=document.getElementById('editor-original'),stage=document.querySelector('.edit-stage');if(!stage)return null;const iw=canvas&&canvas.width?canvas.width:img&&img.naturalWidth?img.naturalWidth:0,ih=canvas&&canvas.width?canvas.height:img&&img.naturalHeight?img.naturalHeight:0;if(!iw||!ih)return null;const sw=stage.clientWidth,sh=stage.clientHeight,ar=iw/ih;let w=sw,h=sw/ar;if(h>sh){h=sh;w=sh*ar;}return {left:(sw-w)/2,top:(sh-h)/2,width:w,height:h};}
+
+/* Fixed layout for a head-and-shoulders portrait (no face detection in the prototype). `tag` is where the name pill sits, kept off the feature itself. */
+function portraitRegions(){
+ const cx=49.5;
+ const face=[
+  {key:'slim',name:'Shape',cx,cy:29,rx:14,ry:17.5,shape:'ring',tag:[cx,29-17.5]},
+  {key:'smooth',name:'Skin',cx,cy:28,rx:11.5,ry:14.5,shape:'ellipse',tag:[cx+11.5+.5,30]},
+  {key:'glow',name:'Eyes',cx,cy:26.5,rx:8.5,ry:2.6,shape:'ellipse',tag:[cx-8.5-6.5,26.5]},
+  {key:'teeth',name:'Smile',cx,cy:36.5,rx:4.5,ry:2.4,shape:'ellipse',tag:[cx,36.5+2.4+3.4]}
+ ];
+ const body=[
+  {key:'waist',name:'Waist',cx,cy:60,rx:13,ry:9,shape:'ellipse',tag:[cx+13+.5,60]},
+  {key:'legs',name:'Legs',cx,cy:81,rx:15,ry:12,shape:'ellipse',tag:[cx,81+12-3]}
+ ];
+ return {face,body};
+}
+function selectPortraitTab(tab){if(refineTool!=='portrait')return;portraitTab=tab;portraitMask=null;refinePanel();}
+function selectPortraitMask(key){if(refineTool!=='portrait')return;portraitMask=key;refineParam.portrait=key;refinePanel();}
+function portraitMaskMarkup(r){
+ const on=portraitMask===r.key?' on':'';
+ if(r.shape==='ring'){const ix=r.rx*.86,iy=r.ry*.86;return `<path class="portrait-mask ring${on}" data-portrait-mask="${r.key}" fill-rule="evenodd" d="M ${r.cx-r.rx} ${r.cy} a ${r.rx} ${r.ry} 0 1 0 ${r.rx*2} 0 a ${r.rx} ${r.ry} 0 1 0 ${-r.rx*2} 0 M ${r.cx-ix} ${r.cy} a ${ix} ${iy} 0 1 1 ${ix*2} 0 a ${ix} ${iy} 0 1 1 ${-ix*2} 0"/>`;}
+ return `<ellipse class="portrait-mask${on}" data-portrait-mask="${r.key}" cx="${r.cx}" cy="${r.cy}" rx="${r.rx}" ry="${r.ry}"/>`;
+}
+function renderPortraitMasks(){
+ const layer=document.getElementById('portrait-layer');if(!layer)return;
+ const show=refineTool==='portrait'&&!editorComparing,rect=stageImageRect();
+ if(!show||!rect){layer.hidden=true;layer.innerHTML='';return;}
+ const regions=portraitRegions()[portraitTab]||[];
+ layer.hidden=false;Object.assign(layer.style,{left:rect.left+'px',top:rect.top+'px',width:rect.width+'px',height:rect.height+'px'});
+ const tags=regions.map(r=>`<button type="button" class="portrait-tag${portraitMask===r.key?' on':''}" data-portrait-mask="${r.key}" style="left:${r.tag[0]}%;top:${r.tag[1]}%">${r.name}</button>`).join('');
+ layer.innerHTML=`<svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">${regions.map(portraitMaskMarkup).join('')}</svg>${tags}`;
+}
+function renderEditorOverlays(){renderSpotLayer();renderPortraitMasks();}
 function renderSpotLayer(){
  const layer=document.getElementById('spot-layer');if(!layer)return;const show=refineTool==='spots'&&!editorComparing,rect=stageImageRect();
  if(!show||!rect){layer.hidden=true;return;}
@@ -766,7 +887,7 @@ function refineSliderRow(label,value,min,max,kind){const display=min<0?signed(va
 function refineParamChips(){const params=refineTool==='portrait'?PORTRAIT_PARAMS:ADJUST_PARAMS,group=refine[refineTool],active=refineParam[refineTool];return params.map(p=>`<button class="${p.key===active?'active':''}" data-refine-param="${p.key}" aria-pressed="${p.key===active}">${p.name}${group[p.key]?` · ${p.min<0?signed(group[p.key]):group[p.key]}`:''}</button>`).join('');}
 function refinePanel(){
  const dock=document.getElementById('editor-dock');if(!dock)return;
- if(!refineTool){dock.classList.remove('open');dock.innerHTML=`<div class="refine-hint-row"><p class="refine-hint">${editorReturn==='result'?'Your look stays. Tap to retouch, or pick a tool.':'Tap to retouch, or pick a tool.'}</p>${refineIsDefault(refine)?'':`<button class="refine-reset" data-action="reset-editor">Reset</button>`}</div><div class="refine-tools"><button class="refine-tool auto ${refineAutoOn()?'on':''}" data-action="refine-auto" aria-pressed="${refineAutoOn()}"><span class="tool-ic">${icon('wand')}</span>Auto</button>${REFINE_TOOLS.map(([id,ic,name])=>`<button class="refine-tool ${refineApplied(id)?'applied':''}" data-refine-tool="${id}"><span class="tool-ic">${icon(ic)}</span>${name}</button>`).join('')}</div>`;renderSpotLayer();return;}
+ if(!refineTool){dock.classList.remove('open');dock.innerHTML=`<div class="refine-hint-row"><p class="refine-hint">${editorReturn==='result'?'Your look stays. Tap a tool.':'Tap a tool.'}</p>${refineIsDefault(refine)?'':`<button class="refine-reset" data-action="reset-editor">Reset</button>`}</div><div class="refine-tools"><button class="refine-tool auto ${refineAutoOn()?'on':''}" data-action="refine-auto" aria-pressed="${refineAutoOn()}"><span class="tool-ic">${icon('wand')}</span>Auto</button>${REFINE_TOOLS.map(([id,ic,name])=>`<button class="refine-tool ${refineApplied(id)?'applied':''}" data-refine-tool="${id}"><span class="tool-ic">${icon(ic)}</span>${name}</button>`).join('')}</div>`;renderEditorOverlays();return;}
  dock.classList.add('open');let body='';
  const thumb=(f,active,media,inner='')=>`<button class="refine-thumb ${active?'active':''}" data-refine-item="${f.id}" aria-pressed="${active}" aria-label="${f.name}"><div class="thumb-media" ${media}>${inner}${f.id==='none'?`<span class="thumb-none">${icon('none')}</span>`:''}${f.badge?`<span class="thumb-badge">${f.badge}</span>`:''}</div><span>${f.name}</span></button>`;
  if(refineTool==='filters'){
@@ -778,12 +899,19 @@ function refinePanel(){
  }else if(refineTool==='effects'){
  const none=refine.effect.id==='none';
  body=(none?`<p class="refine-empty">Tap an effect. Drag to set how strong.</p>`:refineSliderRow(REFINE_EFFECTS.find(f=>f.id===refine.effect.id)?.name||'Intensity',refine.effect.intensity,0,100,'effect-intensity'))+`<div class="refine-thumbs">${[{id:'none',name:'None'},...REFINE_EFFECTS].map(f=>thumb(f,refine.effect.id===f.id,`data-effect-thumb="${f.id}"`)).join('')}</div>`;
+ }else if(refineTool==='portrait'){
+ const regions=portraitRegions()[portraitTab]||[],active=regions.find(r=>r.key===portraitMask);
+ const tabs=`<div class="portrait-tabs">${[['face','Face'],['body','Body']].map(([id,name])=>`<button class="${portraitTab===id?'active':''}" data-portrait-tab="${id}" aria-pressed="${portraitTab===id}">${name}</button>`).join('')}<button class="portrait-done" data-action="refine-confirm">Done</button></div>`;
+ body=tabs+(active?refineSliderRow(active.name,refine.portrait[active.key]||0,0,100,'param'):`<p class="refine-empty">${portraitTab==='face'?'Tap a place on the face.':'Tap a place on the body.'}</p>`);
+ dock.innerHTML=`<div class="refine-panel portrait-panel">${body}</div>`;
+ if(active){refineParam.portrait=active.key;bindRefineSlider();}
+ renderEditorOverlays();return;
  }else{
- const params=refineTool==='portrait'?PORTRAIT_PARAMS:ADJUST_PARAMS,active=params.find(p=>p.key===refineParam[refineTool])||params[0];refineParam[refineTool]=active.key;
+ const params=ADJUST_PARAMS,active=params.find(p=>p.key===refineParam[refineTool])||params[0];refineParam[refineTool]=active.key;
  body=refineSliderRow(active.name,refine[refineTool][active.key],active.min,active.max,'param')+`<div class="refine-params" id="refine-params">${refineParamChips()}</div>`;
  }
  dock.innerHTML=`<div class="refine-panel">${body}<div class="refine-bar"><button data-action="refine-cancel" aria-label="Cancel and revert this tool">${icon('close')}</button><span>${refineToolLabel(refineTool)}</span><button class="confirm" data-action="refine-confirm" aria-label="Keep">${icon('check')}</button></div></div>`;
- bindRefineSlider();if(refineTool==='effects')renderEffectThumbs();renderSpotLayer();
+ bindRefineSlider();if(refineTool==='effects')renderEffectThumbs();renderEditorOverlays();
 }
 function bindRefineSlider(){
  const input=document.getElementById('refine-slider');if(!input)return;const kind=input.dataset.sliderKind,min=Number(input.min);
@@ -923,7 +1051,7 @@ async function renderLook(src,t,intensity=1){
 
 async function renderImage(src,filterValue,intensity=1){let img=new Image();img.src=src;await img.decode();const canvas=document.createElement('canvas');let ratio=Math.min(1,2400/Math.max(img.naturalWidth,img.naturalHeight));canvas.width=Math.round(img.naturalWidth*ratio);canvas.height=Math.round(img.naturalHeight*ratio);let ctx=canvas.getContext('2d');ctx.drawImage(img,0,0,canvas.width,canvas.height);ctx.globalAlpha=intensity;ctx.filter=filterValue;ctx.drawImage(img,0,0,canvas.width,canvas.height);return canvas.toDataURL('image/jpeg',.92);}
 function download(src,name){let a=document.createElement('a');a.href=src;a.download=name;a.click();}
-async function savePhoto(fromEditor=false){let savedState=null;if(fromEditor){commitEditorAdjustment();if(editorSaveBusy||editorSnapshot()===editorSavedState)return;savedState=editorSnapshot();editorSaveBusy=true;updateEditorChrome();}try{let savedName=fromEditor?editorLabel:currentTemplate.name;let intensity=fromEditor?1:Math.min(1,lookIntensity/100);let src;if(fromEditor){src=(await renderRefine(editorBaseSrc,refine,2400)).toDataURL('image/jpeg',.92)}else if(resultSrc){let original=new Image(),edited=new Image();original.src=currentPhoto.src;edited.src=resultSrc;await Promise.all([original.decode(),edited.decode()]);let c=document.createElement('canvas');c.width=edited.naturalWidth;c.height=edited.naturalHeight;let ctx=c.getContext('2d');ctx.drawImage(original,0,0,c.width,c.height);ctx.globalAlpha=intensity;ctx.drawImage(edited,0,0,c.width,c.height);src=c.toDataURL('image/jpeg',.92)}else{src=await renderLook(currentPhoto.src,currentTemplate,intensity)}const p={id:'edit-'+Date.now(),src,name:savedName,type:currentPhoto.type,source:'Edited in muse · '+savedName,created:Date.now()};photos.push(p);const capture=history.find(h=>h.kind==='capture'&&h.photoId===currentPhoto.id);if(capture&&!fromEditor)capture.savedPhotoId=p.id;history.push({photoId:p.id,src,look:savedName,type:p.type,kind:'edit',savedPhotoId:p.id,created:p.created});await persist();if(fromEditor)editorSavedState=savedState;toast('Saved to Photos.',{tone:'success'});}catch(e){toast('Couldn’t save this photo. Try JPG or PNG.',{tone:'error'})}finally{if(fromEditor){editorSaveBusy=false;updateEditorChrome();}}}
+async function savePhoto(fromEditor=false){let savedState=null;if(fromEditor){commitEditorAdjustment();if(editorSaveBusy||editorSnapshot()===editorSavedState)return;savedState=editorSnapshot();editorSaveBusy=true;updateEditorChrome();}try{let savedName=fromEditor?editorLabel:currentTemplate.name;let intensity=fromEditor?1:Math.min(1,lookIntensity/100);let src;if(fromEditor){src=(await renderRefine(editorBaseSrc,refine,2400)).toDataURL('image/jpeg',.92)}else if(resultTune&&!resultTuneIsDefault()){src=(await renderRefine(currentPhoto.src,resultTuneState(),2400)).toDataURL('image/jpeg',.92)}else if(resultSrc){let original=new Image(),edited=new Image();original.src=currentPhoto.src;edited.src=resultSrc;await Promise.all([original.decode(),edited.decode()]);let c=document.createElement('canvas');c.width=edited.naturalWidth;c.height=edited.naturalHeight;let ctx=c.getContext('2d');ctx.drawImage(original,0,0,c.width,c.height);ctx.globalAlpha=intensity;ctx.drawImage(edited,0,0,c.width,c.height);src=c.toDataURL('image/jpeg',.92)}else{src=await renderLook(currentPhoto.src,currentTemplate,intensity)}const p={id:'edit-'+Date.now(),src,name:savedName,type:currentPhoto.type,source:'Edited in muse · '+savedName,created:Date.now()};photos.push(p);const capture=history.find(h=>h.kind==='capture'&&h.photoId===currentPhoto.id);if(capture&&!fromEditor)capture.savedPhotoId=p.id;history.push({photoId:p.id,src,look:savedName,type:p.type,kind:'edit',savedPhotoId:p.id,created:p.created});await persist();if(fromEditor)editorSavedState=savedState;toast('Saved to Photos.',{tone:'success'});}catch(e){toast('Couldn’t save this photo. Try JPG or PNG.',{tone:'error'})}finally{if(fromEditor){editorSaveBusy=false;updateEditorChrome();}}}
 let generation=null,generationArrivalTimer=null,generationSlowTimer=null;
 const generationDots=()=>'<div class="activity-dots" aria-hidden="true"><i></i><i></i><i></i></div>';
 let generationAnimation=0;
@@ -1015,7 +1143,7 @@ async function showGenerationPreview(state='processing'){
 async function unwrap(){const picks=photos.filter(p=>selected.has(p.id));if(!picks.length){selectionMode=true;go('library');return;}startGeneration({items:picks,batch:true,returnPage:'gift'});}
 
 async function importFiles(files){let list=Array.from(files);if(['look','camera-preview'].includes(uploadIntent))list=list.slice(0,1);let added=[],failed=0;for(const file of list){try{const data=await new Promise((res,rej)=>{let reader=new FileReader();reader.onload=()=>res(reader.result);reader.onerror=rej;reader.readAsDataURL(file)});let img=new Image();img.src=data;await img.decode();let src=await renderImage(data,'none');let p={id:'upload-'+Date.now()+'-'+added.length,src,name:file.name.replace(/\.[^.]+$/,''),type:'Unsorted',source:'Imported from your device',created:Date.now()};photos.push(p);added.push(p);}catch(e){failed++}}if(added.length){await persist();if(['camera-preview'].includes(uploadIntent)&&page==='camera'){useCameraPhoto(added[0]);}else if(uploadIntent==='look'){currentPhoto=added[0];resultSrc=null;resetValues();startGeneration({items:[currentPhoto],look:{...currentTemplate},returnPage:'template'})}else{filter='All';go('library');toast(added.length+' photo'+(added.length===1?'':'s')+' added.',{tone:'success'})}}if(failed)toast('Some photos couldn’t be opened. Try JPG or PNG.',{tone:'error'});document.getElementById('file-input').value='';}
-function resetValues(){lookIntensity=100;refine=defaultRefine();resultLookSrc=null;resultSpots=[];}
+function resetValues(){lookIntensity=100;refine=defaultRefine();resultLookSrc=null;resultSpots=[];resultTune=null;resultPreviewToken=0;}
 let dbPromise=new Promise(resolve=>{try{let request=indexedDB.open('muse-standalone-ui',1);request.onupgradeneeded=()=>request.result.createObjectStore('state');request.onsuccess=()=>resolve(request.result);request.onerror=()=>resolve(null)}catch(e){resolve(null)}});
 async function persist(){const db=await dbPromise;if(!db){toast('Export photos to keep them after this session.');return;}return new Promise(resolve=>{const tx=db.transaction('state','readwrite');tx.objectStore('state').put({photos,history,profileName,bundledAssets:galleryMaterials.map(p=>p[0])},'library');tx.oncomplete=()=>resolve();tx.onerror=()=>{toast('Storage is full. Export photos to keep them.',{tone:'error'});resolve()};});}
 async function restore(){const db=await dbPromise;if(!db)return;try{let s=await new Promise(resolve=>{const r=db.transaction('state').objectStore('state').get('library');r.onsuccess=()=>resolve(r.result);r.onerror=()=>resolve(null)});if(s){const included=new Set(s.bundledAssets||['sun','city','portrait','smile','coast','mountain']);const added=bundledGalleryPhotos.filter(p=>!included.has(p.asset));photos=[...s.photos,...added];history=s.history||[];const recoveredShots=photos.filter(p=>p.id.startsWith('capture-')&&p.source==='Camera interaction reference'&&!history.some(h=>h.photoId===p.id&&h.kind==='capture'));history.push(...recoveredShots.map(p=>({photoId:p.id,src:p.src,look:p.name,type:p.type,kind:'capture',created:p.created})));profileName=s.profileName||'';currentPhoto=photos[0];if(added.length||recoveredShots.length)await persist();if(['library','profile'].includes(page))go(page)}}catch(e){}}
@@ -1028,7 +1156,7 @@ const actions={
 'camera-shoot':shootCamera,'camera-import':cameraLibrary,'camera-history':()=>openMeDetail('history',{returnTo:'camera',scope:'captures'}),'camera-flip':()=>{if(cameraBusy)return;cameraPhoto=null;cameraFacing=cameraFacing==='user'?'environment':'user';cameraZoom=1;updateCameraPreview();},
 'save-gift':async()=>{for(let r of giftResults){let p={id:'gift-'+Date.now()+'-'+Math.random().toString(36).slice(2,6),src:r.src,name:r.template.name,type:r.photo.type,source:'Surprise look · '+r.template.name,created:Date.now()};photos.push(p);history.push({photoId:p.id,src:p.src,look:r.template.name,type:p.type,kind:'edit',savedPhotoId:p.id,created:p.created})}await persist();selected.clear();selectionMode=false;go('library');toast('Saved to Photos.',{tone:'success'})},
  'terms':()=>toast('Membership pricing and purchase terms will be available when subscriptions launch.')};
-document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.page){if(b.dataset.page==='generating'){if(generation&&!generation.preview&&generation.status==='running')go('generating');else showGenerationPreview('processing');return;}if(b.dataset.page==='editor'){enterEditor(page==='result'?'result':'photo');return;}go(b.dataset.page);return;}if(b.dataset.action){actions[b.dataset.action]?.();return;}if(b.dataset.generationPreview){showGenerationPreview(b.dataset.generationPreview);return;}if(b.dataset.zoom){if(cameraBusy)return;cameraZoom=Number(b.dataset.zoom);updateCameraPreview();return;}if(b.dataset.cameraMode){if(cameraBusy)return;cameraMode=b.dataset.cameraMode;if(cameraMode==='Cameras')cameraZoom=1;document.querySelectorAll('[data-camera-mode]').forEach(el=>el.classList.toggle('active',el===b));renderCameraCarousel();updateCameraPreview();return;}if(b.dataset.cameraChoice){selectCameraChoice(b.dataset.cameraChoice);return;}if(b.dataset.cameraPhoto){useCameraPhoto(photos.find(p=>p.id===b.dataset.cameraPhoto));return;}if(b.dataset.template){templateReturn=page==='collection'?'collection':'templates';currentTemplate=templates.find(t=>t.id===b.dataset.template);resultSrc=null;go('template');return;}if(b.dataset.hero!==undefined){bannerIndex=Number(b.dataset.hero);const el=document.querySelector('.banner');if(el)el.outerHTML=banner();return;}if(b.dataset.collection!==undefined){currentCollection=b.dataset.collection;go('collection');return;}if(b.dataset.filter){filter=b.dataset.filter;library();return;}if(b.dataset.albumTab){albumTab=b.dataset.albumTab;albumQuery='';renderNativeAlbum();return;}if(b.dataset.albumScope){albumScope=b.dataset.albumScope;albumTab='Photos';albumQuery='';renderNativeAlbum();return;}if(b.dataset.albumPhoto){const photo=photos.find(p=>p.id===b.dataset.albumPhoto);if(!photo)return;if(albumIntent==='camera'){useCameraPhoto(photo)}else{currentPhoto=photo;currentTemplate={...albumLook};resultSrc=null;resetValues();startGeneration({items:[photo],look:{...albumLook},returnPage:'template'});}return;}if(b.dataset.refineTool){openRefineTool(b.dataset.refineTool);return;}if(b.dataset.refineCat){commitEditorAdjustment();refineCat=b.dataset.refineCat;refinePanel();return;}if(b.dataset.refineParam){commitEditorAdjustment();refineParam[refineTool]=b.dataset.refineParam;refinePanel();return;}if(b.dataset.refineItem){selectRefineItem(b.dataset.refineItem);return;}if(b.dataset.share){closeSheet();toast(b.dataset.share+' sharing isn’t connected in this preview.');return;}if(b.dataset.cameraLook){currentTemplate=templates.find(t=>t.id===b.dataset.cameraLook);closeSheet();camera();return;}if(b.dataset.category){currentPhoto.type=b.dataset.category;persist();closeSheet();photoDetail();return;}if(b.dataset.plan){content.querySelectorAll('.plan').forEach(el=>el.classList.toggle('active',el===b));return;}if(b.dataset.history!==undefined){const h=history[Number(b.dataset.history)];if(!h)return;currentPhoto={id:h.photoId,src:h.src,name:h.look,type:h.type||'Portrait',source:'App history',created:h.created};photoDetailReturn='me-detail';photoContext='history';activeHistoryPhotoId=h.photoId;go('photo');return;}if(b.dataset.giftResult!==undefined){let r=giftResults[Number(b.dataset.giftResult)];currentPhoto=r.photo;currentTemplate=r.template;resultSrc=r.src;resetValues();resultReturn='giftResults';go('result');return;}});
+document.addEventListener('click',e=>{const maskEl=e.target.closest('[data-portrait-mask]');if(maskEl){selectPortraitMask(maskEl.dataset.portraitMask);return;}const tabEl=e.target.closest('[data-portrait-tab]');if(tabEl){selectPortraitTab(tabEl.dataset.portraitTab);return;}const b=e.target.closest('button');if(!b)return;if(b.dataset.page){if(b.dataset.page==='generating'){if(generation&&!generation.preview&&generation.status==='running')go('generating');else showGenerationPreview('processing');return;}if(b.dataset.page==='editor'){enterEditor(page==='result'?'result':'photo');return;}go(b.dataset.page);return;}if(b.dataset.action){actions[b.dataset.action]?.();return;}if(b.dataset.generationPreview){showGenerationPreview(b.dataset.generationPreview);return;}if(b.dataset.zoom){if(cameraBusy)return;cameraZoom=Number(b.dataset.zoom);updateCameraPreview();return;}if(b.dataset.cameraMode){if(cameraBusy)return;cameraMode=b.dataset.cameraMode;if(cameraMode==='Cameras')cameraZoom=1;document.querySelectorAll('[data-camera-mode]').forEach(el=>el.classList.toggle('active',el===b));renderCameraCarousel();updateCameraPreview();return;}if(b.dataset.cameraChoice){selectCameraChoice(b.dataset.cameraChoice);return;}if(b.dataset.cameraPhoto){useCameraPhoto(photos.find(p=>p.id===b.dataset.cameraPhoto));return;}if(b.dataset.template){templateReturn=page==='collection'?'collection':'templates';currentTemplate=templates.find(t=>t.id===b.dataset.template);resultSrc=null;go('template');return;}if(b.dataset.hero!==undefined){bannerIndex=Number(b.dataset.hero);const el=document.querySelector('.banner');if(el)el.outerHTML=banner();return;}if(b.dataset.collection!==undefined){currentCollection=b.dataset.collection;go('collection');return;}if(b.dataset.filter){filter=b.dataset.filter;library();return;}if(b.dataset.albumTab){albumTab=b.dataset.albumTab;albumQuery='';renderNativeAlbum();return;}if(b.dataset.albumScope){albumScope=b.dataset.albumScope;albumTab='Photos';albumQuery='';renderNativeAlbum();return;}if(b.dataset.albumPhoto){const photo=photos.find(p=>p.id===b.dataset.albumPhoto);if(!photo)return;if(albumIntent==='camera'){useCameraPhoto(photo)}else{currentPhoto=photo;currentTemplate={...albumLook};resultSrc=null;resetValues();startGeneration({items:[photo],look:{...albumLook},returnPage:'template'});}return;}if(b.dataset.resultTool){if(b.dataset.resultTool==='more'){enterEditor('result');return;}resultTune=resultTune||defaultResultTune();resultTune.tool=resultTune.tool===b.dataset.resultTool?null:b.dataset.resultTool;renderResultDock();return;}if(b.dataset.resultCat){resultTune.cat=b.dataset.resultCat;renderResultDock();return;}if(b.dataset.resultParam){resultTune.param=b.dataset.resultParam;renderResultDock();return;}if(b.dataset.resultItem){selectResultItem(b.dataset.resultItem);return;}if(b.dataset.refineTool){openRefineTool(b.dataset.refineTool);return;}if(b.dataset.refineCat){commitEditorAdjustment();refineCat=b.dataset.refineCat;refinePanel();return;}if(b.dataset.refineParam){commitEditorAdjustment();refineParam[refineTool]=b.dataset.refineParam;refinePanel();return;}if(b.dataset.refineItem){selectRefineItem(b.dataset.refineItem);return;}if(b.dataset.share){closeSheet();toast(b.dataset.share+' sharing isn’t connected in this preview.');return;}if(b.dataset.cameraLook){currentTemplate=templates.find(t=>t.id===b.dataset.cameraLook);closeSheet();camera();return;}if(b.dataset.category){currentPhoto.type=b.dataset.category;persist();closeSheet();photoDetail();return;}if(b.dataset.plan){content.querySelectorAll('.plan').forEach(el=>el.classList.toggle('active',el===b));return;}if(b.dataset.history!==undefined){const h=history[Number(b.dataset.history)];if(!h)return;currentPhoto={id:h.photoId,src:h.src,name:h.look,type:h.type||'Portrait',source:'App history',created:h.created};photoDetailReturn='me-detail';photoContext='history';activeHistoryPhotoId=h.photoId;go('photo');return;}if(b.dataset.giftResult!==undefined){let r=giftResults[Number(b.dataset.giftResult)];currentPhoto=r.photo;currentTemplate=r.template;resultSrc=r.src;resetValues();resultReturn='giftResults';go('result');return;}});
 document.getElementById('file-input').addEventListener('change',e=>importFiles(e.target.files));document.addEventListener('keydown',handleOverlayKeys);
 content.addEventListener('scroll',()=>{if(page==='templates')document.getElementById('status').classList.toggle('home-scrolled',content.scrollTop>300)},{passive:true});
 window.addEventListener('pagehide',stopCamera);
