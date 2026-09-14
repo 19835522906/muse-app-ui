@@ -69,12 +69,11 @@ FORM: User-specified iPhone frame with external page tabs. Standalone, offline, 
 @media(max-height:930px) and (min-width:701px){.stage{transform:scale(.87);margin:-56px -27px}.workspace{padding-top:5px;padding-bottom:5px}}@media(max-height:790px) and (min-width:701px){.stage{transform:scale(.76);margin:-103px -49px}}@media(max-width:1000px){.board-head{left:20px;top:18px}.board-head span{display:none}.board-note{left:20px;bottom:15px;max-width:150px}.workspace{padding-left:0;padding-right:140px}.board-caption{width:130px}}@media(max-width:700px){.board-head,.board-note,.board-caption{display:none}.workspace{padding:15px 110px 15px 10px;min-width:530px;align-items:flex-start}.stage{transform:scale(.88);transform-origin:top left;margin-right:-50px;margin-bottom:-103px}.tabs{width:120px}.tab{width:115px;padding-left:18px;font-size:11px;gap:7px}.tab.active{width:125px}body{overflow-x:auto}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
 
 /* Result: the photo is the page. One caption row (recipe + a small Refine entry), two exits (share / save). */
-.result-page .detail-visual{height:500px}.result-page .detail-body{padding:14px 23px 0}
 .result-caption{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:32px}
 .result-caption p{margin:0;font-size:12px;line-height:1.35;color:var(--muted);letter-spacing:-.1px}
 .refine-link{flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 13px 0 11px;border-radius:16px;background:#00000008;border:1px solid #00000012;color:var(--ink);font-size:11.5px;font-weight:600;letter-spacing:-.1px;line-height:1}
 .refine-link svg{width:14px;height:14px;opacity:.8}.refine-link:active{background:#00000012}
-.result-page .sticky-action .circle{background:#eeeee7}.share-row{display:flex;justify-content:space-between;gap:8px;padding:6px 4px 4px}.share-target{display:flex;flex-direction:column;align-items:center;gap:8px;font-size:11px;color:#5b6350;flex:1}.share-target .circle{width:54px;height:54px;background:#ecefe3}.share-target .circle svg{width:22px;height:22px}
+.share-row{display:flex;justify-content:space-between;gap:8px;padding:6px 4px 4px}.share-target{display:flex;flex-direction:column;align-items:center;gap:8px;font-size:11px;color:#5b6350;flex:1}.share-target .circle{width:54px;height:54px;background:#ecefe3}.share-target .circle svg{width:22px;height:22px}
 
 /* Refine dock. Closed: four tool tiles. Open: one tool at a time; ✕ reverts the panel, ✓ keeps it. */
 .edit-stage>canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block}.edit-stage>canvas[hidden]{display:none}.editor-dock{flex:0 0 auto;padding:16px 16px 26px;display:flex;flex-direction:column;justify-content:flex-start;background:#131610}.refine-hint-row{position:relative;display:flex;align-items:center;justify-content:center;min-height:22px;margin:0 0 14px}.refine-hint{font-size:10.5px;color:#7f8a72;text-align:center;margin:0;letter-spacing:.1px}.refine-reset{position:absolute;right:0;top:50%;transform:translateY(-50%);font-size:10.5px;font-weight:550;color:#c9d4b6;background:#ffffff0e;border-radius:12px;padding:0 10px;height:22px}.refine-tools{display:flex;justify-content:space-between;gap:4px;padding:0 4px}.refine-tool{display:flex;flex-direction:column;align-items:center;gap:8px;flex:1;font-size:10.5px;font-weight:500;color:#a4af95;position:relative;padding:0;transition:color .2s}.tool-ic{width:52px;height:52px;border-radius:17px;display:grid;place-items:center;background:#20261b;color:#e2ead2;box-shadow:inset 0 0 0 1px #ffffff0a;transition:background .2s,transform .15s,box-shadow .2s;position:relative}.tool-ic svg{width:23px;height:23px}.refine-tool:active .tool-ic{transform:scale(.94)}.refine-tool.applied{color:#e4f3b7}.refine-tool.applied .tool-ic{background:#28321f;color:#e9f5c3;box-shadow:inset 0 0 0 1px #d3e98f66}.refine-tool.applied .tool-ic:after{content:"";position:absolute;top:-3px;right:-3px;width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 2.5px #131610}.refine-panel{display:flex;flex-direction:column;gap:13px}.refine-empty{font-size:11px;color:#7f8a72;text-align:center;min-height:36px;display:flex;align-items:center;justify-content:center;margin:0}.refine-slider-row{display:flex;align-items:center;gap:12px;min-height:36px}.refine-param-label{font-size:12px;font-weight:500;color:#c9d4b6;min-width:78px}.refine-params{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:2px 0}.refine-params button{border-radius:18px;min-height:34px;padding:0 14px;font-size:11.5px;font-weight:500;color:#a9b49a;background:#20261b;white-space:nowrap;box-shadow:inset 0 0 0 1px #ffffff0a}.refine-params button.active{background:var(--accent);color:#26331a;font-weight:600;box-shadow:none}.refine-cats{display:flex;align-items:center;gap:6px;overflow-x:auto;scrollbar-width:none;padding:0}.refine-cats button{font-size:11.5px;font-weight:500;color:#9aa58b;white-space:nowrap;padding:0 13px;min-height:30px;border-radius:16px;background:#1b2017;box-shadow:inset 0 0 0 1px #ffffff08}.refine-cats button.active{color:#131610;background:#eef5d9;font-weight:600;box-shadow:none}.refine-cats .cat-none{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;padding:0;flex-shrink:0;margin-right:2px}.refine-cats .cat-none svg{width:16px;height:16px}.refine-thumbs{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;padding:4px 4px 0}.refine-thumbs::-webkit-scrollbar,.refine-cats::-webkit-scrollbar,.refine-params::-webkit-scrollbar{display:none}.refine-thumb{flex:0 0 72px;padding:0;position:relative;display:flex;flex-direction:column;align-items:center;gap:7px;font-size:10px;color:#a4af95;line-height:1.2}.refine-thumb .thumb-media{width:72px;height:90px;border-radius:14px;overflow:hidden;background:#20261b;position:relative;box-shadow:inset 0 0 0 1px #ffffff0c;transition:transform .15s}.refine-thumb .thumb-media img,.refine-thumb .thumb-media canvas{width:100%;height:100%;object-fit:cover;object-position:50% 22%;display:block}.refine-thumb .thumb-media img.zoom{transform:scale(1.45);transform-origin:50% 24%}.refine-thumb:active .thumb-media{transform:scale(.96)}.refine-thumb.active{color:#f1f8df;font-weight:600}.refine-thumb.active .thumb-media{outline:2px solid var(--accent);outline-offset:2px}.refine-thumb>span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}.thumb-none{position:absolute;inset:0;display:grid;place-items:center;color:#fff}.thumb-none svg{width:16px;height:16px;padding:6px;box-sizing:content-box;border-radius:50%;background:#0e130a99;backdrop-filter:blur(6px)}.thumb-badge{position:absolute;right:5px;top:5px;background:var(--accent);color:#26331a;font-size:8px;font-weight:700;border-radius:6px;padding:2px 5px;letter-spacing:.2px}.refine-bar{display:flex;align-items:center;justify-content:space-between;margin-top:1px;padding-top:12px;border-top:1px solid #ffffff0a}.refine-bar span{font-size:13px;font-weight:600;color:#eef3e3;letter-spacing:-.1px}.refine-bar button{width:42px;height:42px;border-radius:14px;background:#20261b;color:#dfe6d3;display:grid;place-items:center;box-shadow:inset 0 0 0 1px #ffffff0a}.refine-bar button svg{width:18px;height:18px}.refine-bar button.confirm{background:var(--accent);color:#26331a;box-shadow:none}
@@ -219,7 +218,6 @@ FORM: User-specified iPhone frame with external page tabs. Standalone, offline, 
 .gen-caption.swap span{animation:genSwap .45s var(--ui-ease) both}
 @keyframes genSwap{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
 /* ---- Result: Edit more ---- */
-.result-page .detail-visual{height:500px}
 .refine-link{height:34px;padding:0 14px 0 12px;border-radius:17px;font-size:12px;background:#ffffffc9;border:1px solid #00000012;box-shadow:0 2px 8px #00000008}
 .refine-link svg{width:14px;height:14px}
 
@@ -271,15 +269,6 @@ FORM: User-specified iPhone frame with external page tabs. Standalone, offline, 
 .edit-row-copy small{font-size:11px;color:var(--muted)}
 .edit-row>svg{width:16px;height:16px;opacity:.5;flex:0 0 auto}
 
-/* ---- Retouch (user-tapped, no diagnosis) ---- */
-.spot-layer{position:absolute;z-index:3;pointer-events:none}
-.spot-layer[hidden]{display:none}
-.spot-cursor{position:absolute;border-radius:50%;border:1.5px solid #ffffffcc;box-shadow:0 0 0 1px #00000055,0 0 14px #ffffff40;transform:translate(-50%,-50%);pointer-events:none}
-.spot-burst{position:absolute;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 18px #fff8;pointer-events:none;animation:spotHeal .65s ease-out forwards}
-.spot-actions{display:flex;gap:8px;justify-content:center;align-items:center}
-.spot-clear{min-height:36px;padding:0 14px;border-radius:18px;background:#20261b;color:#dfe6d3;font-size:12px;font-weight:600;box-shadow:inset 0 0 0 1px #ffffff0a}
-@keyframes spotHeal{0%{transform:scale(.4);opacity:.95;background:#ffffff55}70%{transform:scale(4.2);opacity:.3;background:transparent}100%{transform:scale(5.2);opacity:0}}
-
 /* Portrait: tap the face, not a tool panel. */
 .portrait-layer{position:absolute;z-index:4;pointer-events:none}
 .portrait-layer[hidden]{display:none}
@@ -310,44 +299,6 @@ FORM: User-specified iPhone frame with external page tabs. Standalone, offline, 
 .sculpt-chip.on{background:#eef5d9;color:#131610}
 
 
-.content.result-content{padding-bottom:12px!important;overflow:hidden}
-.result-page{height:100%;display:flex;flex-direction:column;min-height:0}
-.result-page .toolbar .right{display:flex;align-items:center;justify-content:flex-end;gap:8px;min-width:0}
-.result-page .result-save{height:34px;padding:0 16px;border-radius:20px;background:var(--accent);color:#242b18;font-size:13px;font-weight:650}
-.result-stage{position:relative;flex:1;min-height:0;background:#1b2017;overflow:hidden}
-.result-stage img,.result-stage canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 36%}
-.result-stage canvas[hidden]{display:none}
-.result-dock{flex-shrink:0;background:var(--paper);padding:8px 12px 18px}
-.result-panel{padding:2px 4px 10px}
-.result-panel .refine-empty{margin:0 6px 10px;font-size:12px;color:var(--muted)}
-.result-panel .refine-slider-row{display:flex;align-items:center;gap:10px;padding:2px 6px 10px}
-.result-panel .refine-param-label{font-size:12px;font-weight:600;color:var(--ink);min-width:72px}
-.result-panel .edit-param-value{font-size:12px;font-variant-numeric:tabular-nums;color:var(--ink);min-width:32px;text-align:right;font-weight:650}
-.result-panel .edit-slider-wrap{position:relative;flex:1;padding:8px 0}
-.result-page input.edit-slider[type=range]{appearance:none;-webkit-appearance:none;display:block;height:4px;width:100%;margin:0;border-radius:4px;outline:none;background:linear-gradient(to right,#e6e6dc var(--a,0%),var(--ink) var(--a,0%),var(--ink) var(--b,0%),#e6e6dc var(--b,0%))}
-.result-page input.edit-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 5px #0003,0 0 0 1px #00000014;cursor:ew-resize}
-.result-panel .refine-cats{display:flex;gap:6px;overflow-x:auto;padding:0 4px 10px;scrollbar-width:none}
-.result-panel .refine-cats button{flex-shrink:0;height:28px;padding:0 11px;border-radius:14px;background:#ecece4;font-size:11px;font-weight:600;color:#6a6b63}
-.result-panel .refine-cats button.active{background:var(--ink);color:#fff}
-.result-panel .refine-thumbs{display:flex;gap:9px;overflow-x:auto;padding:0 4px 4px;scrollbar-width:none}
-.result-panel .refine-thumb{flex:0 0 auto;width:64px;padding:0;text-align:center;font-size:10px;font-weight:600;color:var(--muted)}
-.result-panel .refine-thumb .thumb-media{width:64px;height:80px;border-radius:12px;overflow:hidden;background:#ddd;position:relative;margin-bottom:6px;box-shadow:inset 0 0 0 1px #00000010}
-.result-panel .refine-thumb img{width:100%;height:100%;object-fit:cover;object-position:50% 30%}
-.result-panel .refine-thumb.active{color:var(--ink)}
-.result-panel .refine-thumb.active .thumb-media{box-shadow:0 0 0 2px var(--ink)}
-.result-panel .refine-thumb .thumb-badge{position:absolute;left:5px;top:5px;font-size:8px;font-weight:700;letter-spacing:.3px;background:#fff;color:var(--ink);padding:2px 5px;border-radius:7px}
-.result-panel .refine-params{display:flex;gap:6px;overflow-x:auto;padding:0 4px;scrollbar-width:none}
-.result-panel .refine-params button{flex-shrink:0;height:30px;padding:0 11px;border-radius:15px;background:#ecece4;font-size:11px;font-weight:600;color:#6a6b63}
-.result-panel .refine-params button.active{background:var(--ink);color:#fff}
-.result-tools{display:flex;justify-content:space-between;gap:4px;padding:4px 4px 0}
-.result-tool{flex:1;display:flex;flex-direction:column;align-items:center;gap:7px;font-size:10px;font-weight:600;color:var(--muted);padding:0}
-.result-tool .tool-ic{width:54px;height:54px;border-radius:50%;background:#ecece4;display:grid;place-items:center;color:#3d3e38}
-.result-tool .tool-ic svg{width:22px;height:22px}
-.result-tool.on,.result-tool.applied{color:var(--ink)}
-.result-tool.on .tool-ic{background:#e8d3c8}
-.result-tool.applied .tool-ic{box-shadow:inset 0 0 0 1.5px #c4a396}
-.result-tool.more .tool-ic{border-radius:16px;background:var(--ink);color:#fff}
-.result-tool.more{color:var(--ink)}
 
 /* ---- Home B: the feed (2026-09-14). One look per screen, edge to edge. ---- */
 .content.feed-content{padding:0!important;overflow-y:auto;scroll-snap-type:y mandatory;background:#141813!important}
@@ -389,16 +340,25 @@ FORM: User-specified iPhone frame with external page tabs. Standalone, offline, 
 .ai-entry.applied{border-color:#d3e98f80}
 .ai-entry.on{background:var(--accent);color:#26331a;border-color:transparent}
 .ai-entry.on svg{color:#26331a}
-.spot-layer{overflow:hidden}
-.ai-scan{position:absolute;left:0;right:0;top:-20%;height:20%;background:linear-gradient(transparent,#e6f5b93a 55%,#ffffffaa 100%);box-shadow:0 1px 0 #ffffffcc;animation:aiScan 1.05s ease-in-out forwards;pointer-events:none}
-@keyframes aiScan{to{top:100%}}
-.ai-copy{min-height:32px;padding:0 6px}
-.spot-clear{font-size:11px;font-weight:550;color:#c9d4b6;background:#ffffff0e;border-radius:14px;height:28px;padding:0 12px}
-.spot-clear:disabled{opacity:.3}
-/* Portrait packs: a short row under the slider, same thumbs as Filters. */
-.portrait-packs{padding-top:0}
-.portrait-packs .refine-thumb{flex:0 0 62px}
-.portrait-packs .refine-thumb .thumb-media{width:62px;height:76px;border-radius:12px}
+/* Face detection: the frame is the AI's answer ("this is the face"); it settles onto the face, then the touchable parts appear inside it. */
+.face-frame{position:absolute;border:1.5px solid rgba(255,255,255,.42);border-radius:16px;pointer-events:none;transition:left .78s cubic-bezier(.2,.8,.2,1),top .78s cubic-bezier(.2,.8,.2,1),width .78s cubic-bezier(.2,.8,.2,1),height .78s cubic-bezier(.2,.8,.2,1),border-color .3s;overflow:visible}
+.face-frame i{position:absolute;width:15px;height:15px;border:2.5px solid #fff;filter:drop-shadow(0 1px 3px #0009)}
+.face-frame i:nth-child(1){left:-2px;top:-2px;border-right:0;border-bottom:0;border-radius:8px 0 0 0}
+.face-frame i:nth-child(2){right:-2px;top:-2px;border-left:0;border-bottom:0;border-radius:0 8px 0 0}
+.face-frame i:nth-child(3){left:-2px;bottom:-2px;border-right:0;border-top:0;border-radius:0 0 0 8px}
+.face-frame i:nth-child(4){right:-2px;bottom:-2px;border-left:0;border-top:0;border-radius:0 0 8px 0}
+.face-frame.detected{border-color:rgba(255,255,255,.28)}
+.face-frame.detected i{border-color:var(--accent)}
+.face-scanline{position:absolute;left:10px;right:10px;top:8%;height:1.5px;background:linear-gradient(90deg,transparent,#fff 30%,#fff 70%,transparent);box-shadow:0 0 14px #ffffffaa;animation:faceScan .7s ease-in-out infinite alternate}
+@keyframes faceScan{from{top:8%}to{top:92%}}
+.face-label{position:absolute;left:50%;bottom:-30px;translate:-50% 0;height:22px;padding:0 10px;border-radius:11px;font-size:9.5px;font-weight:650;letter-spacing:.02em;color:#fff;background:#1a2014b8;border:1px solid #ffffff45;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
+.face-label svg{width:11px;height:11px;color:var(--accent)}
+.portrait-layer.detected .portrait-mask,.portrait-layer.detected .portrait-tag,.portrait-layer.detected .portrait-outline,.portrait-layer.detected .sculpt-dot,.portrait-layer.detected .sculpt-line,.portrait-layer.detected .sculpt-ghost{animation:faceIn .45s ease-out both}
+@keyframes faceIn{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
+.edit-actions{display:flex;align-items:center;gap:8px}
+.edit-actions .circle{width:34px;height:34px}
+.edit-actions .circle svg{width:17px;height:17px}
+/* Portrait tab = packs: face-cropped thumbs, same form as Filters. */
 .portrait-packs .thumb-media img.zoom{transform:scale(2.2)}
 /* Export sheet. */
 .export-head h2{display:flex;align-items:center;gap:9px}
@@ -458,10 +418,10 @@ const bundledGalleryPhotos=galleryMaterials.map(([asset,name,type,faceClose],i)=
 let photos=bundledGalleryPhotos.slice();
 let history=[],filter='All',page='templates',currentTemplate=templates[0],currentPhoto=photos[0],resultSrc=null,heroIndex=0,uploadIntent='library',keepOriginal=true,previousPage='templates',profileName='',persistEnabled=true;
 const content=document.getElementById('content'),screen=document.getElementById('screen'),nav=document.getElementById('navigation'),overlay=document.getElementById('overlay');
-const tabItems=[['templates','首页','01'],['camera','相机','02'],['library','Gallery','03'],['profile','我的','04'],['divider'],['template','氛围详情','05'],['picker','相册抽屉','06'],['generating','生成等待','07'],['result','成片','08'],['editor','精修','09'],['membership','会员','10']];
-const captions={generating:['照片正在显影','照片角上一条小字说正在做什么<br>逐条切换：场景 → 色 → 光 → 质感<br>只保留取消、失败重试'],templates:['Banner + 主题货架','Banner 轮播常青 / 当季两个位置<br>七个主题各一行横滑卡片，点卡片进详情<br>Night Vibes / Sunset Getaway 是定下来的，其余五个是补充'],library:['Gallery','点照片 → 直接编辑<br>筛选：All / Portraits / Faces / Places<br>不提供下载或删除原图'],profile:['我的（首页右上头像进入）','账户 · 会员 · 修图记录<br>订阅、恢复购买、帮助与条款<br>不占 Tab 位'],camera:['相机 Tab','Style：首页同一套模版 · Cameras：八台老相机<br>选相机后取景器整套换皮：LCD 尺寸、OSD、日期戳、扫描线<br>拍出来的就是这台相机的效果'],template:['先感受，再开始','整屏 BA 循环播放：Before → After → 回<br>只留名字 + 一句效果<br>只有一个出口：Try it on my photo'],picker:['iOS 照片选择器','Photos / Albums · 单张点选<br>选择后直接进入生成'],result:['处理完成','照片框只展示 After<br>底部 Filters / Effects / Adjust / Edit More<br>Save 一步存图，随即弹导出弹窗引导去 Instagram / TikTok'],editor:['精修 · 四个 tab + AI Retouch 独立入口','Portrait：先给预设包（Natural / Soft Skin / Glow…），再点脸微调<br>照片右上 ✦ AI Retouch：点哪儿修哪儿，不占 tab 位<br>Save 后弹导出弹窗，引导分享到 Instagram / TikTok'],membership:['更多创作空间','会员权益和方案页面<br>价格与购买尚未接入']};
+const tabItems=[['templates','首页','01'],['camera','相机','02'],['library','Gallery','03'],['profile','我的','04'],['divider'],['template','氛围详情','05'],['picker','相册抽屉','06'],['generating','生成等待','07'],['result','成片 · 精修','08'],['membership','会员','09']];
+const captions={generating:['照片正在显影','照片角上一条小字说正在做什么<br>逐条切换：场景 → 色 → 光 → 质感<br>只保留取消、失败重试'],templates:['Banner + 主题货架','Banner 轮播常青 / 当季两个位置<br>七个主题各一行横滑卡片，点卡片进详情<br>Night Vibes / Sunset Getaway 是定下来的，其余五个是补充'],library:['Gallery','点照片 → 直接编辑<br>筛选：All / Portraits / Faces / Places<br>不提供下载或删除原图'],profile:['我的（首页右上头像进入）','账户 · 会员 · 修图记录<br>订阅、恢复购买、帮助与条款<br>不占 Tab 位'],camera:['相机 Tab','Style：首页同一套模版 · Cameras：八台老相机<br>选相机后取景器整套换皮：LCD 尺寸、OSD、日期戳、扫描线<br>拍出来的就是这台相机的效果'],template:['先感受，再开始','整屏 BA 循环播放：Before → After → 回<br>只留名字 + 一句效果<br>只有一个出口：Try it on my photo'],picker:['iOS 照片选择器','Photos / Albums · 单张点选<br>选择后直接进入生成'],result:['成片 · 精修 · 一页','生成完直接进这页：照片 + 四个 tab<br>Filters / Effects 第一张是本模版的（Look 角标），后面是素材库<br>右上 ✦ AI Retouch：AI 框出脸 → 点部位修；Save 后弹导出弹窗'],membership:['更多创作空间','会员权益和方案页面<br>价格与购买尚未接入']};
 function renderTabs(active){document.getElementById('tabs').innerHTML=tabItems.map(([id,name,num])=>id==='divider'?'<div class="tab-divider"></div>':`<button class="tab ${active===id?'active':''}" data-page="${id}"><small>${num}</small>${name}</button>`).join('');let cap=active==='templates'?homeCaption():captions[active]||captions.templates;document.getElementById('caption').innerHTML=`<strong>${cap[0]}</strong>${cap[1]}`;}
-function go(p){stopGenerationMotion();document.getElementById('library-ui').innerHTML='';screen.classList.toggle('library-mode',p==='library');content.classList.toggle('library-content',p==='library');if(page==='generating'&&p!=='generating'&&generation?.status==='running')cancelGeneration();if(p==='generating'&&!generation){showGenerationPreview('processing');return;}if(page==='camera'&&p!=='camera')stopCamera();if(p==='camera'&&page!=='camera'&&page!=='me-detail')cameraReturn=['template','templates','profile','photo','library','collection'].includes(page)?page:'templates';closeSheet({immediate:true,force:true});previousPage=page;page=p;screen.classList.toggle('look-mode',p==='template');content.classList.toggle('look-content',p==='template');screen.classList.toggle('editor-mode',p==='editor');content.classList.toggle('editor-content',p==='editor');content.classList.toggle('me-content',['profile','me-detail'].includes(p));content.classList.toggle('generating-content',p==='generating');content.classList.toggle('camera-content',p==='camera');content.classList.toggle('result-content',p==='result');content.classList.toggle('home-content',['templates','picker'].includes(p));content.classList.toggle('feed-content',['templates','picker'].includes(p)&&homeForm==='feed');screen.classList.toggle('feed-mode',['templates','picker'].includes(p)&&homeForm==='feed');document.getElementById('status').classList.remove('home-scrolled');screen.classList.toggle('dark',['camera','photo'].includes(p));document.getElementById('status').classList.toggle('light',['camera','photo','templates','picker'].includes(p));content.style.paddingBottom=p==='result'?'12px':['templates','library'].includes(p)?'116px':'95px';content.style.background=['camera','photo'].includes(p)?'#1e211c':'';renderTabs(p==='me-detail'?'profile':p==='collection'?'templates':p);nav.innerHTML='';if(p==='picker'){page='templates';home();bottomNav('templates');pickSheet();renderTabs('picker');return;}({templates:home,generating:generationPage,library:library,profile:profile,'me-detail':meDetail,camera:camera,template:templateDetail,collection:collectionDetail,result:result,editor:editor,membership:membership,photo:photoDetail})[p]?.();content.scrollTop=p==='library'&&previousPage==='editor'?libraryResumeY:0;if(['templates','library'].includes(p))bottomNav(p);}
+function go(p){stopGenerationMotion();document.getElementById('library-ui').innerHTML='';screen.classList.toggle('library-mode',p==='library');content.classList.toggle('library-content',p==='library');if(page==='generating'&&p!=='generating'&&generation?.status==='running')cancelGeneration();if(p==='generating'&&!generation){showGenerationPreview('processing');return;}if(page==='camera'&&p!=='camera')stopCamera();if(p==='camera'&&page!=='camera'&&page!=='me-detail')cameraReturn=['template','templates','profile','photo','library','collection'].includes(page)?page:'templates';closeSheet({immediate:true,force:true});previousPage=page;page=p;screen.classList.toggle('look-mode',p==='template');content.classList.toggle('look-content',p==='template');screen.classList.toggle('editor-mode',p==='editor');content.classList.toggle('editor-content',p==='editor');content.classList.toggle('me-content',['profile','me-detail'].includes(p));content.classList.toggle('generating-content',p==='generating');content.classList.toggle('camera-content',p==='camera');content.classList.toggle('home-content',['templates','picker'].includes(p));content.classList.toggle('feed-content',['templates','picker'].includes(p)&&homeForm==='feed');screen.classList.toggle('feed-mode',['templates','picker'].includes(p)&&homeForm==='feed');document.getElementById('status').classList.remove('home-scrolled');screen.classList.toggle('dark',['camera','photo'].includes(p));document.getElementById('status').classList.toggle('light',['camera','photo','templates','picker'].includes(p));content.style.paddingBottom=['templates','library'].includes(p)?'116px':'95px';content.style.background=['camera','photo'].includes(p)?'#1e211c':'';renderTabs(p==='me-detail'?'profile':p==='collection'?'templates':p==='editor'?'result':p);nav.innerHTML='';if(p==='picker'){page='templates';home();bottomNav('templates');pickSheet();renderTabs('picker');return;}({templates:home,generating:generationPage,library:library,profile:profile,'me-detail':meDetail,camera:camera,template:templateDetail,collection:collectionDetail,editor:editor,membership:membership,photo:photoDetail})[p]?.();content.scrollTop=p==='library'&&previousPage==='editor'?libraryResumeY:0;if(['templates','library'].includes(p))bottomNav(p);}
 /* Three tabs: Home / Camera / Gallery. Camera sits in the middle of one glass capsule. "Me" moved to the avatar on Home. */
 function bottomNav(p){nav.innerHTML=`<div class="bottom-nav"><div class="capsule">${[['templates','home','Home'],['camera','camera','Camera'],['library','photos','Gallery']].map(([id,ic,label])=>id==='camera'?`<button class="nav-item nav-camera" data-action="capture" aria-label="Camera"><span class="cam">${icon(ic)}</span></button>`:`<button class="nav-item ${p===id?'active':''}" data-page="${id}">${icon(ic)}${label}</button>`).join('')}</div></div>`;
 }
@@ -511,7 +471,7 @@ function home(){
 /* A: the camera roll is the last shelf. Tap a photo to refine it; the last card imports. */
 function albumStrip(){
  const recent=[...photos].sort((a,b)=>(b.created||0)-(a.created||0)).slice(0,8);if(!recent.length)return '';
- return `<section class="shelf album-strip"><div class="shelf-head"><h2>Your photos</h2><button class="text-button shelf-all" data-page="library">Open Gallery ${icon('arrow')}</button></div><div class="shelf-row">${recent.map(p=>`<button class="shelf-card album-card" data-album-photo="${p.id}" aria-label="${esc(p.name||'Photo')}"><div class="shelf-image"><img src="${p.src}" alt=""></div></button>`).join('')}<button class="shelf-card album-card album-import" data-action="import" aria-label="Import from camera roll"><div class="shelf-image"><i class="album-plus">${icon('plus')}</i><small>Import</small></div></button></div></section>`;
+ return `<section class="shelf album-strip"><div class="shelf-head"><h2>Your photos</h2><button class="text-button shelf-all" data-page="library">Open Gallery ${icon('arrow')}</button></div><div class="shelf-row">${recent.map(p=>`<button class="shelf-card album-card" data-strip-photo="${p.id}" aria-label="${esc(p.name||'Photo')}"><div class="shelf-image"><img src="${p.src}" alt=""></div></button>`).join('')}<button class="shelf-card album-card album-import" data-action="import" aria-label="Import from camera roll"><div class="shelf-image"><i class="album-plus">${icon('plus')}</i><small>Import</small></div></button></div></section>`;
 }
 /* B: the feed. Each screen is one look. The photo goes Before → After once when the screen arrives, the name sits over it, and the same two entries stay at the bottom. The kicker opens that theme's collection, so the shelves are still one tap away. */
 let feedObserver=null,feedScrolled=false;
@@ -624,93 +584,10 @@ function confirmHistoryRemoval(){
  const id=activeHistoryPhotoId;if(!id||!history.some(h=>h.photoId===id))return;
  showConfirm({title:'Remove from history?',message:'This removes the App record only. Photos saved to your phone will stay.',confirmLabel:'Remove',destructive:true,pendingLabel:'Removing…',onConfirm:async()=>{history=history.filter(h=>h.photoId!==id);await persist();activeHistoryPhotoId=null;go('me-detail');toast('Removed from history.',{tone:'success'});}});
 }
-let resultLookSrc=null,resultSpots=[],resultTapBusy=false,resultTune=null,resultPreviewToken=0;
-const RESULT_TOOLS=[['filters','filters','Filters'],['effects','spark','Effects'],['adjust','sliders','Adjust']];
-const RESULT_EFFECTS=[{id:'flash',name:'Flash'},{id:'grain',name:'Grain'},{id:'glow',name:'Glow'},{id:'sparkle',name:'Sparkle'},{id:'vignette',name:'Vignette'},{id:'leak',name:'Light leak'}];
 function templateEffectId(t){if(!t)return 'none';if(['glow','leak','sparkle','flash'].includes(t.effect))return t.effect;if((t.grain||0)>=.18)return 'grain';return 'none';}
-function defaultResultTune(t=currentTemplate){const effectId=templateEffectId(t);return {tool:null,cat:'Hot',param:'exposure',filter:{id:'look',intensity:100},effect:{id:effectId,intensity:effectId==='none'?60:70},adjust:{exposure:0,contrast:0,saturation:0,warmth:0}};}
-function resultTuneState(){const t=resultTune||defaultResultTune();return {filter:t.filter,effect:t.effect,portrait:{smooth:0,brighten:0,glow:0},adjust:t.adjust,spots:[]};}
-function resultTuneIsDefault(){if(!resultTune)return true;const d=defaultResultTune();return JSON.stringify({filter:resultTune.filter,effect:resultTune.effect,adjust:resultTune.adjust})===JSON.stringify({filter:d.filter,effect:d.effect,adjust:d.adjust});}
-function resultTuneApplied(tool){const t=resultTune||defaultResultTune(),d=defaultResultTune();return tool==='filters'?JSON.stringify(t.filter)!==JSON.stringify(d.filter):tool==='effects'?JSON.stringify(t.effect)!==JSON.stringify(d.effect):Object.values(t.adjust).some(v=>v!==0);}
-function resultHint(){const n=resultSpots.length;return `<div class="tap-hint"><p>${n?`${n} retouch${n===1?'':'es'}. Tap another spot.`:'Tap a spot to retouch.'}</p>${n?`<button class="text-button" data-action="result-undo-spot">Undo</button>`:''}</div>`;}
-function paintSpotsOn(src,spots){if(!spots.length)return Promise.resolve(src);return renderRefine(src,{...defaultRefine(),spots},2000).then(c=>c.toDataURL('image/jpeg',.92));}
-function visualToImage(vis,rx,ry){
- const img=vis.querySelector('.edited');const nw=img?.naturalWidth||0,nh=img?.naturalHeight||0,dw=vis.clientWidth,dh=vis.clientHeight;
- if(!nw||!nh)return {x:rx,y:ry};
- const scale=Math.max(dw/nw,dh/nh),sw=nw*scale,sh=nh*scale,ox=(dw-sw)*.5,oy=(dh-sh)*.36;
- return {x:Math.min(1,Math.max(0,(rx*dw-ox)/sw)),y:Math.min(1,Math.max(0,(ry*dh-oy)/sh))};
-}
-async function ensureResultLook(){
- if(!resultLookSrc)resultLookSrc=resultSrc||await renderLook(currentPhoto.src,currentTemplate);
- const img=document.querySelector('.result-after');
- if(resultTuneIsDefault()){
-  resultSrc=resultLookSrc;
-  if(img){img.src=resultLookSrc;img.style.filter='none';}
- }
- if(img&&!img.naturalWidth){try{await img.decode();}catch(e){}}
- return resultLookSrc;
-}
-function resultSliderRow(label,value,min,max,kind){const display=min<0?signed(value):String(value);return `<div class="refine-slider-row"><span class="refine-param-label">${label}</span><div class="edit-slider-wrap">${min<0?`<span class="edit-neutral" style="left:${(0-min)/(max-min)*100}%"></span>`:''}<input class="edit-slider" id="result-slider" type="range" min="${min}" max="${max}" value="${value}" data-slider-kind="${kind}" aria-label="${label}" aria-valuetext="${display}" style="${sliderFill(value,min,max)}"></div><output class="edit-param-value" id="result-value" for="result-slider">${display}</output></div>`;}
-function resultThumb(f,active,inner=''){return `<button class="refine-thumb ${active?'active':''}" data-result-item="${f.id}" aria-pressed="${active}" aria-label="${f.name}"><div class="thumb-media">${inner}${f.badge?`<span class="thumb-badge">${f.badge}</span>`:''}</div><span>${f.name}</span></button>`;}
-function renderResultDock(){
- const dock=document.getElementById('result-dock');if(!dock)return;
- const t=resultTune||(resultTune=defaultResultTune());
- const src=currentPhoto?.src||'';
- let panel='';
- if(t.tool==='filters'){
-  const look=findRefineFilter('look')||{id:'look',name:currentTemplate.name,filter:currentTemplate.filter};
-  const none=t.filter.id==='none';
-  const name=t.filter.id==='look'?currentTemplate.name:(REFINE_FILTERS.find(f=>f.id===t.filter.id)?.name||'Intensity');
-  const items=REFINE_FILTERS.filter(f=>f.cat===t.cat);
-  panel=`<div class="result-panel">${none?`<p class="refine-empty">This look’s filter, or pick another.</p>`:resultSliderRow(name,t.filter.intensity,0,100,'filter-intensity')}<div class="refine-cats"><button class="${t.filter.id==='look'?'active':''}" data-result-item="look" aria-pressed="${t.filter.id==='look'}">Look</button>${REFINE_FILTER_CATS.map(c=>`<button class="${t.cat===c&&t.filter.id!=='look'?'active':''}" data-result-cat="${c}" aria-pressed="${t.cat===c}">${c}</button>`).join('')}</div><div class="refine-thumbs">${resultThumb({id:'look',name:currentTemplate.name,badge:'Look'},t.filter.id==='look',`<img src="${src}" alt="" style="filter:${currentTemplate.filter}">`)+items.map(f=>resultThumb(f,t.filter.id===f.id,`<img src="${src}" alt="" style="filter:${f.filter}">`)).join('')}</div></div>`;
- }else if(t.tool==='effects'){
-  const none=t.effect.id==='none';
-  const name=RESULT_EFFECTS.find(f=>f.id===t.effect.id)?.name||'Intensity';
-  panel=`<div class="result-panel">${none?`<p class="refine-empty">This look’s effect, or pick another.</p>`:resultSliderRow(name,t.effect.intensity,0,100,'effect-intensity')}<div class="refine-thumbs">${[{id:'none',name:'None'},...RESULT_EFFECTS].map(f=>resultThumb(f,t.effect.id===f.id,`<img src="${src}" alt="">`)).join('')}</div></div>`;
- }else if(t.tool==='adjust'){
-  const active=ADJUST_PARAMS.find(p=>p.key===t.param)||ADJUST_PARAMS[0];t.param=active.key;
-  panel=`<div class="result-panel">${resultSliderRow(active.name,t.adjust[active.key],active.min,active.max,'param')}<div class="refine-params">${ADJUST_PARAMS.map(p=>`<button class="${p.key===t.param?'active':''}" data-result-param="${p.key}" aria-pressed="${p.key===t.param}">${p.name}${t.adjust[p.key]?` · ${p.min<0?signed(t.adjust[p.key]):t.adjust[p.key]}`:''}</button>`).join('')}</div></div>`;
- }
- dock.innerHTML=panel+`<div class="result-tools">${RESULT_TOOLS.map(([id,ic,name])=>`<button class="result-tool ${t.tool===id?'on':''} ${resultTuneApplied(id)?'applied':''}" data-result-tool="${id}"><span class="tool-ic">${icon(ic)}</span>${name}</button>`).join('')}<button class="result-tool more" data-result-tool="more"><span class="tool-ic">${icon('arrow')}</span>Edit More</button></div>`;
- bindResultSlider();
-}
-function bindResultSlider(){
- const input=document.getElementById('result-slider');if(!input)return;const kind=input.dataset.sliderKind,min=Number(input.min);
- input.oninput=()=>{const v=Number(input.value);if(kind==='filter-intensity')resultTune.filter.intensity=v;else if(kind==='effect-intensity')resultTune.effect.intensity=v;else resultTune.adjust[resultTune.param]=v;const label=min<0?signed(v):String(v);const out=document.getElementById('result-value');if(out)out.value=label;input.setAttribute('aria-valuetext',label);paintSlider(input);refreshResultPreview();};
-}
-function selectResultItem(id){
- resultTune=resultTune||defaultResultTune();
- if(resultTune.tool==='filters'){if(resultTune.filter.id===id)return;resultTune.filter.id=id;if(id!=='none'&&resultTune.filter.intensity===0)resultTune.filter.intensity=100;}
- else if(resultTune.tool==='effects'){if(resultTune.effect.id===id)return;resultTune.effect.id=id;if(id!=='none'&&resultTune.effect.intensity===0)resultTune.effect.intensity=70;}
- renderResultDock();refreshResultPreview();
-}
-function refreshResultPreview(){
- const img=document.querySelector('.result-after'),canvas=document.getElementById('result-canvas');
- if(!img||!canvas)return;
- if(resultTuneIsDefault()){canvas.hidden=true;if(resultLookSrc){img.src=resultLookSrc;img.style.filter='none';}return;}
- const token=++resultPreviewToken,source=currentPhoto.src;
- setTimeout(async()=>{
-  try{const out=await renderRefine(source,resultTuneState(),1000);if(token!==resultPreviewToken||!canvas.isConnected)return;canvas.width=out.width;canvas.height=out.height;canvas.getContext('2d').drawImage(out,0,0);canvas.hidden=false;}catch(e){}
- },16);
-}
-async function refreshResultAfter(){
- const img=document.querySelector('.result-page .edited');if(!img)return;
- const base=resultLookSrc||resultSrc||currentPhoto.src;
- const src=await paintSpotsOn(base,resultSpots);
- resultSrc=src;img.src=src;img.style.filter='none';
-}
-function burstResult(x,y){const layer=document.getElementById('result-burst');if(!layer)return;layer.hidden=false;layer.style.cssText='position:absolute;inset:0;pointer-events:none;z-index:6';const el=document.createElement('i');el.className='spot-burst';el.style.left=(x*100).toFixed(2)+'%';el.style.top=(y*100).toFixed(2)+'%';layer.appendChild(el);setTimeout(()=>el.remove(),680);}
-async function addResultSpot(rx,ry){if(resultTapBusy||rx<0||rx>1||ry<0||ry>1)return;resultTapBusy=true;burstResult(rx,ry);try{await ensureResultLook();const vis=document.querySelector('.result-page .detail-visual');const pt=visualToImage(vis,rx,ry);resultSpots.push({id:'r'+Date.now(),x:pt.x,y:pt.y,r:.024});await refreshResultAfter();}finally{resultTapBusy=false;}}
-function undoResultSpot(){if(!resultSpots.length)return;resultSpots=resultSpots.slice(0,-1);refreshResultAfter();}
-function result(){
- if(!currentPhoto)currentPhoto=photos[0];if(!currentPhoto){go('library');return;}
- if(!resultLookSrc)resultLookSrc=resultSrc;
- if(!resultTune)resultTune=defaultResultTune();
- const after=resultSrc||currentPhoto.src,style=resultSrc?'':'filter:'+currentTemplate.filter;
- content.innerHTML=`<div class="result-page">${toolbar(currentTemplate.name,currentTemplate.where?`${esc(currentTemplate.scenes[0])} · ${esc(currentTemplate.where)}`:'',`<button class="circle" data-action="share" aria-label="Share">${icon('share')}</button><button class="result-save" data-action="save">Save</button>`,resultReturn)}<div class="result-stage"><img class="result-after" src="${after}" style="${style}" alt="Edited photo"><canvas id="result-canvas" hidden aria-hidden="true"></canvas></div><div class="result-dock" id="result-dock"></div></div>`;
- renderResultDock();
- ensureResultLook().then(refreshResultPreview);
-}
+/* The look, as editor state: its color grade is the selected filter, its light/grain the selected effect — so both tabs open on "this look's" item and everything else in the library sits after it. Intensities are calibrated to what the generation step rendered. */
+function lookEffect(t){const id=templateEffectId(t);const map={glow:35,flash:100,sparkle:50,leak:60,grain:Math.round(Math.min(100,Math.max(20,(t?.grain||0)/.55*100)))};return {id,intensity:id==='none'?60:map[id]};}
+function lookRefine(t=currentTemplate){const st=defaultRefine();st.filter={id:'look',intensity:100};st.effect=lookEffect(t);return st;}
 /* Export is one tap. Save writes the full-size JPG; this sheet is the only thing after it — where the photo goes next. */
 function showExportSheet(photo){showSheet(`<div class="sheet-head export-head"><h2><span class="export-check">${icon('check')}</span>Saved to Photos</h2><button class="circle" data-action="close-sheet" aria-label="Close">${icon('close')}</button></div><div class="export-card"><img src="${photo.src}" alt=""><div class="export-meta"><b>${esc(photo.name||'Photo')}</b><span>Full size · JPG</span><span>Your original stays untouched.</span></div></div><p class="export-lead">Post it while it’s fresh</p><div class="share-row export-share">${[['Instagram','ig'],['TikTok','tiktok'],['Messages','chat'],['More','share']].map(([name,ic])=>`<button class="share-target" data-share="${name}"><span class="circle">${icon(ic)}</span>${name}</button>`).join('')}</div><button class="export-done" data-action="close-sheet">Done</button>`,{label:'Saved to Photos'});}
 function shareResult(){showSheet(`<div class="sheet-head"><h2>Share</h2><button class="circle" data-action="close-sheet" aria-label="Close">${icon('close')}</button></div><p class="sheet-description">Share the finished photo. Your original stays in Photos.</p><div class="share-row">${[['Instagram','ig'],['Messages','chat'],['Copy link','link'],['More','share']].map(([name,ic])=>`<button class="share-target" data-share="${name}"><span class="circle">${icon(ic)}</span>${name}</button>`).join('')}</div>`,{label:'Share'});}
@@ -763,7 +640,7 @@ function showDeleteAccount(){
  document.getElementById('caption').innerHTML='<strong>删除账户 · 确认页</strong><p class="me-preview-foot">账户与订阅为交互稿状态。<br>不会操作真实账户。</p>';
 }
 /* Refine: four small tools (Filters · Effects · Portrait · Adjust). One panel open at a time; ✕ reverts the panel, ✓ keeps it. */
-let editorBaseSrc=null,editorReturn='photo',editorLabel='Refined',lookIntensity=100,resultReturn='template';
+let editorBaseSrc=null,editorReturn='photo',editorLabel='Refined',editorLook=null,editorEntryState='',lookIntensity=100,resultReturn='template',faceDetecting=false,faceDetectTimer=0;
 let editorComparing=false,editorPreviewFrame=0,editorRenderToken=0;
 const REFINE_FILTER_CATS=['Hot','Gentle','Tone','Film','Vibe'];
 const REFINE_FILTERS=[
@@ -788,11 +665,11 @@ const REFINE_FILTERS=[
  {id:'dreamy',name:'Dreamy',cat:'Vibe',filter:'brightness(1.08) saturate(1.1) contrast(.94)',glow:.3},
  {id:'moody',name:'Moody',cat:'Vibe',filter:'contrast(1.25) brightness(.9) saturate(.8)'}
 ];
-const REFINE_EFFECTS=[{id:'grain',name:'Grain'},{id:'glow',name:'Glow'},{id:'sparkle',name:'Sparkle'},{id:'vignette',name:'Vignette'},{id:'leak',name:'Light leak'}];
+const REFINE_EFFECTS=[{id:'grain',name:'Grain'},{id:'glow',name:'Glow'},{id:'flash',name:'Flash'},{id:'sparkle',name:'Sparkle'},{id:'vignette',name:'Vignette'},{id:'leak',name:'Light leak'}];
 const PORTRAIT_PARAMS=[{key:'smooth',name:'Skin',min:0,max:100},{key:'glow',name:'Eyes',min:0,max:100},{key:'teeth',name:'Smile',min:0,max:100},{key:'slim',name:'Shape',min:0,max:100},{key:'waist',name:'Waist',min:0,max:100},{key:'legs',name:'Legs',min:0,max:100}];
 const ADJUST_PARAMS=[{key:'exposure',name:'Exposure',min:-50,max:50},{key:'contrast',name:'Contrast',min:-50,max:50},{key:'saturation',name:'Saturation',min:-100,max:80},{key:'warmth',name:'Warmth',min:-50,max:50}];
 const REFINE_TOOLS=[['portrait','face','Portrait'],['filters','filters','Filters'],['effects','spark','Effects'],['adjust','sliders','Adjust']];
-/* Portrait packs: one tap sets the whole face. They are the same sliders she can then fine-tune by touching the face, so a pack is just a starting point, never a lock. */
+/* Portrait tab = packs. One tap sets the whole face; Strength scales the pack. Touching a place in AI Retouch edits the same numbers, so a pack is a starting point, never a lock. */
 const PORTRAIT_PACKS=[
  {id:'natural',name:'Natural',values:{smooth:28,brighten:14,glow:8}},
  {id:'soft',name:'Soft Skin',values:{smooth:60,brighten:22,glow:14,teeth:10}},
@@ -801,32 +678,36 @@ const PORTRAIT_PACKS=[
  {id:'sculpted',name:'Sculpted',values:{smooth:42,brighten:20,glow:18,teeth:16,slim:46,waist:18}}
 ];
 const portraitZero=()=>({smooth:0,brighten:0,glow:0,teeth:0,slim:0,waist:0,legs:0});
-function activePortraitPack(){const p=refine.portrait;const hit=PORTRAIT_PACKS.find(k=>Object.keys(portraitZero()).every(key=>(p[key]||0)===(k.values[key]||0)));if(hit)return hit.id;return Object.values(p).some(v=>v>0)||Object.keys(refine.sculpt||{}).length?null:'none';}
-function applyPortraitPack(id){commitEditorAdjustment();if(editorSaveBusy||activePortraitPack()===id)return;editorPast.push(editorSnapshot());editorFuture=[];const pack=PORTRAIT_PACKS.find(k=>k.id===id);refine.portrait={...portraitZero(),...(pack?pack.values:{})};if(!pack)refine.sculpt={};refinePanel();refreshEditorImage();updateEditorChrome();}
+function packValues(pack,strength=100){const out=portraitZero();for(const k of Object.keys(pack.values))out[k]=Math.round(pack.values[k]*strength/100);return out;}
+function activePortraitPack(){const p=refine.portrait,pack=PORTRAIT_PACKS.find(k=>k.id===refine.packId);if(pack&&!Object.keys(refine.sculpt||{}).length){const v=packValues(pack,refine.packStrength??100);if(Object.keys(v).every(key=>(p[key]||0)===v[key]))return pack.id;}return Object.values(p).some(v=>v>0)||Object.keys(refine.sculpt||{}).length?null:'none';}
+function setPackStrength(v){const pack=PORTRAIT_PACKS.find(k=>k.id===refine.packId);if(!pack)return;refine.packStrength=v;refine.portrait=packValues(pack,v);}
+function applyPortraitPack(id){commitEditorAdjustment();if(editorSaveBusy||activePortraitPack()===id)return;editorPast.push(editorSnapshot());editorFuture=[];const pack=PORTRAIT_PACKS.find(k=>k.id===id);refine.packId=pack?pack.id:null;refine.packStrength=100;refine.portrait=pack?packValues(pack,100):portraitZero();refine.sculpt={};refinePanel();refreshEditorImage();updateEditorChrome();}
 let packThumbCache={src:null,items:{}};
 async function renderPackThumbs(){
- if(packThumbCache.src!==editorBaseSrc)packThumbCache={src:editorBaseSrc,items:{}};
+ const packKey=editorBaseSrc+'|'+(editorLook?.id||'');if(packThumbCache.src!==packKey)packThumbCache={src:packKey,items:{}};
  const source=editorBaseSrc,L=faceLayout(),fx=L.eyes?((L.eyes[0][0]+L.eyes[1][0])/2):50,fy=L.eyes?((L.eyes[0][1]+L.eyes[1][1])/2+5):30;let base=null;
  for(const holder of [...document.querySelectorAll('[data-pack-thumb]')]){
   const id=holder.dataset.packThumb;let url=packThumbCache.items[id];
-  if(!url){try{if(!base){const img=await loadImage(source);const ratio=Math.min(1,260/Math.max(img.naturalWidth,img.naturalHeight));base=document.createElement('canvas');base.width=Math.max(1,Math.round(img.naturalWidth*ratio));base.height=Math.max(1,Math.round(img.naturalHeight*ratio));base.getContext('2d').drawImage(img,0,0,base.width,base.height);}const state=defaultRefine(),pack=PORTRAIT_PACKS.find(k=>k.id===id);state.portrait={...portraitZero(),...(pack?pack.values:{})};url=(await renderRefine(base,state,260)).toDataURL('image/jpeg',.86);packThumbCache.items[id]=url;}catch(e){continue;}}
+  if(!url){try{if(!base){const img=await loadImage(source);const ratio=Math.min(1,260/Math.max(img.naturalWidth,img.naturalHeight));base=document.createElement('canvas');base.width=Math.max(1,Math.round(img.naturalWidth*ratio));base.height=Math.max(1,Math.round(img.naturalHeight*ratio));base.getContext('2d').drawImage(img,0,0,base.width,base.height);}const state=editorLook?lookRefine(editorLook):defaultRefine(),pack=PORTRAIT_PACKS.find(k=>k.id===id);state.portrait=pack?packValues(pack,100):portraitZero();url=(await renderRefine(base,state,260)).toDataURL('image/jpeg',.86);packThumbCache.items[id]=url;}catch(e){continue;}}
   if(!holder.isConnected||editorBaseSrc!==source)return;if(holder.querySelector('img'))continue;const img=new Image();img.alt='';img.className='zoom';img.style.transformOrigin=`${fx}% ${fy}%`;img.style.objectPosition=`${fx}% ${fy}%`;img.src=url;holder.prepend(img);
  }
 }
-/* AI Retouch is its own entry on the photo, not a fifth tab: she points at a mark and it goes. The four tabs below stay as they are. */
-function toggleAiRetouch(){if(refineTool==='spots'){confirmRefineTool();return;}openRefineTool('spots');const layer=document.getElementById('spot-layer');if(layer){const sc=document.createElement('i');sc.className='ai-scan';layer.appendChild(sc);setTimeout(()=>sc.remove(),1150);}}
-function renderAiEntry(){const b=document.querySelector('.ai-entry');if(!b)return;const on=refineTool==='spots',n=(refine.spots||[]).length;b.classList.toggle('on',on);b.classList.toggle('applied',!on&&n>0);b.setAttribute('aria-pressed',String(on));b.querySelector('span').textContent=n&&!on?`AI Retouch · ${n}`:'AI Retouch';}
-const defaultRefine=()=>({filter:{id:'none',intensity:100},effect:{id:'none',intensity:60},portrait:{smooth:0,brighten:0,glow:0,teeth:0,slim:0,waist:0,legs:0},sculpt:{},adjust:{exposure:0,contrast:0,saturation:0,warmth:0},spots:[],spotSize:55});
-let refine=defaultRefine(),refineTool=null,refineCat='Hot',refineParam={portrait:'smooth',adjust:'exposure'},refinePanelStart=null,refinePanelUndo=0,portraitTab='face',portraitMask=null,editorFaceKey=null,sculptMirror=true,sculptDrag=null,sculptLastTap=null,portraitRub=null,portraitRubbedAt=0,spotPress=null;
+/* AI Retouch is its own entry on the photo, not a fifth tab. It is "AI finds the face, you touch the part": a detection frame settles on the face, then the parts (Skin / Eyes / Smile / Shape, Waist / Legs) become touchable — tap for a slider, rub to set, drag the outline dots to reshape. The four tabs below stay as they are. */
+function toggleAiRetouch(){if(refineTool==='face'){confirmRefineTool();return;}openRefineTool('face');startFaceDetect();}
+function startFaceDetect(){clearTimeout(faceDetectTimer);faceDetecting=true;renderPortraitMasks();refinePanel();faceDetectTimer=setTimeout(()=>{faceDetecting=false;if(refineTool==='face')refinePanel();},1050);}
+function renderAiEntry(){const b=document.querySelector('.ai-entry');if(!b)return;const on=refineTool==='face',custom=Object.keys(refine.sculpt||{}).length>0||activePortraitPack()===null;b.classList.toggle('on',on);b.classList.toggle('applied',!on&&custom);b.setAttribute('aria-pressed',String(on));}
+const defaultRefine=()=>({filter:{id:'none',intensity:100},effect:{id:'none',intensity:60},portrait:{smooth:0,brighten:0,glow:0,teeth:0,slim:0,waist:0,legs:0},sculpt:{},packId:null,packStrength:100,adjust:{exposure:0,contrast:0,saturation:0,warmth:0}});
+let refine=defaultRefine(),refineTool=null,refineCat='Hot',refineParam={portrait:'smooth',adjust:'exposure'},refinePanelStart=null,refinePanelUndo=0,portraitTab='face',portraitMask=null,editorFaceKey=null,sculptMirror=true,sculptDrag=null,sculptLastTap=null,portraitRub=null,portraitRubbedAt=0;
 const signed=v=>v>0?'+'+v:String(v);
-function refineIsDefault(s){return JSON.stringify(s)===JSON.stringify(defaultRefine());}
-function refineApplied(tool){const s=refine;return tool==='filters'?s.filter.id!=='none':tool==='effects'?s.effect.id!=='none':tool==='portrait'?Object.values(s.portrait).some(v=>v>0)||Object.keys(s.sculpt||{}).length>0:tool==='spots'?(s.spots||[]).length>0:Object.values(s.adjust).some(v=>v!==0);}
+const entryRefine=()=>editorEntryState?JSON.parse(editorEntryState):defaultRefine();
+function refineIsDefault(s){return JSON.stringify(s)===(editorEntryState||JSON.stringify(defaultRefine()));}
+function refineApplied(tool){const s=refine,e=entryRefine(),diff=k=>JSON.stringify(s[k])!==JSON.stringify(e[k]);return tool==='filters'?diff('filter'):tool==='effects'?diff('effect'):tool==='portrait'||tool==='face'?diff('portrait')||diff('sculpt'):diff('adjust');}
 function adjustFilterString(s){const a=s.adjust,p=s.portrait,b=1+a.exposure/100+p.brighten/100*.22,c=1+a.contrast/100-p.brighten/100*.08,sat=1+a.saturation/100,sep=Math.max(0,a.warmth)/100;return `brightness(${b.toFixed(3)}) contrast(${c.toFixed(3)}) saturate(${sat.toFixed(3)}) sepia(${sep.toFixed(3)})`;}
 const imageCache=new Map();
 function loadImage(src){if(imageCache.has(src))return imageCache.get(src);const p=(async()=>{const img=new Image();img.src=src;await img.decode();return img;})();imageCache.set(src,p);if(imageCache.size>6)imageCache.delete(imageCache.keys().next().value);p.catch(()=>imageCache.delete(src));return p;}
 let grainTileCanvas=null;
 function grainTile(){if(grainTileCanvas)return grainTileCanvas;const tile=document.createElement('canvas');tile.width=tile.height=192;const g=tile.getContext('2d'),d=g.createImageData(192,192);for(let i=0;i<d.data.length;i+=4){const v=105+Math.random()*100|0;d.data[i]=d.data[i+1]=d.data[i+2]=v;d.data[i+3]=255;}g.putImageData(d,0,0);return grainTileCanvas=tile;}
-function findRefineFilter(id){if(id==='look'&&currentTemplate)return {id:'look',name:currentTemplate.name,filter:currentTemplate.filter,grain:currentTemplate.grain||0,glow:currentTemplate.effect==='glow'?.3:0};return REFINE_FILTERS.find(x=>x.id===id);}
+function findRefineFilter(id){const t=editorLook||currentTemplate;if(id==='look'&&t)return {id:'look',name:t.name,filter:t.filter,grain:templateEffectId(t)==='grain'?0:(t.grain||0),glow:0};return REFINE_FILTERS.find(x=>x.id===id);}
 /* ---- Portrait: touch the face. ----
  Fitted layouts for the bundled portraits, in percent of the image. The prototype has no face detection, so anything else gets `default`.
  contour: 14 points — left temple, down the left jaw to the chin (5), up the right jaw to the right temple (10), then back across the hairline (11–13).
@@ -884,7 +765,6 @@ async function renderRefine(source,state,maxSize=1000){
  const warpX=(amount,cx,cy,rx,ry)=>{if(!(amount>0))return;const s=snapshot(),scale=1-amount*.045;ctx.save();ctx.beginPath();ctx.ellipse(w*cx,h*cy,w*rx,h*ry,0,0,Math.PI*2);ctx.clip();ctx.translate(w*cx,h*cy);ctx.scale(scale,1);ctx.translate(-w*cx,-h*cy);ctx.drawImage(s,0,0);ctx.restore();};
  const B=L.body||{};if(B.waist)warpX((state.portrait.waist||0)/100,B.waist[0]/100,B.waist[1]/100,B.waist[2]/100,B.waist[3]/100);
  if(B.legs&&(state.portrait.legs||0)>0){const a=state.portrait.legs/100,s=snapshot(),lx=B.legs[0]/100*w,ly=B.legs[1]/100*h,top=(B.legs[1]-B.legs[3])/100*h;ctx.save();ctx.beginPath();ctx.rect(0,top,w,h-top);ctx.clip();ctx.translate(lx,ly);ctx.scale(1-a*.035,1+a*.018);ctx.translate(-lx,-ly);ctx.drawImage(s,0,0);ctx.restore();}
- if(state.spots?.length){const s=snapshot();for(const sp of state.spots){const r=Math.max(10,sp.r*w*1.25),cx=sp.x*w,cy=sp.y*h,size=Math.ceil(r*2.4);const patch=document.createElement('canvas');patch.width=patch.height=size;const pc=patch.getContext('2d'),R=size/2;pc.filter=`blur(${(r*.7).toFixed(1)}px) brightness(1.05) saturate(.95)`;pc.drawImage(s,cx-r*1.8,cy-r*1.8,r*3.6,r*3.6,R-r*1.8,R-r*1.8,r*3.6,r*3.6);pc.filter='none';pc.globalCompositeOperation='destination-in';const g=pc.createRadialGradient(R,R,0,R,R,r);g.addColorStop(0,'rgba(0,0,0,1)');g.addColorStop(.5,'rgba(0,0,0,.95)');g.addColorStop(1,'rgba(0,0,0,0)');pc.fillStyle=g;pc.fillRect(0,0,size,size);ctx.drawImage(patch,cx-R,cy-R);}}
  const glowAmount=(f?.glow||0)*(state.filter.intensity/100)+(state.effect.id==='glow'?state.effect.intensity/100*.34:0);
  if((state.portrait.glow||0)>0){const s=snapshot(),a=state.portrait.glow/100;ctx.save();ctx.beginPath();for(const e of L.eyes){const ex=e[0]/100*w,ey=e[1]/100*h,rx=e[2]/100*w*1.15,ry=e[3]/100*h*1.15;ctx.moveTo(ex+rx,ey);ctx.ellipse(ex,ey,rx,ry,0,0,Math.PI*2);}ctx.clip();ctx.globalCompositeOperation='screen';ctx.filter=`blur(${(w/140).toFixed(1)}px)`;ctx.globalAlpha=Math.min(.55,a*.5);ctx.drawImage(s,0,0);ctx.restore();}
  if(glowAmount>0){const s=snapshot();ctx.save();ctx.globalCompositeOperation='screen';ctx.filter=`blur(${(w/90).toFixed(1)}px)`;ctx.globalAlpha=Math.min(.6,glowAmount);ctx.drawImage(s,0,0);ctx.restore();}
@@ -912,45 +792,40 @@ function refreshEditorImage(){
  try{const out=await renderRefine(source,refine,1000);if(token!==editorRenderToken||!canvas.isConnected||editorComparing||editorBaseSrc!==source)return;canvas.width=out.width;canvas.height=out.height;canvas.getContext('2d').drawImage(out,0,0);canvas.hidden=false;renderEditorOverlays();}catch(e){}
  },16);
 }
-async function prepareResultImage(){
- if(resultTune&&!resultTuneIsDefault())return (await renderRefine(currentPhoto.src,resultTuneState(),2400)).toDataURL('image/jpeg',.92);
- const full=resultSrc||await renderLook(currentPhoto.src,currentTemplate);
- const original=new Image(),edited=new Image();original.src=currentPhoto.src;edited.src=full;
- await Promise.all([original.decode(),edited.decode()]);
- const c=document.createElement('canvas');c.width=edited.naturalWidth;c.height=edited.naturalHeight;
- const ctx=c.getContext('2d');ctx.drawImage(original,0,0,c.width,c.height);ctx.globalAlpha=lookIntensity/100;ctx.drawImage(edited,0,0,c.width,c.height);
- return c.toDataURL('image/jpeg',.92);
-}
+/* One page after generation: the photo with the look already on, and the same four tabs + AI Retouch. From Gallery the same page opens without a look. */
 async function enterEditor(from){
  if(!currentPhoto){go('library');toast('Choose a photo to start editing.');return;}
- editorReturn=from==='result'?'result':from==='history'||from==='photo'&&photoContext==='history'?'photo':'library';
- try{editorBaseSrc=from==='result'?await prepareResultImage():currentPhoto.src;
- editorLabel=from==='result'?currentTemplate.name:'Refined';
- refine=defaultRefine();refineTool=null;refineCat='Hot';refineParam={portrait:'smooth',adjust:'exposure'};portraitTab='face';portraitMask=null;editorFaceKey=currentPhoto.asset||null;sculptMirror=true;sculptDrag=null;portraitRub=null;beginEditorSession();
+ const withLook=from==='result';
+ editorReturn=withLook?resultReturn:from==='history'||from==='photo'&&photoContext==='history'?'photo':'library';
+ try{editorBaseSrc=currentPhoto.src;editorLook=withLook?currentTemplate:null;
+ editorLabel=withLook?currentTemplate.name:'Refined';
+ refine=withLook?lookRefine(currentTemplate):defaultRefine();refineTool=null;refineCat='Hot';refineParam={portrait:'smooth',adjust:'exposure'};portraitTab='face';portraitMask=null;editorFaceKey=currentPhoto.asset||null;sculptMirror=true;sculptDrag=null;portraitRub=null;faceDetecting=false;clearTimeout(faceDetectTimer);beginEditorSession(withLook);
  go('editor');
  }catch(e){toast('Couldn’t open this photo. Choose another.',{tone:'error'});}
 }
+/* Demo board entry for 08: the last generated result if there is one, else this photo with the current look. */
+function openResultDemo(){if(!currentPhoto)currentPhoto=photos[0];if(!currentPhoto){go('library');return;}resultReturn='template';enterEditor('result');}
 let editorPast=[],editorFuture=[],editorGestureStart=null,editorSavedState='',editorSaveBusy=false;
 function editorSnapshot(){return JSON.stringify(refine);}
-function beginEditorSession(){editorPast=[];editorFuture=[];editorGestureStart=null;editorSaveBusy=false;refinePanelStart=null;refinePanelUndo=0;editorSavedState=editorSnapshot();}
+function beginEditorSession(withLook=false){editorPast=[];editorFuture=[];editorGestureStart=null;editorSaveBusy=false;refinePanelStart=null;refinePanelUndo=0;editorEntryState=editorSnapshot();editorSavedState=withLook?'':editorEntryState;}
 function commitEditorAdjustment(){if(editorGestureStart!==null){if(editorGestureStart!==editorSnapshot()){editorPast.push(editorGestureStart);editorFuture=[];}editorGestureStart=null;}updateEditorChrome();}
 function restoreEditorSnapshot(value){refine=JSON.parse(value);refinePanel();refreshEditorImage();updateEditorChrome();}
 function undoEditor(){commitEditorAdjustment();if(!editorPast.length||editorSaveBusy)return;editorFuture.push(editorSnapshot());restoreEditorSnapshot(editorPast.pop());}
 function redoEditor(){commitEditorAdjustment();if(!editorFuture.length||editorSaveBusy)return;editorPast.push(editorSnapshot());restoreEditorSnapshot(editorFuture.pop());}
-function openRefineTool(tool){commitEditorAdjustment();if(editorSaveBusy)return;refineTool=tool;if(tool==='portrait'){portraitTab='face';portraitMask=null;}refinePanelStart=editorSnapshot();refinePanelUndo=editorPast.length;refinePanel();updateEditorChrome();}
-function cancelRefineTool(){commitEditorAdjustment();if(refinePanelStart!==null&&refinePanelStart!==editorSnapshot()){refine=JSON.parse(refinePanelStart);editorPast.length=Math.min(editorPast.length,refinePanelUndo);editorFuture=[];refreshEditorImage();}refineTool=null;refinePanelStart=null;refinePanel();updateEditorChrome();}
-function confirmRefineTool(){commitEditorAdjustment();refineTool=null;refinePanelStart=null;refinePanel();updateEditorChrome();}
+function openRefineTool(tool){commitEditorAdjustment();if(editorSaveBusy)return;refineTool=tool;if(tool==='face'){portraitTab='face';portraitMask=null;}refinePanelStart=editorSnapshot();refinePanelUndo=editorPast.length;refinePanel();updateEditorChrome();}
+function cancelRefineTool(){commitEditorAdjustment();if(refinePanelStart!==null&&refinePanelStart!==editorSnapshot()){refine=JSON.parse(refinePanelStart);editorPast.length=Math.min(editorPast.length,refinePanelUndo);editorFuture=[];refreshEditorImage();}refineTool=null;refinePanelStart=null;faceDetecting=false;clearTimeout(faceDetectTimer);refinePanel();updateEditorChrome();}
+function confirmRefineTool(){commitEditorAdjustment();refineTool=null;refinePanelStart=null;faceDetecting=false;clearTimeout(faceDetectTimer);refinePanel();updateEditorChrome();}
 function selectRefineItem(id){commitEditorAdjustment();const target=refineTool==='filters'?refine.filter:refine.effect;if(target.id===id)return;editorPast.push(editorSnapshot());editorFuture=[];target.id=id;if(id!=='none'&&target.intensity===0)target.intensity=refineTool==='filters'?100:60;refinePanel();refreshEditorImage();updateEditorChrome();}
-function resetRefine(){commitEditorAdjustment();if(editorSaveBusy||refineIsDefault(refine))return;editorPast.push(editorSnapshot());editorFuture=[];refine=defaultRefine();refinePanel();refreshEditorImage();updateEditorChrome();toast('Adjustments reset.',{tone:'success'});}
+function resetRefine(){commitEditorAdjustment();if(editorSaveBusy||refineIsDefault(refine))return;editorPast.push(editorSnapshot());editorFuture=[];refine=entryRefine();refinePanel();refreshEditorImage();updateEditorChrome();toast(editorLook?'Back to the look as generated.':'Adjustments reset.',{tone:'success'});}
 function updateEditorChrome(){
  if(page!=='editor')return;const save=document.querySelector('[data-action="save-editor"]');if(save){save.disabled=editorSaveBusy||editorSnapshot()===editorSavedState;save.textContent=editorSaveBusy?'Saving…':'Save';}
  const undo=document.querySelector('[data-action="editor-undo"]'),redo=document.querySelector('[data-action="editor-redo"]');if(undo)undo.disabled=editorSaveBusy||(!editorPast.length&&editorGestureStart===null);if(redo)redo.disabled=editorSaveBusy||!editorFuture.length;
  document.querySelector('.editor')?.classList.toggle('is-saving',editorSaveBusy);
 }
-function leaveEditor(){commitEditorAdjustment();if(editorSaveBusy)return;if(editorSnapshot()===editorSavedState){go(editorReturn);return;}showConfirm({title:'Discard changes?',message:'Your original photo will stay unchanged.',confirmLabel:'Discard',cancelLabel:'Keep editing',destructive:true,onConfirm:()=>go(editorReturn)});}
+function leaveEditor(){commitEditorAdjustment();if(editorSaveBusy)return;const now=editorSnapshot();if(now===editorSavedState||now===editorEntryState){go(editorReturn);return;}showConfirm({title:'Discard changes?',message:'Your original photo will stay unchanged.',confirmLabel:'Discard',cancelLabel:'Keep editing',destructive:true,onConfirm:()=>go(editorReturn)});}
 function editor(){
  if(!editorBaseSrc){enterEditor('photo');return;}if(!currentPhoto){go('library');return;}
- content.innerHTML=`<section class="editor"><header class="edit-topbar"><button class="circle" data-action="editor-back" aria-label="Back">${icon('back')}</button><span class="edit-title">Refine${editorReturn==='result'?`<small>${esc(currentTemplate.name)} look on</small>`:''}</span><button class="edit-save" data-action="save-editor">Save</button></header><div class="edit-stage"><img id="editor-original" src="${editorBaseSrc}" alt="Photo before refinement"><canvas id="editor-canvas" aria-label="Refined photo" hidden></canvas><span class="edit-compare-label" id="edit-compare-label" hidden>Before</span><button class="ai-entry" data-action="ai-retouch" aria-pressed="false">${icon('spark')}<span>AI Retouch</span></button><div class="spot-layer" id="spot-layer" hidden></div><div class="portrait-layer" id="portrait-layer" hidden></div><div class="edit-photo-controls"><div class="edit-undo-group"><button data-action="editor-undo" aria-label="Undo">${icon('undo')}</button><button data-action="editor-redo" aria-label="Redo">${icon('undo','redo-icon')}</button></div><button id="hold-compare" aria-label="Hold to compare with the photo before refinement">${icon('compare')}</button></div></div><div class="editor-dock" id="editor-dock"></div></section>`;
+ content.innerHTML=`<section class="editor"><header class="edit-topbar"><button class="circle" data-action="editor-back" aria-label="Back">${icon('back')}</button><span class="edit-title">${editorLook?esc(editorLook.name):'Refine'}${editorLook?`<small>${esc(editorLook.scenes?.[0]||'')}${editorLook.where?` · ${esc(editorLook.where)}`:''}</small>`:''}</span><div class="edit-actions">${editorLook?`<button class="circle" data-action="share" aria-label="Share">${icon('share')}</button>`:''}<button class="edit-save" data-action="save-editor">Save</button></div></header><div class="edit-stage"><img id="editor-original" src="${editorBaseSrc}" alt="Photo before refinement"><canvas id="editor-canvas" aria-label="Refined photo" hidden></canvas><span class="edit-compare-label" id="edit-compare-label" hidden>Before</span><button class="ai-entry" data-action="ai-retouch" aria-pressed="false">${icon('spark')}<span>AI Retouch</span></button><div class="portrait-layer" id="portrait-layer" hidden></div><div class="edit-photo-controls"><div class="edit-undo-group"><button data-action="editor-undo" aria-label="Undo">${icon('undo')}</button><button data-action="editor-redo" aria-label="Redo">${icon('undo','redo-icon')}</button></div><button id="hold-compare" aria-label="Hold to compare with the photo before refinement">${icon('compare')}</button></div></div><div class="editor-dock" id="editor-dock"></div></section>`;
  editorComparing=false;refinePanel();refreshEditorImage();updateEditorChrome();
  const hold=document.getElementById('hold-compare'),label=document.getElementById('edit-compare-label'),canvas=document.getElementById('editor-canvas');
  const showOriginal=()=>{editorComparing=true;canvas.hidden=true;label.hidden=false;renderEditorOverlays();};
@@ -959,42 +834,28 @@ function editor(){
  hold.onkeydown=e=>{if(e.key===' '||e.key==='Enter'){e.preventDefault();showOriginal();}};hold.onkeyup=e=>{if(e.key===' '||e.key==='Enter'){e.preventDefault();showEdited();}};
  bindStageGestures();
 }
-function refineToolLabel(tool){return tool==='spots'?'AI Retouch':REFINE_TOOLS.find(t=>t[0]===tool)?.[2]||'Refine';}
-/* ---- Retouch: she points, we heal. No auto-marked defects. ---- */
-/* A mark, not a face: the heal footprint is a few percent of the frame, so a tap fixes a blemish and leaves the skin around it alone. */
-function spotRadius(){return .008+(refine.spotSize??55)/100*.03;}
-function spotsEditBegin(){commitEditorAdjustment();if(editorSaveBusy)return false;editorPast.push(editorSnapshot());editorFuture=[];return true;}
-function spotsAfterEdit(){refinePanel();refreshEditorImage();updateEditorChrome();}
-function burstSpot(sp){const layer=document.getElementById('spot-layer');if(!layer||!sp)return;const el=document.createElement('i');el.className='spot-burst';el.style.left=(sp.x*100).toFixed(2)+'%';el.style.top=(sp.y*100).toFixed(2)+'%';layer.appendChild(el);setTimeout(()=>el.remove(),680);}
-function undoLastSpot(){if(!(refine.spots||[]).length||!spotsEditBegin())return;refine.spots=refine.spots.slice(0,-1);spotsAfterEdit();}
-function addSpotAt(rx,ry){if(!spotsEditBegin())return;const sp={id:'m'+Date.now(),x:rx,y:ry,r:spotRadius()};refine.spots=refine.spots||[];refine.spots.push(sp);burstSpot(sp);spotsAfterEdit();}
-function setSpotSize(v){refine.spotSize=v;const r=spotRadius();(refine.spots||[]).forEach(sp=>sp.r=r);refreshEditorImage();updateEditorChrome();}
-function spotPointFromEvent(e,stage){const rect=stageImageRect();if(!rect)return null;const b=stage.getBoundingClientRect(),rx=(e.clientX-b.left-rect.left)/rect.width,ry=(e.clientY-b.top-rect.top)/rect.height;if(rx<0||rx>1||ry<0||ry>1)return null;return {rx,ry,rect};}
-function showSpotCursor(pt){const layer=document.getElementById('spot-layer');if(!layer||!pt)return;renderSpotLayer();let cur=layer.querySelector('.spot-cursor');if(!cur){cur=document.createElement('i');cur.className='spot-cursor';layer.appendChild(cur);}const px=pt.rect.width*spotRadius()*2;cur.style.width=cur.style.height=px+'px';cur.style.left=(pt.rx*100).toFixed(2)+'%';cur.style.top=(pt.ry*100).toFixed(2)+'%';}
-function hideSpotCursor(){document.querySelector('.spot-cursor')?.remove();}
-/* One pointer handler for the photo: drag a Shape dot, rub a chosen zone, or (legacy) tap to retouch. */
+function refineToolLabel(tool){return tool==='face'?'AI Retouch':REFINE_TOOLS.find(t=>t[0]===tool)?.[2]||'Refine';}
+/* One pointer handler for the photo: drag a Shape dot, or rub a chosen zone. Only live in AI Retouch, after the face is found. */
 function capturePointer(el,e){try{el.setPointerCapture(e.pointerId);}catch(_){}}
+function stagePointFromEvent(e,stage){const rect=stageImageRect();if(!rect)return null;const b=stage.getBoundingClientRect(),rx=(e.clientX-b.left-rect.left)/rect.width,ry=(e.clientY-b.top-rect.top)/rect.height;if(rx<0||rx>1||ry<0||ry>1)return null;return {rx,ry,rect};}
 function bindStageGestures(){
  const stage=document.querySelector('.edit-stage');if(!stage)return;
  stage.onpointerdown=e=>{
-  if(e.button||editorSaveBusy)return;
+  if(e.button||editorSaveBusy||refineTool!=='face'||faceDetecting)return;
   const dot=e.target.closest('[data-sculpt]');
-  if(dot){if(refineTool==='portrait'&&portraitMask==='slim')beginSculptDrag(e,dot.dataset.sculpt,stage);return;}
+  if(dot){if(portraitMask==='slim')beginSculptDrag(e,dot.dataset.sculpt,stage);return;}
   if(e.target.closest('button'))return;
-  if(refineTool==='spots'){const pt=spotPointFromEvent(e,stage);if(!pt)return;spotPress={id:e.pointerId};capturePointer(stage,e);showSpotCursor(pt);return;}
-  if(refineTool==='portrait'&&portraitMask&&portraitMask!=='slim'){const pt=spotPointFromEvent(e,stage);if(!pt)return;portraitRub={id:e.pointerId,x:e.clientX,width:pt.rect.width,start:refine.portrait[portraitMask]||0,moved:false};capturePointer(stage,e);}
+  if(portraitMask&&portraitMask!=='slim'){const pt=stagePointFromEvent(e,stage);if(!pt)return;portraitRub={id:e.pointerId,x:e.clientX,width:pt.rect.width,start:refine.portrait[portraitMask]||0,moved:false};capturePointer(stage,e);}
  };
  stage.onpointermove=e=>{
   if(sculptDrag&&sculptDrag.id===e.pointerId){moveSculptDrag(e);return;}
   if(portraitRub&&portraitRub.id===e.pointerId){moveRub(e);return;}
-  if(refineTool!=='spots'||!spotPress||spotPress.id!==e.pointerId)return;const pt=spotPointFromEvent(e,stage);if(pt)showSpotCursor(pt);
  };
  stage.onpointerup=e=>{
   if(sculptDrag&&sculptDrag.id===e.pointerId){endSculptDrag();return;}
   if(portraitRub&&portraitRub.id===e.pointerId){endRub();return;}
-  if(refineTool!=='spots'||!spotPress||spotPress.id!==e.pointerId)return;spotPress=null;try{stage.releasePointerCapture(e.pointerId);}catch(_){}const pt=spotPointFromEvent(e,stage);hideSpotCursor();if(pt)addSpotAt(pt.rx,pt.ry);
  };
- stage.onpointercancel=()=>{if(sculptDrag)endSculptDrag();if(portraitRub)endRub();spotPress=null;hideSpotCursor();};
+ stage.onpointercancel=()=>{if(sculptDrag)endSculptDrag();if(portraitRub)endRub();};
 }
 /* Shape: drag a dot on the outline and the photo follows. Mirror moves the matching dot on the other side; double-tap a dot to put it back. */
 function beginSculptDrag(e,id,stage){
@@ -1045,20 +906,24 @@ function portraitRegions(){
  return {face,body};
 }
 function portraitRegionName(key){for(const list of Object.values(portraitRegions()))for(const r of list)if(r.key===key)return r.name;return 'Portrait';}
-function selectPortraitTab(tab){if(refineTool!=='portrait')return;commitEditorAdjustment();portraitTab=tab;portraitMask=null;refinePanel();}
-function selectPortraitMask(key){if(refineTool!=='portrait'||Date.now()-portraitRubbedAt<400)return;commitEditorAdjustment();portraitMask=key;refineParam.portrait=key;refinePanel();}
+function selectPortraitTab(tab){if(refineTool!=='face'||faceDetecting)return;commitEditorAdjustment();portraitTab=tab;portraitMask=null;refinePanel();}
+function selectPortraitMask(key){if(refineTool!=='face'||faceDetecting||Date.now()-portraitRubbedAt<400)return;commitEditorAdjustment();portraitMask=key;refineParam.portrait=key;refinePanel();}
 function portraitZoneMarkup(r){
  const on=portraitMask===r.key?' on':'';
  if(r.kind==='path')return `<path class="portrait-mask${on}" data-portrait-mask="${r.key}" d="${r.d}"/>`;
  if(r.kind==='ellipses')return `<g data-portrait-mask="${r.key}">${r.items.map(e=>`<ellipse class="portrait-mask${on}" cx="${e[0]}" cy="${e[1]}" rx="${e[2]}" ry="${e[3]}"/>`).join('')}</g>`;
  return '';
 }
+function faceFrameBox(){const b=faceBounds(faceLayout()),x=Math.max(0,b.minX-9),y=Math.max(0,b.minY-8),w=Math.min(100,b.maxX+9)-x,h=Math.min(100,b.maxY+8)-y;return {left:x.toFixed(2)+'%',top:y.toFixed(2)+'%',width:w.toFixed(2)+'%',height:h.toFixed(2)+'%'};}
+function faceFrameStyle(){const b=faceFrameBox();return `left:${b.left};top:${b.top};width:${b.width};height:${b.height}`;}
 function renderPortraitMasks(){
  const layer=document.getElementById('portrait-layer');if(!layer)return;
- const show=refineTool==='portrait'&&!editorComparing,rect=stageImageRect();
- if(!show||!rect){layer.hidden=true;layer.innerHTML='';return;}
- const regions=portraitRegions()[portraitTab]||[],sculpting=portraitTab==='face'&&portraitMask==='slim',L=faceLayout();
+ const show=refineTool==='face'&&!editorComparing,rect=stageImageRect();
+ if(!show||!rect){layer.hidden=true;layer.innerHTML='';layer.classList.remove('detected');return;}
  layer.hidden=false;Object.assign(layer.style,{left:rect.left+'px',top:rect.top+'px',width:rect.width+'px',height:rect.height+'px'});
+ if(faceDetecting){if(layer.querySelector('.face-frame.scanning'))return;layer.classList.remove('detected');layer.innerHTML=`<div class="face-frame scanning" style="left:6%;top:4%;width:88%;height:92%"><i></i><i></i><i></i><i></i><span class="face-scanline"></span><b class="face-label">${icon('spark')}Finding the face…</b></div>`;const frame=layer.querySelector('.face-frame');requestAnimationFrame(()=>requestAnimationFrame(()=>{if(frame.isConnected)Object.assign(frame.style,faceFrameBox());}));return;}
+ const regions=portraitRegions()[portraitTab]||[],sculpting=portraitTab==='face'&&portraitMask==='slim',L=faceLayout();
+ const frame=portraitTab==='face'?`<div class="face-frame detected" style="${faceFrameStyle()}"><i></i><i></i><i></i><i></i></div>`:'';
  let svg='',dots='';
  if(sculpting){
   const hs=sculptHandles(),cur=hs.filter(k=>!k.nose).map(k=>[k.x+k.dx,k.y+k.dy]),moved=k=>Math.abs(k.dx)>.05||Math.abs(k.dy)>.05;
@@ -1069,64 +934,65 @@ function renderPortraitMasks(){
   if(portraitTab==='face'){const d=smoothPathD(L.contour);svg+=`<path class="portrait-outline" d="${d}"/><path class="portrait-outline-hit" data-portrait-mask="slim" d="${d}"/>`;}
  }
  const tags=regions.map(r=>{const on=portraitMask===r.key,v=refine.portrait[r.key]||0,x=Math.max(8,Math.min(92,r.tag[0])),y=Math.max(4,Math.min(96,r.tag[1]));return `<button type="button" class="portrait-tag${on?' on':''}${sculpting&&!on?' dim':''}" data-portrait-mask="${r.key}" style="left:${x.toFixed(2)}%;top:${y.toFixed(2)}%">${r.name}${on&&r.kind!=='sculpt'?` · ${v}`:''}</button>`;}).join('');
- layer.innerHTML=`<svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">${svg}</svg>${tags}${dots}`;
+ layer.innerHTML=`${frame}<svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">${svg}</svg>${tags}${dots}`;layer.classList.add('detected');
 }
-function renderEditorOverlays(){renderSpotLayer();renderPortraitMasks();}
-function renderSpotLayer(){
- const layer=document.getElementById('spot-layer');if(!layer)return;const show=refineTool==='spots'&&!editorComparing,rect=stageImageRect();
- if(!show||!rect){layer.hidden=true;return;}
- layer.hidden=false;Object.assign(layer.style,{left:rect.left+'px',top:rect.top+'px',width:rect.width+'px',height:rect.height+'px'});
-}
+function renderEditorOverlays(){renderPortraitMasks();}
 function sliderFill(value,min,max){const pos=(value-min)/(max-min)*100,zero=min<0?(0-min)/(max-min)*100:0;return `--a:${Math.min(pos,zero).toFixed(2)}%;--b:${Math.max(pos,zero).toFixed(2)}%`;}
 function paintSlider(input){input.style.cssText=sliderFill(Number(input.value),Number(input.min),Number(input.max));}
 function refineSliderRow(label,value,min,max,kind){const display=min<0?signed(value):String(value);return `<div class="refine-slider-row"><span class="refine-param-label">${label}</span><div class="edit-slider-wrap">${min<0?`<span class="edit-neutral" style="left:${(0-min)/(max-min)*100}%"></span>`:''}<input class="edit-slider" id="refine-slider" type="range" min="${min}" max="${max}" value="${value}" data-slider-kind="${kind}" aria-label="${label}" aria-valuetext="${display}" style="${sliderFill(value,min,max)}"></div><output class="edit-param-value" id="refine-value" for="refine-slider">${display}</output></div>`;}
 function refineParamChips(){const params=refineTool==='portrait'?PORTRAIT_PARAMS:ADJUST_PARAMS,group=refine[refineTool],active=refineParam[refineTool];return params.map(p=>`<button class="${p.key===active?'active':''}" data-refine-param="${p.key}" aria-pressed="${p.key===active}">${p.name}${group[p.key]?` · ${p.min<0?signed(group[p.key]):group[p.key]}`:''}</button>`).join('');}
 function refinePanel(){
  const dock=document.getElementById('editor-dock');if(!dock)return;renderAiEntry();
- if(!refineTool){dock.classList.remove('open');dock.innerHTML=`<div class="refine-hint-row"><p class="refine-hint">${editorReturn==='result'?'Your look stays. Tap a tool.':'Tap a tool.'}</p>${refineIsDefault(refine)?'':`<button class="refine-reset" data-action="reset-editor">Reset</button>`}</div><div class="refine-tools">${REFINE_TOOLS.map(([id,ic,name])=>`<button class="refine-tool ${refineApplied(id)?'applied':''}" data-refine-tool="${id}"><span class="tool-ic">${icon(ic)}</span>${name}</button>`).join('')}</div>`;renderEditorOverlays();return;}
+ if(!refineTool){dock.classList.remove('open');dock.innerHTML=`<div class="refine-hint-row"><p class="refine-hint">${editorLook?`${esc(editorLook.name)} is on. Tap a tool to adjust, or Save.`:'Tap a tool.'}</p>${refineIsDefault(refine)?'':`<button class="refine-reset" data-action="reset-editor">Reset</button>`}</div><div class="refine-tools">${REFINE_TOOLS.map(([id,ic,name])=>`<button class="refine-tool ${refineApplied(id)?'applied':''}" data-refine-tool="${id}"><span class="tool-ic">${icon(ic)}</span>${name}</button>`).join('')}</div>`;renderEditorOverlays();return;}
  dock.classList.add('open');let body='';
  const thumb=(f,active,media,inner='')=>`<button class="refine-thumb ${active?'active':''}" data-refine-item="${f.id}" aria-pressed="${active}" aria-label="${f.name}"><div class="thumb-media" ${media}>${inner}${f.id==='none'?`<span class="thumb-none">${icon('none')}</span>`:''}${f.badge?`<span class="thumb-badge">${f.badge}</span>`:''}</div><span>${f.name}</span></button>`;
  if(refineTool==='filters'){
- const items=REFINE_FILTERS.filter(f=>f.cat===refineCat),none=refine.filter.id==='none';
- body=(none?`<p class="refine-empty">Tap a filter. Drag to set how strong.</p>`:refineSliderRow(REFINE_FILTERS.find(f=>f.id===refine.filter.id)?.name||'Intensity',refine.filter.intensity,0,100,'filter-intensity'))+`<div class="refine-cats" aria-label="Filter groups"><button class="cat-none ${none?'active':''}" data-refine-item="none" aria-label="No filter" aria-pressed="${none}">${icon('none')}</button>${REFINE_FILTER_CATS.map(c=>`<button class="${refineCat===c?'active':''}" data-refine-cat="${c}" aria-pressed="${refineCat===c}">${c}</button>`).join('')}</div><div class="refine-thumbs">${items.map(f=>thumb(f,refine.filter.id===f.id,'',`<img class="zoom" src="${editorBaseSrc}" alt="" style="filter:${f.filter}">`)).join('')}</div>`;
- }else if(refineTool==='spots'){
- const n=(refine.spots||[]).length;
- body=`<p class="refine-empty ai-copy">${n?`${n} fixed. Tap another mark, or undo.`:'Tap anything you’d rather not see — a blemish, a stray hair, a mark.'}</p>`+refineSliderRow('Size',refine.spotSize??55,20,100,'spot-size')+`<div class="spot-actions"><button class="spot-clear" data-action="spots-undo"${n?'':' disabled'}>Undo last</button></div>`;
+ /* This look's grade first (badge "Look"), then the library, grouped. */
+ const items=REFINE_FILTERS.filter(f=>f.cat===refineCat),none=refine.filter.id==='none',isLook=refine.filter.id==='look';
+ const lookThumb=editorLook?thumb({id:'look',name:editorLook.name,badge:'Look'},isLook,'',`<img class="zoom" src="${editorBaseSrc}" alt="" style="filter:${editorLook.filter}">`):'';
+ body=(none?`<p class="refine-empty">${editorLook?'No filter — the look’s color is off. Tap one to bring it back.':'Tap a filter. Drag to set how strong.'}</p>`:refineSliderRow(isLook?editorLook?.name||'Look':REFINE_FILTERS.find(f=>f.id===refine.filter.id)?.name||'Intensity',refine.filter.intensity,0,100,'filter-intensity'))+`<div class="refine-cats" aria-label="Filter groups"><button class="cat-none ${none?'active':''}" data-refine-item="none" aria-label="No filter" aria-pressed="${none}">${icon('none')}</button>${REFINE_FILTER_CATS.map(c=>`<button class="${refineCat===c?'active':''}" data-refine-cat="${c}" aria-pressed="${refineCat===c}">${c}</button>`).join('')}</div><div class="refine-thumbs">${lookThumb}${items.map(f=>thumb(f,refine.filter.id===f.id,'',`<img class="zoom" src="${editorBaseSrc}" alt="" style="filter:${f.filter}">`)).join('')}</div>`;
  }else if(refineTool==='effects'){
- const none=refine.effect.id==='none';
- body=(none?`<p class="refine-empty">Tap an effect. Drag to set how strong.</p>`:refineSliderRow(REFINE_EFFECTS.find(f=>f.id===refine.effect.id)?.name||'Intensity',refine.effect.intensity,0,100,'effect-intensity'))+`<div class="refine-thumbs">${[{id:'none',name:'None'},...REFINE_EFFECTS].map(f=>thumb(f,refine.effect.id===f.id,`data-effect-thumb="${f.id}"`)).join('')}</div>`;
+ /* None, then this look's light (badge "Look"), then the rest of the library. */
+ const none=refine.effect.id==='none',lookFx=editorLook?templateEffectId(editorLook):'none';
+ const list=[{id:'none',name:'None'},...(lookFx!=='none'?[{...REFINE_EFFECTS.find(f=>f.id===lookFx),badge:'Look'}]:[]),...REFINE_EFFECTS.filter(f=>f.id!==lookFx)];
+ body=(none?`<p class="refine-empty">Tap an effect. Drag to set how strong.</p>`:refineSliderRow(REFINE_EFFECTS.find(f=>f.id===refine.effect.id)?.name||'Intensity',refine.effect.intensity,0,100,'effect-intensity'))+`<div class="refine-thumbs">${list.map(f=>thumb(f,refine.effect.id===f.id,`data-effect-thumb="${f.id}"`)).join('')}</div>`;
  }else if(refineTool==='portrait'){
+ /* Portrait tab = packs. Same form as Filters: thumbs + one strength slider. Touching a specific place is AI Retouch's job. */
+ const activePack=activePortraitPack(),pack=PORTRAIT_PACKS.find(k=>k.id===activePack);
+ body=(pack?refineSliderRow(pack.name,refine.packStrength??100,0,100,'pack-strength'):`<p class="refine-empty">${activePack==='none'?'Pick a pack. To touch one place, use AI Retouch on the photo.':'Set by hand in AI Retouch. Pick a pack to start over.'}</p>`)+`<div class="refine-thumbs portrait-packs" aria-label="Portrait packs">${[{id:'none',name:'None'},...PORTRAIT_PACKS].map(k=>`<button class="refine-thumb ${activePack===k.id?'active':''}" data-portrait-pack="${k.id}" aria-pressed="${activePack===k.id}" aria-label="${k.name}"><div class="thumb-media" data-pack-thumb="${k.id}">${k.id==='none'?`<span class="thumb-none">${icon('none')}</span>`:''}</div><span>${k.name}</span></button>`).join('')}</div>`;
+ }else if(refineTool==='face'){
  const regions=portraitRegions()[portraitTab]||[],active=regions.find(r=>r.key===portraitMask);
  const tabs=`<div class="portrait-tabs">${[['face','Face'],['body','Body']].map(([id,name])=>`<button class="${portraitTab===id?'active':''}" data-portrait-tab="${id}" aria-pressed="${portraitTab===id}">${name}</button>`).join('')}<button class="portrait-done" data-action="refine-confirm">Done</button></div>`;
- let row,note='';const activePack=activePortraitPack();
- const packs=`<div class="refine-thumbs portrait-packs" aria-label="Portrait packs">${[{id:'none',name:'None'},...PORTRAIT_PACKS].map(k=>`<button class="refine-thumb ${activePack===k.id?'active':''}" data-portrait-pack="${k.id}" aria-pressed="${activePack===k.id}" aria-label="${k.name}"><div class="thumb-media" data-pack-thumb="${k.id}">${k.id==='none'?`<span class="thumb-none">${icon('none')}</span>`:''}</div><span>${k.name}</span></button>`).join('')}</div>`;
- if(!active)row=`<p class="refine-empty">${portraitTab==='face'?'Pick a pack, or tap a place on the face. Tap the outline to reshape.':'Pick a pack, or tap a place on the body.'}</p>`;
+ let row,note='';
+ if(faceDetecting)row=`<p class="refine-empty">Finding the face…</p>`;
+ else if(!active)row=`<p class="refine-empty">${portraitTab==='face'?'Face found. Tap a place on it, or the outline to reshape.':'Tap a place on the body.'}</p>`;
  else if(active.kind==='sculpt'){const shaped=Object.keys(refine.sculpt||{}).length>0;row=refineSliderRow('Slim',refine.portrait.slim||0,0,100,'param');note=`<span>${shaped?'Double-tap a dot to put it back.':'Drag a dot on the outline.'}</span><button class="sculpt-chip${sculptMirror?' on':''}" data-action="sculpt-mirror" aria-pressed="${sculptMirror}">Mirror</button>${shaped?`<button class="sculpt-chip" data-action="sculpt-reset">Reset</button>`:''}`;}
  else{row=refineSliderRow(active.name,refine.portrait[active.key]||0,0,100,'param');note=`<span>Or slide left and right on the photo.</span>`;}
- dock.innerHTML=`<div class="refine-panel portrait-panel">${tabs}${row}${packs}<div class="portrait-note">${note}</div></div>`;
- if(active){refineParam.portrait=active.key;bindRefineSlider();}
- renderPackThumbs();renderEditorOverlays();return;
+ dock.innerHTML=`<div class="refine-panel portrait-panel">${tabs}${row}<div class="portrait-note">${note}</div></div>`;
+ if(active&&!faceDetecting){refineParam.portrait=active.key;bindRefineSlider();}
+ renderEditorOverlays();return;
  }else{
  const params=ADJUST_PARAMS,active=params.find(p=>p.key===refineParam[refineTool])||params[0];refineParam[refineTool]=active.key;
  body=refineSliderRow(active.name,refine[refineTool][active.key],active.min,active.max,'param')+`<div class="refine-params" id="refine-params">${refineParamChips()}</div>`;
  }
  dock.innerHTML=`<div class="refine-panel">${body}<div class="refine-bar"><button data-action="refine-cancel" aria-label="Cancel and revert this tool">${icon('close')}</button><span>${refineToolLabel(refineTool)}</span><button class="confirm" data-action="refine-confirm" aria-label="Keep">${icon('check')}</button></div></div>`;
- bindRefineSlider();if(refineTool==='effects')renderEffectThumbs();renderEditorOverlays();
+ bindRefineSlider();if(refineTool==='effects')renderEffectThumbs();if(refineTool==='portrait')renderPackThumbs();renderEditorOverlays();
 }
 function bindRefineSlider(){
  const input=document.getElementById('refine-slider');if(!input)return;const kind=input.dataset.sliderKind,min=Number(input.min);
- const set=v=>{if(kind==='filter-intensity')refine.filter.intensity=v;else if(kind==='effect-intensity')refine.effect.intensity=v;else if(kind==='spot-size')setSpotSize(v);else refine[refineTool][refineParam[refineTool]]=v;};
+ const group=refineTool==='face'?'portrait':refineTool;
+ const set=v=>{if(kind==='filter-intensity')refine.filter.intensity=v;else if(kind==='effect-intensity')refine.effect.intensity=v;else if(kind==='pack-strength')setPackStrength(v);else refine[group][refineParam[group]]=v;};
  input.onpointerdown=()=>{editorGestureStart=editorSnapshot();};
  input.oninput=()=>{if(editorGestureStart===null)editorGestureStart=editorSnapshot();const v=Number(input.value);set(v);const label=min<0?signed(v):String(v);document.getElementById('refine-value').value=label;input.setAttribute('aria-valuetext',label);paintSlider(input);refreshEditorImage();updateEditorChrome();};
  input.onchange=input.onblur=()=>{commitEditorAdjustment();const chips=document.getElementById('refine-params');if(chips)chips.innerHTML=refineParamChips();};
 }
 let effectThumbCache={src:null,items:{}};
 async function renderEffectThumbs(){
- if(effectThumbCache.src!==editorBaseSrc)effectThumbCache={src:editorBaseSrc,items:{}};
+ const fxKey=editorBaseSrc+'|'+(editorLook?.id||'');if(effectThumbCache.src!==fxKey)effectThumbCache={src:fxKey,items:{}};
  const source=editorBaseSrc;let base=null;
  for(const holder of [...document.querySelectorAll('[data-effect-thumb]')]){
  const id=holder.dataset.effectThumb;let url=effectThumbCache.items[id];
- if(!url){try{if(!base){const img=await loadImage(source);const ratio=Math.min(1,150/Math.max(img.naturalWidth,img.naturalHeight));base=document.createElement('canvas');base.width=Math.max(1,Math.round(img.naturalWidth*ratio));base.height=Math.max(1,Math.round(img.naturalHeight*ratio));base.getContext('2d').drawImage(img,0,0,base.width,base.height);}const state=defaultRefine();state.effect={id,intensity:id==='none'?0:85};url=(await renderRefine(base,state,150)).toDataURL('image/jpeg',.85);effectThumbCache.items[id]=url;}catch(e){continue;}}
+ if(!url){try{if(!base){const img=await loadImage(source);const ratio=Math.min(1,150/Math.max(img.naturalWidth,img.naturalHeight));base=document.createElement('canvas');base.width=Math.max(1,Math.round(img.naturalWidth*ratio));base.height=Math.max(1,Math.round(img.naturalHeight*ratio));base.getContext('2d').drawImage(img,0,0,base.width,base.height);}const state=editorLook?lookRefine(editorLook):defaultRefine();state.effect={id,intensity:id==='none'?0:85};url=(await renderRefine(base,state,150)).toDataURL('image/jpeg',.85);effectThumbCache.items[id]=url;}catch(e){continue;}}
  if(!holder.isConnected||editorBaseSrc!==source)return;const img=new Image();img.alt='';img.src=url;holder.prepend(img);
  }
 }
@@ -1249,7 +1115,7 @@ async function renderLook(src,t,intensity=1){
 
 async function renderImage(src,filterValue,intensity=1){let img=new Image();img.src=src;await img.decode();const canvas=document.createElement('canvas');let ratio=Math.min(1,2400/Math.max(img.naturalWidth,img.naturalHeight));canvas.width=Math.round(img.naturalWidth*ratio);canvas.height=Math.round(img.naturalHeight*ratio);let ctx=canvas.getContext('2d');ctx.drawImage(img,0,0,canvas.width,canvas.height);ctx.globalAlpha=intensity;ctx.filter=filterValue;ctx.drawImage(img,0,0,canvas.width,canvas.height);return canvas.toDataURL('image/jpeg',.92);}
 function download(src,name){let a=document.createElement('a');a.href=src;a.download=name;a.click();}
-async function savePhoto(fromEditor=false){let savedState=null;if(fromEditor){commitEditorAdjustment();if(editorSaveBusy||editorSnapshot()===editorSavedState)return;savedState=editorSnapshot();editorSaveBusy=true;updateEditorChrome();}try{let savedName=fromEditor?editorLabel:currentTemplate.name;let intensity=fromEditor?1:Math.min(1,lookIntensity/100);let src;if(fromEditor){src=(await renderRefine(editorBaseSrc,refine,2400)).toDataURL('image/jpeg',.92)}else if(resultTune&&!resultTuneIsDefault()){src=(await renderRefine(currentPhoto.src,resultTuneState(),2400)).toDataURL('image/jpeg',.92)}else if(resultSrc){let original=new Image(),edited=new Image();original.src=currentPhoto.src;edited.src=resultSrc;await Promise.all([original.decode(),edited.decode()]);let c=document.createElement('canvas');c.width=edited.naturalWidth;c.height=edited.naturalHeight;let ctx=c.getContext('2d');ctx.drawImage(original,0,0,c.width,c.height);ctx.globalAlpha=intensity;ctx.drawImage(edited,0,0,c.width,c.height);src=c.toDataURL('image/jpeg',.92)}else{src=await renderLook(currentPhoto.src,currentTemplate,intensity)}const p={id:'edit-'+Date.now(),src,name:savedName,type:currentPhoto.type,asset:currentPhoto.asset,faceClose:currentPhoto.faceClose,source:'Edited in muse · '+savedName,created:Date.now()};photos.push(p);const capture=history.find(h=>h.kind==='capture'&&h.photoId===currentPhoto.id);if(capture&&!fromEditor)capture.savedPhotoId=p.id;history.push({photoId:p.id,src,look:savedName,type:p.type,kind:'edit',savedPhotoId:p.id,created:p.created});await persist();if(fromEditor)editorSavedState=savedState;showExportSheet(p);}catch(e){toast('Couldn’t save this photo. Try JPG or PNG.',{tone:'error'})}finally{if(fromEditor){editorSaveBusy=false;updateEditorChrome();}}}
+async function savePhoto(){commitEditorAdjustment();if(editorSaveBusy||editorSnapshot()===editorSavedState)return;const savedState=editorSnapshot();editorSaveBusy=true;updateEditorChrome();try{const src=(await renderRefine(editorBaseSrc,refine,2400)).toDataURL('image/jpeg',.92);const p={id:'edit-'+Date.now(),src,name:editorLabel,type:currentPhoto.type,asset:currentPhoto.asset,faceClose:currentPhoto.faceClose,source:'Edited in muse · '+editorLabel,created:Date.now()};photos.push(p);const capture=history.find(h=>h.kind==='capture'&&h.photoId===currentPhoto.id);if(capture&&editorLook)capture.savedPhotoId=p.id;history.push({photoId:p.id,src,look:editorLabel,type:p.type,kind:'edit',savedPhotoId:p.id,created:p.created});await persist();editorSavedState=savedState;showExportSheet(p);}catch(e){toast('Couldn’t save this photo. Try JPG or PNG.',{tone:'error'})}finally{editorSaveBusy=false;updateEditorChrome();}}
 let generation=null,generationArrivalTimer=null,generationSlowTimer=null;
 const generationDots=()=>'<div class="activity-dots" aria-hidden="true"><i></i><i></i><i></i></div>';
 let generationAnimation=0;
@@ -1299,7 +1165,7 @@ function returnFromGeneration(){const job=generation;if(!job)return;job.dismisse
 function openGenerationResult(){
  const job=generation;if(!job||job.status!=='complete'||!job.results.length)return;
  clearTimeout(generationArrivalTimer);job.dismissed=true;
- const r=job.results[0];currentPhoto=r.photo;currentTemplate=r.template;resultSrc=r.src;resetValues();resultReturn=job.returnPage==='camera'?'camera':'template';go('result');
+ const r=job.results[0];currentPhoto=r.photo;currentTemplate=r.template;resultSrc=r.src;resetValues();resultReturn=job.returnPage==='camera'?'camera':'template';enterEditor('result');
 }
 async function startGeneration({items,look=currentTemplate,returnPage='template',presetLooks=null}){
  if(!items.length){go('library');return;}
@@ -1340,7 +1206,7 @@ async function showGenerationPreview(state='processing'){
 
 
 async function importFiles(files){let list=Array.from(files);if(['look','camera-preview'].includes(uploadIntent))list=list.slice(0,1);let added=[],failed=0;for(const file of list){try{const data=await new Promise((res,rej)=>{let reader=new FileReader();reader.onload=()=>res(reader.result);reader.onerror=rej;reader.readAsDataURL(file)});let img=new Image();img.src=data;await img.decode();let src=await renderImage(data,'none');let p={id:'upload-'+Date.now()+'-'+added.length,src,name:file.name.replace(/\.[^.]+$/,''),type:'Unsorted',source:'Imported from your device',created:Date.now()};photos.push(p);added.push(p);}catch(e){failed++}}if(added.length){await persist();if(['camera-preview'].includes(uploadIntent)&&page==='camera'){useCameraPhoto(added[0]);}else if(uploadIntent==='look'){currentPhoto=added[0];resultSrc=null;resetValues();startGeneration({items:[currentPhoto],look:{...currentTemplate},returnPage:'template'})}else{filter='All';go('library');toast(added.length+' photo'+(added.length===1?'':'s')+' added.',{tone:'success'})}}if(failed)toast('Some photos couldn’t be opened. Try JPG or PNG.',{tone:'error'});document.getElementById('file-input').value='';}
-function resetValues(){lookIntensity=100;refine=defaultRefine();resultLookSrc=null;resultSpots=[];resultTune=null;resultPreviewToken=0;}
+function resetValues(){lookIntensity=100;refine=defaultRefine();}
 let dbPromise=new Promise(resolve=>{try{let request=indexedDB.open('muse-standalone-ui',1);request.onupgradeneeded=()=>request.result.createObjectStore('state');request.onsuccess=()=>resolve(request.result);request.onerror=()=>resolve(null)}catch(e){resolve(null)}});
 async function persist(){const db=await dbPromise;if(!db){toast('Export photos to keep them after this session.');return;}return new Promise(resolve=>{const tx=db.transaction('state','readwrite');tx.objectStore('state').put({photos,history,profileName,bundledAssets:galleryMaterials.map(p=>p[0])},'library');tx.oncomplete=()=>resolve();tx.onerror=()=>{toast('Storage is full. Export photos to keep them.',{tone:'error'});resolve()};});}
 async function restore(){const db=await dbPromise;if(!db)return;try{let s=await new Promise(resolve=>{const r=db.transaction('state').objectStore('state').get('library');r.onsuccess=()=>resolve(r.result);r.onerror=()=>resolve(null)});if(s){const included=new Set(s.bundledAssets||['sun','city','portrait','smile','coast','mountain']);const added=bundledGalleryPhotos.filter(p=>!included.has(p.asset));photos=[...s.photos,...added];history=s.history||[];const recoveredShots=photos.filter(p=>p.id.startsWith('capture-')&&p.source==='Camera interaction reference'&&!history.some(h=>h.photoId===p.id&&h.kind==='capture'));history.push(...recoveredShots.map(p=>({photoId:p.id,src:p.src,look:p.name,type:p.type,kind:'capture',created:p.created})));profileName=s.profileName||'';currentPhoto=photos[0];if(added.length||recoveredShots.length)await persist();if(['library','profile'].includes(page))go(page)}}catch(e){}}
@@ -1348,11 +1214,11 @@ const actions={
 'me-account':()=>openMeDetail('account'),'me-history':()=>openMeDetail('history'),'me-subscription':()=>openMeDetail('subscription'),'me-restore':()=>openMeDetail('restore'),'me-start-restore':restorePurchasesPreview,'me-help':()=>openMeDetail('help'),'me-privacy':()=>openMeDetail('privacy'),'me-terms':()=>openMeDetail('terms'),'me-delete':showDeleteAccount,'me-save-name':async()=>{profileName=document.getElementById('me-name').value.trim();await persist();go('profile');},
 
 'generation-view':openGenerationResult,'generation-cancel':cancelGeneration,'generation-back':returnFromGeneration,'generation-close':()=>{if(generation?.status==='running')cancelGeneration();else returnFromGeneration()},'generation-retry':()=>{const j=generation;if(!j)return;if(j.preview){showGenerationPreview('processing');return;}startGeneration({items:j.items,look:j.look,returnPage:j.returnPage,presetLooks:j.looks});},'generation-change':()=>{const j=generation;if(j)j.dismissed=true;if(j)currentTemplate=j.look;go('template');pickSheet();},
-'hero-capture':()=>{currentTemplate=heroLook();cameraPhoto=null;go('camera')},'hero-try':()=>{currentTemplate=heroLook();pickSheet()},'pick':pickSheet,'close-sheet':closeSheet,'import':()=>{uploadIntent='library';document.getElementById('file-input').click()},'upload-for-look':()=>{uploadIntent='look';document.getElementById('file-input').click()},'capture':()=>{cameraPhoto=null;go('camera')},'fine-tune':()=>enterEditor('result'),'share':shareResult,'edit-photo':()=>enterEditor('photo'),'save':()=>savePhoto(false),'save-editor':()=>savePhoto(true),'editor-back':leaveEditor,'editor-undo':undoEditor,'editor-redo':redoEditor,'refine-cancel':cancelRefineTool,'refine-confirm':confirmRefineTool,'spots-undo':undoLastSpot,'ai-retouch':toggleAiRetouch,'sculpt-mirror':toggleSculptMirror,'sculpt-reset':resetSculpt,'result-undo-spot':undoResultSpot,'library-all':()=>{filter='All';library();},'reset-editor':resetRefine,
+'hero-capture':()=>{currentTemplate=heroLook();cameraPhoto=null;go('camera')},'hero-try':()=>{currentTemplate=heroLook();pickSheet()},'pick':pickSheet,'close-sheet':closeSheet,'import':()=>{uploadIntent='library';document.getElementById('file-input').click()},'upload-for-look':()=>{uploadIntent='look';document.getElementById('file-input').click()},'capture':()=>{cameraPhoto=null;go('camera')},'share':shareResult,'edit-photo':()=>enterEditor('photo'),'save-editor':savePhoto,'editor-back':leaveEditor,'editor-undo':undoEditor,'editor-redo':redoEditor,'refine-cancel':cancelRefineTool,'refine-confirm':confirmRefineTool,'ai-retouch':toggleAiRetouch,'sculpt-mirror':toggleSculptMirror,'sculpt-reset':resetSculpt,'library-all':()=>{filter='All';library();},'reset-editor':resetRefine,
 'remove-history':confirmHistoryRemoval,'save-history':saveHistoryToPhotos,'edit-history':()=>enterEditor('history'),'account':()=>openMeDetail('account'),
 'camera-shoot':shootCamera,'camera-import':cameraLibrary,'camera-history':()=>openMeDetail('history',{returnTo:'camera',scope:'captures'}),'camera-flip':()=>{if(cameraBusy)return;cameraPhoto=null;cameraFacing=cameraFacing==='user'?'environment':'user';cameraZoom=1;updateCameraPreview();},
  'terms':()=>toast('Membership pricing and purchase terms will be available when subscriptions launch.')};
-document.addEventListener('click',e=>{const maskEl=e.target.closest('[data-portrait-mask]');if(maskEl){selectPortraitMask(maskEl.dataset.portraitMask);return;}const tabEl=e.target.closest('[data-portrait-tab]');if(tabEl){selectPortraitTab(tabEl.dataset.portraitTab);return;}const b=e.target.closest('button');if(!b)return;if(b.dataset.page){if(b.dataset.page==='generating'){if(generation&&!generation.preview&&generation.status==='running')go('generating');else showGenerationPreview('processing');return;}if(b.dataset.page==='editor'){enterEditor(page==='result'?'result':'photo');return;}go(b.dataset.page);return;}if(b.dataset.action){actions[b.dataset.action]?.();return;}if(b.dataset.generationPreview){showGenerationPreview(b.dataset.generationPreview);return;}if(b.dataset.zoom){if(cameraBusy)return;cameraZoom=Number(b.dataset.zoom);updateCameraPreview();return;}if(b.dataset.cameraMode){if(cameraBusy)return;cameraMode=b.dataset.cameraMode;if(cameraMode==='Cameras')cameraZoom=1;document.querySelectorAll('[data-camera-mode]').forEach(el=>el.classList.toggle('active',el===b));renderCameraCarousel();updateCameraPreview();return;}if(b.dataset.cameraChoice){selectCameraChoice(b.dataset.cameraChoice);return;}if(b.dataset.cameraPhoto){useCameraPhoto(photos.find(p=>p.id===b.dataset.cameraPhoto));return;}if(b.dataset.template){templateReturn=page==='collection'?'collection':'templates';currentTemplate=templates.find(t=>t.id===b.dataset.template);resultSrc=null;go('template');return;}if(b.dataset.feedUpload){currentTemplate=templates.find(t=>t.id===b.dataset.feedUpload)||currentTemplate;pickSheet();return;}if(b.dataset.feedShoot){currentTemplate=templates.find(t=>t.id===b.dataset.feedShoot)||currentTemplate;cameraPhoto=null;go('camera');return;}if(b.dataset.albumPhoto){const ph=photos.find(p=>p.id===b.dataset.albumPhoto);if(!ph)return;currentPhoto=ph;photoContext='photos';activeHistoryPhotoId=null;enterEditor('library');return;}if(b.dataset.portraitPack){applyPortraitPack(b.dataset.portraitPack);return;}if(b.dataset.hero!==undefined){bannerIndex=Number(b.dataset.hero);const el=document.querySelector('.banner');if(el)el.outerHTML=banner();return;}if(b.dataset.collection!==undefined){currentCollection=b.dataset.collection;go('collection');return;}if(b.dataset.filter){filter=b.dataset.filter;library();return;}if(b.dataset.albumTab){albumTab=b.dataset.albumTab;albumQuery='';renderNativeAlbum();return;}if(b.dataset.albumScope){albumScope=b.dataset.albumScope;albumTab='Photos';albumQuery='';renderNativeAlbum();return;}if(b.dataset.albumPhoto){const photo=photos.find(p=>p.id===b.dataset.albumPhoto);if(!photo)return;if(albumIntent==='camera'){useCameraPhoto(photo)}else{currentPhoto=photo;currentTemplate={...albumLook};resultSrc=null;resetValues();startGeneration({items:[photo],look:{...albumLook},returnPage:'template'});}return;}if(b.dataset.resultTool){if(b.dataset.resultTool==='more'){enterEditor('result');return;}resultTune=resultTune||defaultResultTune();resultTune.tool=resultTune.tool===b.dataset.resultTool?null:b.dataset.resultTool;renderResultDock();return;}if(b.dataset.resultCat){resultTune.cat=b.dataset.resultCat;renderResultDock();return;}if(b.dataset.resultParam){resultTune.param=b.dataset.resultParam;renderResultDock();return;}if(b.dataset.resultItem){selectResultItem(b.dataset.resultItem);return;}if(b.dataset.refineTool){openRefineTool(b.dataset.refineTool);return;}if(b.dataset.refineCat){commitEditorAdjustment();refineCat=b.dataset.refineCat;refinePanel();return;}if(b.dataset.refineParam){commitEditorAdjustment();refineParam[refineTool]=b.dataset.refineParam;refinePanel();return;}if(b.dataset.refineItem){selectRefineItem(b.dataset.refineItem);return;}if(b.dataset.share){closeSheet();toast(b.dataset.share+' sharing isn’t connected in this preview.');return;}if(b.dataset.cameraLook){currentTemplate=templates.find(t=>t.id===b.dataset.cameraLook);closeSheet();camera();return;}if(b.dataset.category){currentPhoto.type=b.dataset.category;persist();closeSheet();photoDetail();return;}if(b.dataset.plan){content.querySelectorAll('.plan').forEach(el=>el.classList.toggle('active',el===b));return;}if(b.dataset.history!==undefined){const h=history[Number(b.dataset.history)];if(!h)return;currentPhoto={id:h.photoId,src:h.src,name:h.look,type:h.type||'Portrait',source:'App history',created:h.created};photoDetailReturn='me-detail';photoContext='history';activeHistoryPhotoId=h.photoId;go('photo');return;}});
+document.addEventListener('click',e=>{const maskEl=e.target.closest('[data-portrait-mask]');if(maskEl){selectPortraitMask(maskEl.dataset.portraitMask);return;}const tabEl=e.target.closest('[data-portrait-tab]');if(tabEl){selectPortraitTab(tabEl.dataset.portraitTab);return;}const b=e.target.closest('button');if(!b)return;if(b.dataset.page){if(b.dataset.page==='generating'){if(generation&&!generation.preview&&generation.status==='running')go('generating');else showGenerationPreview('processing');return;}if(b.dataset.page==='result'){openResultDemo();return;}go(b.dataset.page);return;}if(b.dataset.action){actions[b.dataset.action]?.();return;}if(b.dataset.generationPreview){showGenerationPreview(b.dataset.generationPreview);return;}if(b.dataset.zoom){if(cameraBusy)return;cameraZoom=Number(b.dataset.zoom);updateCameraPreview();return;}if(b.dataset.cameraMode){if(cameraBusy)return;cameraMode=b.dataset.cameraMode;if(cameraMode==='Cameras')cameraZoom=1;document.querySelectorAll('[data-camera-mode]').forEach(el=>el.classList.toggle('active',el===b));renderCameraCarousel();updateCameraPreview();return;}if(b.dataset.cameraChoice){selectCameraChoice(b.dataset.cameraChoice);return;}if(b.dataset.cameraPhoto){useCameraPhoto(photos.find(p=>p.id===b.dataset.cameraPhoto));return;}if(b.dataset.template){templateReturn=page==='collection'?'collection':'templates';currentTemplate=templates.find(t=>t.id===b.dataset.template);resultSrc=null;go('template');return;}if(b.dataset.feedUpload){currentTemplate=templates.find(t=>t.id===b.dataset.feedUpload)||currentTemplate;pickSheet();return;}if(b.dataset.feedShoot){currentTemplate=templates.find(t=>t.id===b.dataset.feedShoot)||currentTemplate;cameraPhoto=null;go('camera');return;}if(b.dataset.stripPhoto){const ph=photos.find(p=>p.id===b.dataset.stripPhoto);if(!ph)return;currentPhoto=ph;photoContext='photos';activeHistoryPhotoId=null;enterEditor('library');return;}if(b.dataset.portraitPack){applyPortraitPack(b.dataset.portraitPack);return;}if(b.dataset.hero!==undefined){bannerIndex=Number(b.dataset.hero);const el=document.querySelector('.banner');if(el)el.outerHTML=banner();return;}if(b.dataset.collection!==undefined){currentCollection=b.dataset.collection;go('collection');return;}if(b.dataset.filter){filter=b.dataset.filter;library();return;}if(b.dataset.albumTab){albumTab=b.dataset.albumTab;albumQuery='';renderNativeAlbum();return;}if(b.dataset.albumScope){albumScope=b.dataset.albumScope;albumTab='Photos';albumQuery='';renderNativeAlbum();return;}if(b.dataset.albumPhoto){const photo=photos.find(p=>p.id===b.dataset.albumPhoto);if(!photo)return;if(albumIntent==='camera'){useCameraPhoto(photo)}else{currentPhoto=photo;currentTemplate={...albumLook};resultSrc=null;resetValues();startGeneration({items:[photo],look:{...albumLook},returnPage:'template'});}return;}if(b.dataset.refineTool){openRefineTool(b.dataset.refineTool);return;}if(b.dataset.refineCat){commitEditorAdjustment();refineCat=b.dataset.refineCat;refinePanel();return;}if(b.dataset.refineParam){commitEditorAdjustment();refineParam[refineTool]=b.dataset.refineParam;refinePanel();return;}if(b.dataset.refineItem){selectRefineItem(b.dataset.refineItem);return;}if(b.dataset.share){closeSheet();toast(b.dataset.share+' sharing isn’t connected in this preview.');return;}if(b.dataset.cameraLook){currentTemplate=templates.find(t=>t.id===b.dataset.cameraLook);closeSheet();camera();return;}if(b.dataset.category){currentPhoto.type=b.dataset.category;persist();closeSheet();photoDetail();return;}if(b.dataset.plan){content.querySelectorAll('.plan').forEach(el=>el.classList.toggle('active',el===b));return;}if(b.dataset.history!==undefined){const h=history[Number(b.dataset.history)];if(!h)return;currentPhoto={id:h.photoId,src:h.src,name:h.look,type:h.type||'Portrait',source:'App history',created:h.created};photoDetailReturn='me-detail';photoContext='history';activeHistoryPhotoId=h.photoId;go('photo');return;}});
 document.getElementById('file-input').addEventListener('change',e=>importFiles(e.target.files));document.addEventListener('keydown',handleOverlayKeys);
 content.addEventListener('scroll',()=>{if(page!=='templates')return;if(homeForm==='feed'){if(content.scrollTop>40&&!feedScrolled){feedScrolled=true;document.querySelector('.feed-hint')?.classList.add('gone');}return;}document.getElementById('status').classList.toggle('home-scrolled',content.scrollTop>300)},{passive:true});
 window.addEventListener('pagehide',stopCamera);

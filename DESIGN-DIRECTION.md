@@ -1,6 +1,6 @@
 # 设计方向 — 画像、形态、调性落到原型
 
-更新：2026-09-14（首页 B 形态 = Tezza 式沉浸内容流；精修加 AI Retouch 独立入口、人像预设包；Save 后导出弹窗。同日更早：成片页改成 After + 四入口编辑器；人像精修改为点 / 搓 / 捏三手势）；此前 2026-09-10（主色方案、首页主按钮），首版 2026-09-09。对应 `muse-app.html`。此前的首页场景说明见 `HOME-DIRECTION.md`，成片与精修见 `RESULT-REFINE-FLOW.md`。
+更新：2026-09-14（首页 B 形态 = Tezza 式沉浸内容流；成片与精修合成一页，Filters / Effects 先给本模版的；AI Retouch = AI 框出脸、她点部位；Portrait tab = 预设包；Save 后导出弹窗。同日更早：成片页改成 After + 四入口编辑器；人像精修改为点 / 搓 / 捏三手势）；此前 2026-09-10（主色方案、首页主按钮），首版 2026-09-09。对应 `muse-app.html`。此前的首页场景说明见 `HOME-DIRECTION.md`，成片与精修见 `RESULT-REFINE-FLOW.md`。
 
 ## 结论
 
@@ -28,26 +28,17 @@
 
 **选氛围 → 上传 / 拍摄 → 成片。** 详情页把两条入口并列：`Upload a photo`（主）和 `Shoot`（玻璃）。两条路径都进入同一条生成链。
 
-**成片页 = 结果 + 就地微调（2026-09-14 定稿）。** 照片框只放 After，占满顶栏与底部编辑器之间的全部高度，不做前后对比、不在这里点修。顶栏右侧是 `Share` 圆钮 + `Save`；底部是一条固定编辑器，四个入口：
-
-- **Filters**：默认选中所选模版的 Look（缩略图带 `Look` 角标），带强度滑杆，也能换成其他滤镜（沿用精修页的 `REFINE_FILTERS` 与分类）
-- **Effects**：默认选中模版自带的特效（`templateEffectId` 从模版的 `effect` / `grain` 推出），同样可调强度或换一个，`None` 表示不叠
-- **Adjust**：曝光 / 对比 / 饱和 / 色温，点参数换滑杆
-- **Edit More**：进精修（`enterEditor('result')`）
-
-改动过的入口在标签上留一个小点（`applied`）。没动过任何一项时预览直接用生成图，只有偏离默认才走 `renderRefine` 画到 canvas 上，所以打开页面不会闪。`Save` 时若有微调，用同一份 tune 以 2400px 重渲染后再保存。
-
-这是 9/10 两次调整之后的第三版，前两版都不成立：带 `Look intensity` 滑杆 + `Finishing touches` 四张预览的版本让成片页读起来像“还没修完”；只剩前后对比加点修的极简版又把能力砍太狠，用户想换个滤镜必须进精修。现在的分工是照片只给结果，微调收在一条不抢戏的 dock 里，Save / Share 仍在本页。`RESULT-REFINE-FLOW.md` 与 `PRODUCT-STRUCTURE.md` 的「成片」一节以此为准。
+**成片和精修是同一页（2026-09-14 合并）。** 之前是成片页（After + 四入口 dock + Edit More）再进精修页（四个 tab），两页的 Filters / Effects / Adjust 面板本来就是同一套，用户要在两处做同一件事。合并后生成完直接进编辑页：Look 已经套好、Save 亮着，什么都不动也能存；想动就点 tab。「本模版优先」落在两处：Filters 第一张是本模版的滤镜（`Look` 角标、默认选中、滑杆显示模版名），后面才是素材库分组；Effects 是 None → 本模版的特效（`Look` 角标）→ 素材库其余。Reset 回到「生成时的样子」而不是空白。渲染上 Look 的颜色是 `filter:'look'`，Look 的打光 / 颗粒是 Effects 的默认选中项（`lookEffect`，强度按生成步骤实际叠的量标定），所以改哪一项都是连续的，不会从生成图跳到近似图。
 
 **人像精修 = 摸脸（2026-09-14 定稿）。** 照片本身是控制面板，三种手势各管一类修饰：**点**一处拉出滑杆（Skin / Eyes / Smile / Waist / Legs），**搓**——选中后在照片上左右滑直接调，**捏**——Shape 是脸轮廓上的 14 个点位 + 鼻翼 2 个菱形点，拖哪儿哪儿液化，默认左右镜像，原轮廓留虚线残影，双击归位，`Slim` 滑杆做一键收颊的宏。蒙版按每张脸贴合（`FACE_LAYOUTS`），名字胶囊当标注挂在脸外圈，不压五官。
 
 之前那版是四块通用椭圆 + 一条滑杆：椭圆和脸对不上，Shape 只是整张脸横向压缩，用户看不出“改了哪里”。参考像素蛋糕的轮廓点位之后决定把 Shape 做成点位液化，同时把“拉滑杆”留给强度类修饰——形状要指哪儿改哪儿，强度要一根杆子够得着；两种都不需要项目列表。没有采用的方向：在蒙版上出一个环形拨盘（学习成本高、单手不好用）；两指在眼睛上捏合放大（桌面演示不了，留到真机再评估）。
 
-**人像精修先给包，再给手（2026-09-14 补）。** Portrait 的滑杆下面常驻一行预设素材包：None · Natural · Soft Skin · Glow · Editorial · Sculpted，每包是一组 Skin / Eyes / Smile / Slim / Waist 数值，缩略图是这张照片的脸部裁切套上该包的真实效果（`renderPackThumbs`，260px 渲染，按脸部布局对准眼睛）。点一包整脸就好，再点脸微调；数值一偏离，就没有包处于选中态。这样「摸脸」的手势模型不变，第一步却不需要她先懂哪一处该动多少。
+**Portrait tab 只给包，手放到 AI Retouch 里（2026-09-14 定稿）。** Portrait 和 Filters 同一形态：一行缩略图 + 一根 Strength 滑杆。包是 None · Natural · Soft Skin · Glow · Editorial · Sculpted，每包一组 Skin / Eyes / Smile / Slim / Waist 数值，缩略图是她这张脸套上 Look 和该包的真实效果（`renderPackThumbs`）；Strength 按比例缩放整包（`packValues`）。手动改过某一处之后没有包处于选中态，面板写「Set by hand in AI Retouch. Pick a pack to start over.」。这样 tab 里没有任何需要「点照片」的交互，四个 tab 形态一致。
 
-**AI Retouch 是照片上的一枚独立入口，不是第五个 tab。** 四个 tab（Portrait / Filters / Effects / Adjust）是「调」，点修是「去掉」，心智不同，所以放在照片右上角一枚 ✦ 胶囊，进入时照片扫一道光，底部只剩一句话 + Size + Undo last + ✕✓。修补尺度按「一颗痘」定（默认约画面宽 2.5%），之前的版本一按就模糊半张脸，是因为把它当成了大面积磨皮。有过点修时胶囊带计数（AI Retouch · 2）。
+**AI Retouch = AI 框出脸，她点部位（2026-09-14 定稿）。** 上一版把 AI Retouch 做成「点一处修掉一颗痘」，方向错了：她要的不是去瑕疵，是像人脸识别那样框出脸、标出 Shape / Eyes / Skin / Smile，然后对着部位修。所以现在点胶囊先跑一段识别动画——四角取景框从整张照片收拢到脸上（`.face-frame` 过渡 0.78s，框内扫描线，框下「Finding the face…」），停稳后四角变主色，框内浮出摸脸的三手势（点拉滑杆 / 搓直接调 / 捏轮廓点位液化，见上一段）。它仍然是照片上的独立入口而不是第五个 tab：四个 tab 是「整体调」，AI Retouch 是「对着脸的某一处调」，两边改的是同一组人像数值，所以在 Portrait tab 里能看见「手动改过」的状态。识别动画在原型里是按手标脸部布局播的，正式版换成真实关键点，动画不变。
 
-**导出做轻，弹窗引导去分享。** 没有导出设置页。Save 一步写入相册，紧接着一张底部弹窗：✓ Saved to Photos、成片缩略图卡（名字 · Full size · JPG · 原图不动）、一行 Post it while it’s fresh 和四个目标（Instagram · TikTok · Messages · More），Done 收起留在当前页。精修页、成片页和「我的 · 历史」保存都走这张弹窗。
+**导出做轻，弹窗引导去分享。** 没有导出设置页。Save 一步写入相册，紧接着一张底部弹窗：✓ Saved to Photos、成片缩略图卡（名字 · Full size · JPG · 原图不动）、一行 Post it while it’s fresh 和四个目标（Instagram · TikTok · Messages · More），Done 收起留在当前页。成片 · 精修页和「我的 · 历史」保存都走这张弹窗。
 
 **首页两种形态都在，用来定调性（2026-09-14 重做）。** demo 左侧面板可切，选择存 localStorage：
 

@@ -1,30 +1,29 @@
 # 结果页与精修页 — 完整链路细化
 
-更新：2026-09-14（成片页以 `PRODUCT-STRUCTURE.md`「成片」为准；精修加 AI Retouch 独立入口与人像预设包；Save 后导出弹窗）。首版 2026-09-08。对应原型页 08 成片、09 精修（`muse-app.html`）。
+更新：2026-09-14（成片与精修合成一页 08；Filters / Effects 先给本模版的；AI Retouch = AI 框出脸、点部位修；Portrait tab = 预设包 + Strength；Save 后导出弹窗）。首版 2026-09-08。对应原型页 08 成片 · 精修（`muse-app.html`）。
 
 ## 两条路径在结果页汇合
 
 | 路径 | 入口 | 处理 | 汇合点 | 之后 |
 | --- | --- | --- | --- | --- |
-| A 拍摄 | 首页 / 模版详情的相机按钮 → 相机页选风格 → 快门 | 生成等待（07） | 效果结果（08） | 分享 / 精修 / 保存 |
-| B 上传 | 首页卡片 → 模版详情 → Try this look → iOS 相册抽屉选一张 | 生成等待（07） | 效果结果（08） | 分享 / 精修 / 保存 |
+| A 拍摄 | 首页 / 模版详情的相机按钮 → 相机页选风格 → 快门 | 生成等待（07） | 成片 · 精修（08） | 保存 / 分享 / 就地调 |
+| B 上传 | 首页卡片 → 模版详情 → Try this look → iOS 相册抽屉选一张 | 生成等待（07） | 成片 · 精修（08） | 保存 / 分享 / 就地调 |
 
 两条路径进入结果页后完全一致；只有"返回"不同：A 返回相机，B 返回模版详情（`resultReturn`）。
 
 ## 结果页（08）
 
-沿用 `PRODUCT-STRUCTURE.md`「成片」（2026-09-14 定稿）：照片框只放 After，底部固定编辑器四个入口 Filters / Effects / Adjust / Edit More，顶栏 Share 圆钮 + Save。早先的 Before/After 拖动对比、Look intensity、Finishing touches 缩略图带都已撤下。
+沿用 `PRODUCT-STRUCTURE.md`「成片 · 精修（一页）」：生成完成直接进编辑页，Look 已套好、Save 亮着；不再有单独的成片页和 Edit More。早先的 Before/After 拖动对比、Look intensity、Finishing touches 缩略图带、四入口 dock 都已撤下。
 
-Save 之后不再只是一条 toast，而是弹导出弹窗（见「导出弹窗」），Share 圆钮打开的分享面板保留。
-
-## 精修页（09）
+## 成片 · 精修页（08）
 
 按 C 端修图 App 的常见形态（美图 / VSCO / 系统相册）做，不是专业编辑器。页面三段：顶栏 → 圆角照片卡 → 底部工具坞。
 
 **版面**
 
 - 顶栏：圆形返回、居中标题（从结果页进入时副标题显示"After Hours look on"，提醒 look 还在）、右侧 Save 药丸（有改动才亮）。
-- 照片卡：圆角 18px、留 12px 边距和投影，照片以 contain 放在卡内；卡内左下浮玻璃撤销 / 重做，右下"按住看修饰前"；右上一枚 ✦ **AI Retouch** 胶囊，是点修的独立入口（不占工具坞位置），有过点修时带计数。
+- 顶栏：返回 · 模版名 + kicker · Share 圆钮 · Save 药丸（从 Gallery 进：标题 Refine，无 Share）。
+- 照片卡：圆角 18px、留 12px 边距和投影，照片以 contain 放在卡内；卡内左下浮玻璃撤销 / 重做，右下"按住看修饰前"；右上一枚 ✦ **AI Retouch** 胶囊，是「对着脸修」的独立入口（不占工具坞位置），用它手改过后带一圈描边。
 - 工具坞关闭态：一行 4 个方圆图标 + 文字（Portrait / Filters / Effects / Adjust）。已生效的工具在图标右上角亮一颗点；有任何改动时提示行右侧出现 Reset。
 
 原来放在最前的一键 **Auto**（Smooth 35 / Brighten 18 / Glow 8 / Exposure +6 / Contrast +5 / Saturation +6 / Warmth +4，再点关闭）已于 2026-09-14 移除，本节以此为准。
@@ -33,21 +32,23 @@ Save 之后不再只是一条 toast，而是弹导出弹窗（见「导出弹窗
 | --- | --- | --- |
 | Filters | ⊘ 无 + Hot / Gentle / Tone / Film / Vibe 五组胶囊，每组 4 个 | 选中后出现强度滑杆；缩略图 72×90，放大到人物面部，用当前照片渲染，名称在图下 |
 | Effects | None / Grain / Glow / Sparkle / Vignette / Light leak | 同上，缩略图保留全画幅（暗角、漏光在边缘） |
-| Portrait | 交互在照片上：Face（Skin / Eyes / Smile / Shape）· Body（Waist / Legs）；滑杆下常驻一行预设包 None / Natural / Soft Skin / Glow / Editorial / Sculpted | 面板：Face \| Body \| Done 一行 + 当前处的滑杆（未选处时是一句提示）+ 预设包缩略图行（62×76，脸部裁切、套真实效果）+ 一行提示。点一包整脸设好，再点一处出滑杆微调，在照片上左右搓也能调；Shape 是轮廓点位液化（Mirror / 双击归位 / Slim 宏），细则见 `PRODUCT-STRUCTURE.md`「人像精修页」 |
-| AI Retouch（照片右上独立入口） | 点照片任一处修掉一个点：痘、碎发、污点 | 进入时照片扫一道光；面板：一句提示 + Size 滑杆 + Undo last + ✕ / ✓。修补尺度默认约画面宽 2.5%，Size 20–100 对应约 1.1%–3.8% |
+| Portrait | 预设包：None / Natural / Soft Skin / Glow / Editorial / Sculpted，缩略图是这张脸套上 Look + 该包的真实效果 | 面板：Strength 滑杆（选中包时，按比例缩放整包）+ 一行包缩略图；手动改过后滑杆位置换成一句「Set by hand in AI Retouch. Pick a pack to start over.」 |
+| Filters | 第一张是本模版的滤镜（`Look` 角标，默认选中），后面是素材库分组 | 滑杆显示模版名或滤镜名；⊘ = 去掉 Look 的颜色 |
+| Effects | None → 本模版的特效（`Look` 角标，默认选中，强度按生成量标定）→ 素材库其余 | 同 Filters |
+| AI Retouch（照片右上独立入口） | 点胶囊 → 识别动画（四角框从整图收拢到脸上，约 0.8s，扫描线 + Finding the face…）→ 框内浮出 Shape / Skin / Eyes / Smile；Body tab 是 Waist / Legs | 点一处拉滑杆；搓（选中后在照片上左右滑）直接调；点轮廓进 Shape：14 点位 + 鼻翼 2 菱形点液化，Mirror 默认开，双击归位，Slim 宏；Face / Body / Done 一行 |
 | Adjust | Exposure / Contrast / Saturation / Warmth | 同上，双向滑杆从中点向两侧填充 |
 
 交互规则：
 
 - 一次只开一个工具。Filters / Effects / Adjust 面板底部固定 ✕ / 工具名 / ✓。✕ 撤回本次面板内全部改动并清掉对应撤销记录，✓ 保留并收起。Portrait 没有这条工具栏，只有 Done。
 - 滑杆 4px 轨道、青柠色进度、白色 20px 拇指；未选滤镜 / 特效时不显示滑杆，只显示一句提示。
-- "按住看修饰前"的对比对象是进入精修时的图，即已应用 look 的结果。
+- "按住看修饰前"的对比对象是原图（Look 套用前）。Reset 回到进入时的状态，即生成时的样子。
 - 顶部 Save 只有在有未保存改动时可用；返回时若有改动弹 Discard 确认。保存为新图，原图保留；保存成功后弹导出弹窗（下）。
-- 从图库直接打开一张照片也进入同一个精修页，只是没有 look 副标题，提示语改为"One tap, or pick a tool."。
+- 从图库直接打开一张照片也进入同一页，只是没有 Look：标题 Refine、无 Share、Filters / Effects 没有 `Look` 项，提示语 "Tap a tool."。
 
 ## 导出弹窗
 
-导出做轻：Save 一步写入相册（2400px JPG），紧接着一张底部弹窗，精修页、成片页、「我的 · 历史」保存三处共用：
+导出做轻：Save 一步写入相册（2400px JPG），紧接着一张底部弹窗，成片 · 精修页与「我的 · 历史」保存共用：
 
 - 标题 ✓ Saved to Photos，右上 ✕
 - 一张卡：成片缩略图 74×96 + 名字 + Full size · JPG + Your original stays untouched.
